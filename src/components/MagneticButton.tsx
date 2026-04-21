@@ -50,7 +50,7 @@ export default function MagneticButton({
   const sharedProps = {
     ref: ref as never,
     className,
-    style: { ...style, x: sx, y: sy, display: 'inline-flex' } as CSSProperties,
+    style: { ...style, x: sx, y: sy, display: 'inline-flex' } as unknown as CSSProperties,
     onMouseMove: onMove,
     onMouseLeave: onLeave,
     onClick,

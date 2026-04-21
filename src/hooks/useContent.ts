@@ -8,5 +8,5 @@ export function useLang(): Lang {
 
 export function useContent(): Strings {
   const lang = useLang()
-  return strings[lang]
+  return strings[lang] as Strings
 }

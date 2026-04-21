@@ -14,7 +14,7 @@ export default defineConfig({
   },
   plugins: [
     { enforce: 'pre', ...mdx({ jsxImportSource: 'react' }) },
-    react({ include: /\.(mdx|md|tsx|ts|jsx|js)$/ }),
+    react(),
     tailwindcss(),
   ],
 })

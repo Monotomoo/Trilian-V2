@@ -4,8 +4,6 @@ import type {
   Answers,
   AuditContent,
   LeakSite,
-  Principle,
-  SomaticAnswer,
 } from './audit-data'
 
 type Props = {

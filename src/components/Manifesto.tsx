@@ -8,7 +8,7 @@ function NervousSystemDiagram() {
     'M 240 30 C 270 100, 315 160, 295 230 C 275 310, 240 290, 230 370 C 220 450, 170 450, 180 540 C 190 620, 275 610, 260 680'
 
   // Nodes along the spine (positions match the pulse waypoints)
-  const nodes = [
+  const nodes: { x: number; y: number; r: number; accent?: boolean }[] = [
     { x: 240, y: 30, r: 2.4 },
     { x: 285, y: 120, r: 3.2 },
     { x: 305, y: 205, r: 3 },
@@ -18,7 +18,7 @@ function NervousSystemDiagram() {
     { x: 230, y: 540, r: 3.4 },
     { x: 275, y: 615, r: 3 },
     { x: 255, y: 685, r: 2.6 },
-  ] as const
+  ]
 
   // Nerve branches radiating from nodes
   const branches = [
