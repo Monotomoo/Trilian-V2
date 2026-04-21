@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion'
 import RevealOnScroll from './RevealOnScroll'
+import RevealHeading from './RevealHeading'
 import SectionLabel from './SectionLabel'
 import { useContent } from '../hooks/useContent'
 
@@ -49,26 +49,22 @@ export default function Approach() {
           <SectionLabel>{t.approach.eyebrow}</SectionLabel>
         </RevealOnScroll>
 
-        <RevealOnScroll delay={0.1}>
-          <motion.h2
-            initial={{ opacity: 0, y: 16, letterSpacing: '-0.035em' }}
-            whileInView={{ opacity: 1, y: 0, letterSpacing: '-0.02em' }}
-            viewport={{ once: true, margin: '-15% 0px' }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'var(--text-headline)',
-              lineHeight: 1.05,
-              fontWeight: 400,
-              color: 'var(--color-ink)',
-              margin: '2rem 0 5rem 0',
-              maxWidth: '16ch',
-              fontVariationSettings: '"opsz" 48, "SOFT" 50',
-            }}
-          >
-            {t.approach.headline}
-          </motion.h2>
-        </RevealOnScroll>
+        <RevealHeading
+          delay={0.1}
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'var(--text-headline)',
+            lineHeight: 1.05,
+            letterSpacing: '-0.02em',
+            fontWeight: 400,
+            color: 'var(--color-ink)',
+            margin: '2rem 0 5rem 0',
+            maxWidth: '16ch',
+            fontVariationSettings: '"opsz" 48, "SOFT" 50',
+          }}
+        >
+          {t.approach.headline}
+        </RevealHeading>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-0 relative">
           {/* Center rule */}

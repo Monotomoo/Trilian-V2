@@ -1,4 +1,5 @@
 import RevealOnScroll from './RevealOnScroll'
+import RevealHeading from './RevealHeading'
 import SectionLabel from './SectionLabel'
 import Portrait from './Portrait'
 import { useContent } from '../hooks/useContent'
@@ -25,22 +26,21 @@ export default function FounderStory() {
         <div className="mt-12 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-12 md:gap-16 lg:gap-24 items-start">
           {/* Text */}
           <div className="order-2 md:order-1">
-            <RevealOnScroll delay={0.1}>
-              <h2
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'var(--text-headline)',
-                  lineHeight: 1.05,
-                  letterSpacing: '-0.02em',
-                  fontWeight: 400,
-                  color: 'var(--color-ink)',
-                  margin: '0 0 3rem 0',
-                  fontVariationSettings: '"opsz" 48, "SOFT" 50',
-                }}
-              >
-                {t.story.headline}
-              </h2>
-            </RevealOnScroll>
+            <RevealHeading
+              delay={0.1}
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'var(--text-headline)',
+                lineHeight: 1.05,
+                letterSpacing: '-0.02em',
+                fontWeight: 400,
+                color: 'var(--color-ink)',
+                margin: '0 0 3rem 0',
+                fontVariationSettings: '"opsz" 48, "SOFT" 50',
+              }}
+            >
+              {t.story.headline}
+            </RevealHeading>
 
             <div className="space-y-6">
               {t.story.paragraphs.map((p, i) => (

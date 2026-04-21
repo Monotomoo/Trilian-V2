@@ -1,4 +1,5 @@
 import RevealOnScroll from './RevealOnScroll'
+import RevealHeading from './RevealHeading'
 import SectionLabel from './SectionLabel'
 import ImagePlaceholder from './ImagePlaceholder'
 import { useContent } from '../hooks/useContent'
@@ -21,22 +22,21 @@ export default function GalleryStrip() {
             <RevealOnScroll>
               <SectionLabel>{t.gallery.eyebrow}</SectionLabel>
             </RevealOnScroll>
-            <RevealOnScroll delay={0.1}>
-              <h2
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(1.75rem, 3vw, 2.75rem)',
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.02em',
-                  fontWeight: 400,
-                  color: 'var(--color-ink)',
-                  margin: '1.5rem 0 0 0',
-                  fontVariationSettings: '"opsz" 48, "SOFT" 50',
-                }}
-              >
-                {t.gallery.headline}
-              </h2>
-            </RevealOnScroll>
+            <RevealHeading
+              delay={0.1}
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.75rem, 3vw, 2.75rem)',
+                lineHeight: 1.1,
+                letterSpacing: '-0.02em',
+                fontWeight: 400,
+                color: 'var(--color-ink)',
+                margin: '1.5rem 0 0 0',
+                fontVariationSettings: '"opsz" 48, "SOFT" 50',
+              }}
+            >
+              {t.gallery.headline}
+            </RevealHeading>
           </div>
           <RevealOnScroll delay={0.15}>
             <p

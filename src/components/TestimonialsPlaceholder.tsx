@@ -1,4 +1,5 @@
 import RevealOnScroll from './RevealOnScroll'
+import RevealHeading from './RevealHeading'
 import SectionLabel from './SectionLabel'
 import { useContent } from '../hooks/useContent'
 
@@ -20,22 +21,21 @@ export default function TestimonialsPlaceholder() {
             <SectionLabel>{t.testimonials.eyebrow}</SectionLabel>
           </RevealOnScroll>
 
-          <RevealOnScroll delay={0.1}>
-            <h2
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.625rem, 3vw, 2.5rem)',
-                lineHeight: 1.15,
-                letterSpacing: '-0.02em',
-                fontWeight: 400,
-                color: 'var(--color-ink)',
-                margin: '1.5rem 0 2rem 0',
-                fontVariationSettings: '"opsz" 36, "SOFT" 50',
-              }}
-            >
-              {t.testimonials.headline}
-            </h2>
-          </RevealOnScroll>
+          <RevealHeading
+            delay={0.1}
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(1.625rem, 3vw, 2.5rem)',
+              lineHeight: 1.15,
+              letterSpacing: '-0.02em',
+              fontWeight: 400,
+              color: 'var(--color-ink)',
+              margin: '1.5rem 0 2rem 0',
+              fontVariationSettings: '"opsz" 36, "SOFT" 50',
+            }}
+          >
+            {t.testimonials.headline}
+          </RevealHeading>
 
           <RevealOnScroll delay={0.2}>
             <p

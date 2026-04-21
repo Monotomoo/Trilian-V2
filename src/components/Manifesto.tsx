@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import SectionLabel from './SectionLabel'
+import RevealHeading from './RevealHeading'
 import { useContent } from '../hooks/useContent'
 
 function NervousSystemDiagram() {
@@ -308,11 +309,8 @@ export default function Manifesto() {
               <SectionLabel>{t.manifesto.eyebrow}</SectionLabel>
             </motion.div>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-15% 0px' }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            <RevealHeading
+              delay={0.1}
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'var(--text-headline)',
@@ -326,7 +324,7 @@ export default function Manifesto() {
               }}
             >
               {t.manifesto.headline}
-            </motion.h2>
+            </RevealHeading>
 
             <div className="space-y-6">
               {t.manifesto.lines.map((line, i) => {
