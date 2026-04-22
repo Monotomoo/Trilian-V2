@@ -5,11 +5,11 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   server: {
-    port: 4000,
+    port: 4001,
     strictPort: true,
   },
   preview: {
-    port: 4000,
+    port: 4001,
     strictPort: true,
   },
   plugins: [
