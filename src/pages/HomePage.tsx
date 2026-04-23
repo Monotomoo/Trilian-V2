@@ -3,13 +3,14 @@ import Nav from '../components/Nav'
 import ScrollProgress from '../components/ScrollProgress'
 import Hero from '../components/Hero'
 import Manifesto from '../components/Manifesto'
-import MarqueeStrip from '../components/MarqueeStrip'
 import Approach from '../components/Approach'
-import GalleryStrip from '../components/GalleryStrip'
+import LogoLab from '../components/LogoLab'
 import ServicesList from '../components/ServicesList'
 import FounderStory from '../components/FounderStory'
+import AboutSlider from '../components/AboutSlider'
 import TestimonialsPlaceholder from '../components/TestimonialsPlaceholder'
 import Principles from '../components/Principles'
+import BlogTeaser from '../components/BlogTeaser'
 import ContactForm from '../components/ContactForm'
 import Footer from '../components/Footer'
 
@@ -28,13 +29,14 @@ export default function HomePage() {
       <Nav />
       <Hero />
       <Manifesto />
-      <MarqueeStrip />
       <Approach />
-      <GalleryStrip />
+      <LogoLab />
       <ServicesList />
       <FounderStory />
+      <AboutSlider />
       <TestimonialsPlaceholder />
       <Principles />
+      <BlogTeaser />
       <ContactForm />
       <Footer />
     </main>

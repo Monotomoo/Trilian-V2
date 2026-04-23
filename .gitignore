@@ -18,6 +18,9 @@ dist-ssr
 .claude/
 CLAUDE.md
 
+# Scratch / temp extraction files
+content/_*.txt
+
 # Logs
 *.log
 npm-debug.log*

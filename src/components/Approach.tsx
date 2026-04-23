@@ -1,196 +1,660 @@
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import RevealOnScroll from './RevealOnScroll'
-import RevealHeading from './RevealHeading'
 import SectionLabel from './SectionLabel'
 import { useContent } from '../hooks/useContent'
 
-function GridMotif() {
-  return (
-    <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden style={{ opacity: 0.55 }}>
-      {[0, 1, 2, 3].map((r) =>
-        [0, 1, 2, 3].map((c) => (
-          <circle
-            key={`${r}-${c}`}
-            cx={5 + c * 10}
-            cy={5 + r * 10}
-            r={1.4}
-            fill="var(--color-moss)"
-          />
-        ))
-      )}
-    </svg>
-  )
-}
+// Each pillar's signature color — four distinct earthy tones so every ring
+// reads as its own pillar. Muted enough to live alongside the bone-warm
+// palette; chromatically spread across cool-green-warm-brown so they don't
+// all blur together.
+const PILLAR_COLORS = [
+  '#3A4C5E', // 01 Korporativni alati — slate blue-grey (cool, structural)
+  '#5B7A5A', // 02 Coaching — moss (growth, present-future)
+  '#C29142', // 03 Fitoterapija — saffron (plants, warm)
+  '#8E5236', // 04 Rad s tijelom — clay/umber (body, grounded)
+] as const
 
-function CurveMotif() {
-  return (
-    <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden style={{ opacity: 0.65 }}>
-      <g fill="none" stroke="var(--color-moss)" strokeWidth="1.3" strokeLinecap="round">
-        <path d="M 4 32 C 8 20 16 12 32 6" />
-        <path d="M 4 36 C 10 28 18 22 36 16" opacity="0.55" />
-      </g>
-    </svg>
-  )
-}
+// Quatrefoil layout: circles at N, E, S, W of stage center (400, 400) with
+// r=240 and d=130. The 4-way overlap lens has radius r-d = 110 viewBox units
+// — the Trillian mark sits centered in that overlap, no box needed.
+const SVG_CIRCLES = [
+  { cx: 400, cy: 270 }, // N
+  { cx: 530, cy: 400 }, // E
+  { cx: 400, cy: 530 }, // S
+  { cx: 270, cy: 400 }, // W
+] as const
+const CIRCLE_R = 240
+const STAGE_C = { x: 400, y: 400 }
+
+// Pure-lobe center for each circle — where the click-reveal tag lands.
+// distance from stage center = (r + d) / 2 = (240 + 130) / 2 = 185 units.
+const LOBE_TEXT = [
+  { x: 400, y: 200 }, // N
+  { x: 600, y: 400 }, // E
+  { x: 400, y: 600 }, // S
+  { x: 200, y: 400 }, // W
+] as const
 
 export default function Approach() {
   const t = useContent()
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
+  const setActive = (i: number) => {
+    // Always set (don't toggle). Clicking the same circle restarts the
+    // 3-second auto-collapse timer — effect below handles cleanup.
+    setActiveIndex(i)
+  }
+
+  // Auto-collapse: 3 seconds after a circle becomes active, release it.
+  useEffect(() => {
+    if (activeIndex === null) return
+    const timer = setTimeout(() => setActiveIndex(null), 3000)
+    return () => clearTimeout(timer)
+  }, [activeIndex])
 
   return (
     <section
       id="approach"
-      className="relative py-32 md:py-48 border-t"
+      className="approach-section"
       style={{
         background: 'var(--color-bone-warm)',
         borderColor: 'var(--color-hairline)',
       }}
     >
-      <div className="mx-auto max-w-[1440px] px-6 md:px-12">
-        <RevealOnScroll>
-          <SectionLabel>{t.approach.eyebrow}</SectionLabel>
-        </RevealOnScroll>
+      {/* Ambient moss wash */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 55% at 50% 50%, color-mix(in srgb, var(--color-moss) 7%, transparent) 0%, transparent 70%)',
+        }}
+      />
+      <div aria-hidden className="absolute inset-0 pointer-events-none grain-overlay" />
 
-        <RevealHeading
-          delay={0.1}
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'var(--text-headline)',
-            lineHeight: 1.05,
-            letterSpacing: '-0.02em',
-            fontWeight: 400,
-            color: 'var(--color-ink)',
-            margin: '2rem 0 5rem 0',
-            maxWidth: '16ch',
-            fontVariationSettings: '"opsz" 48, "SOFT" 50',
-          }}
-        >
-          {t.approach.headline}
-        </RevealHeading>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-0 relative">
-          {/* Center rule */}
-          <div
-            aria-hidden
-            className="hidden md:block absolute top-0 bottom-0 left-1/2 w-px"
-            style={{ background: 'color-mix(in srgb, var(--color-moss) 40%, transparent)' }}
-          />
-
-          {/* Left column */}
-          <RevealOnScroll delay={0.15}>
-            <div className="md:pr-12 lg:pr-20">
-              <div className="mb-5">
-                <GridMotif />
-              </div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 'var(--text-micro)',
-                  color: 'var(--color-moss)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.12em',
-                  marginBottom: '1.5rem',
-                }}
-              >
-                {t.approach.left.label} / {t.approach.left.tag}
-              </div>
-              <h3
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)',
-                  lineHeight: 1.15,
-                  letterSpacing: '-0.015em',
-                  fontWeight: 400,
-                  color: 'var(--color-ink)',
-                  margin: '0 0 1.5rem 0',
-                  fontVariationSettings: '"opsz" 36, "SOFT" 50',
-                }}
-              >
-                {t.approach.left.title}
-              </h3>
-              <p
-                style={{
-                  fontFamily: 'var(--font-ui)',
-                  fontSize: '1.0625rem',
-                  lineHeight: 1.65,
-                  color: 'var(--color-ink-soft)',
-                  margin: 0,
-                  maxWidth: '42ch',
-                }}
-              >
-                {t.approach.left.body}
-              </p>
-            </div>
+      <div className="relative mx-auto max-w-[1440px] w-full h-full px-6 md:px-12 py-10 md:py-14 flex flex-col">
+        {/* Header row */}
+        <div className="approach-header">
+          <RevealOnScroll>
+            <SectionLabel>{t.approach.eyebrow}</SectionLabel>
           </RevealOnScroll>
-
-          {/* Right column */}
-          <RevealOnScroll delay={0.25}>
-            <div className="md:pl-12 lg:pl-20">
-              <div className="mb-5">
-                <CurveMotif />
-              </div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 'var(--text-micro)',
-                  color: 'var(--color-moss)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.12em',
-                  marginBottom: '1.5rem',
-                }}
-              >
-                {t.approach.right.label} / {t.approach.right.tag}
-              </div>
-              <h3
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)',
-                  lineHeight: 1.15,
-                  letterSpacing: '-0.015em',
-                  fontWeight: 400,
-                  color: 'var(--color-ink)',
-                  margin: '0 0 1.5rem 0',
-                  fontVariationSettings: '"opsz" 36, "SOFT" 50',
-                }}
-              >
-                {t.approach.right.title}
-              </h3>
-              <p
-                style={{
-                  fontFamily: 'var(--font-ui)',
-                  fontSize: '1.0625rem',
-                  lineHeight: 1.65,
-                  color: 'var(--color-ink-soft)',
-                  margin: 0,
-                  maxWidth: '42ch',
-                }}
-              >
-                {t.approach.right.body}
-              </p>
-            </div>
+          <RevealOnScroll delay={0.1}>
+            <h2 className="approach-headline">{t.approach.headline}</h2>
           </RevealOnScroll>
         </div>
 
-        <RevealOnScroll delay={0.4}>
-          <div
-            className="mt-16 md:mt-24 pt-8 border-t max-w-[720px]"
-            style={{ borderColor: 'var(--color-hairline)' }}
-          >
-            <p
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.375rem, 2vw, 1.75rem)',
-                lineHeight: 1.3,
-                fontWeight: 400,
-                fontStyle: 'italic',
-                color: 'var(--color-moss)',
-                margin: 0,
-                fontVariationSettings: '"opsz" 24, "SOFT" 80',
-              }}
+        {/* Stage: 4 pillar texts in corners + Venn center */}
+        <div className="approach-stage">
+          {/* Venn */}
+          <div className="approach-venn">
+            <svg
+              viewBox="0 0 800 800"
+              preserveAspectRatio="xMidYMid meet"
+              className="approach-venn-svg"
             >
-              {t.approach.unifier}
-            </p>
+              <defs>
+                {t.approach.pillars.map((_, i) => (
+                  <radialGradient
+                    key={`fill-${i}`}
+                    id={`approach-fill-${i}`}
+                    cx="50%"
+                    cy="50%"
+                    r="50%"
+                  >
+                    <stop offset="0%" style={{ stopColor: PILLAR_COLORS[i], stopOpacity: 0.36 }} />
+                    <stop offset="55%" style={{ stopColor: PILLAR_COLORS[i], stopOpacity: 0.18 }} />
+                    <stop offset="100%" style={{ stopColor: PILLAR_COLORS[i], stopOpacity: 0 }} />
+                  </radialGradient>
+                ))}
+                {t.approach.pillars.map((_, i) => (
+                  <linearGradient
+                    key={`stroke-${i}`}
+                    id={`approach-stroke-${i}`}
+                    x1="50%"
+                    y1="0%"
+                    x2="50%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" style={{ stopColor: PILLAR_COLORS[i], stopOpacity: 1 }} />
+                    <stop offset="50%" style={{ stopColor: PILLAR_COLORS[i], stopOpacity: 0.82 }} />
+                    <stop offset="100%" style={{ stopColor: PILLAR_COLORS[i], stopOpacity: 0.5 }} />
+                  </linearGradient>
+                ))}
+                {/* Glow filter — active circle gets a soft outer bloom */}
+                <filter id="approach-glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="4" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              {/* Subtle fills (multiply blend gives soft color bleed in
+                  overlaps). Each one breathes at a different phase — the
+                  organic pulse that made you want "cool effect" without the
+                  blinking problem. */}
+              <g style={{ mixBlendMode: 'multiply' }}>
+                {SVG_CIRCLES.map((c, i) => (
+                  <motion.circle
+                    key={`fill-${i}`}
+                    cx={c.cx}
+                    cy={c.cy}
+                    r={CIRCLE_R}
+                    fill={`url(#approach-fill-${i})`}
+                    style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
+                    animate={{
+                      opacity:
+                        activeIndex === null ? 1 : activeIndex === i ? 1 : 0.28,
+                      scale: activeIndex === i ? 1.04 : [1, 1.018, 1],
+                    }}
+                    transition={{
+                      opacity: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
+                      scale:
+                        activeIndex === i
+                          ? { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+                          : {
+                              duration: 12 + i * 1.2,
+                              repeat: Infinity,
+                              ease: 'easeInOut',
+                              delay: i * 1.1,
+                            },
+                    }}
+                  />
+                ))}
+              </g>
+
+              {/* Outline rings — the hero of the diagram. Clickable. */}
+              <g fill="transparent" strokeLinecap="round">
+                {SVG_CIRCLES.map((c, i) => (
+                  <motion.circle
+                    key={`stroke-${i}`}
+                    cx={c.cx}
+                    cy={c.cy}
+                    r={CIRCLE_R}
+                    stroke={`url(#approach-stroke-${i})`}
+                    strokeWidth={activeIndex === i ? 3.2 : 1.8}
+                    filter={activeIndex === i ? 'url(#approach-glow)' : undefined}
+                    onClick={() => setActive(i)}
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setActive(i)}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={t.approach.pillars[i].tag}
+                    aria-pressed={activeIndex === i}
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true, margin: '-10% 0px' }}
+                    animate={{
+                      opacity: activeIndex === null ? 1 : activeIndex === i ? 1 : 0.35,
+                    }}
+                    transition={{
+                      pathLength: { duration: 1.6, delay: 0.2 + i * 0.12, ease: [0.16, 1, 0.3, 1] },
+                      opacity: { duration: 0.45 },
+                      strokeWidth: { duration: 0.25 },
+                    }}
+                    className="approach-ring"
+                  />
+                ))}
+              </g>
+
+              {/* Anchor rings — a small concentric dashed ring + a solid dot
+                  at each circle's geometric center. The dashed ring rotates
+                  slowly; the dot is the "compass pin" of that pillar. Adds
+                  detail without noise. */}
+              {SVG_CIRCLES.map((c, i) => (
+                <g key={`anchor-${i}`}>
+                  <circle
+                    cx={c.cx}
+                    cy={c.cy}
+                    r="14"
+                    fill="none"
+                    stroke={PILLAR_COLORS[i]}
+                    strokeWidth="0.6"
+                    strokeDasharray="2 3.5"
+                    opacity={activeIndex === null ? 0.55 : activeIndex === i ? 0.9 : 0.2}
+                    style={{ transition: 'opacity 400ms cubic-bezier(0.16, 1, 0.3, 1)' }}
+                  >
+                    <animateTransform
+                      attributeName="transform"
+                      type="rotate"
+                      from={`0 ${c.cx} ${c.cy}`}
+                      to={`360 ${c.cx} ${c.cy}`}
+                      dur={`${45 + i * 5}s`}
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                  <circle
+                    cx={c.cx}
+                    cy={c.cy}
+                    r="3"
+                    fill={PILLAR_COLORS[i]}
+                    opacity={activeIndex === null ? 0.85 : activeIndex === i ? 1 : 0.25}
+                    style={{ transition: 'opacity 400ms cubic-bezier(0.16, 1, 0.3, 1)' }}
+                  />
+                </g>
+              ))}
+
+              {/* Orbiting dots — one traveling the perimeter of each circle.
+                  Lives even when the page is still, so the diagram feels
+                  alive without blinking. Each dot ~12s loop, offset phase so
+                  they never align. */}
+              {SVG_CIRCLES.map((c, i) => {
+                const orbitPath = `M ${c.cx} ${c.cy - CIRCLE_R} a ${CIRCLE_R} ${CIRCLE_R} 0 1 1 0 ${CIRCLE_R * 2} a ${CIRCLE_R} ${CIRCLE_R} 0 1 1 0 ${-CIRCLE_R * 2}`
+                return (
+                  <g key={`orbit-${i}`}>
+                    <circle
+                      r={activeIndex === i ? 5.5 : 3.5}
+                      fill={PILLAR_COLORS[i]}
+                      style={{
+                        transition: 'r 320ms cubic-bezier(0.16, 1, 0.3, 1)',
+                        opacity: activeIndex === null ? 0.9 : activeIndex === i ? 1 : 0.3,
+                      }}
+                    >
+                      <animateMotion
+                        dur={`${10 + i * 1.5}s`}
+                        repeatCount="indefinite"
+                        path={orbitPath}
+                        rotate="auto"
+                        keyPoints="0;1"
+                        keyTimes="0;1"
+                        begin={`${i * 0.7}s`}
+                      />
+                    </circle>
+                  </g>
+                )
+              })}
+
+              {/* Click-reveal labels — each pillar's tag appears inside its
+                  own pure lobe when that circle (or its corner card) is
+                  active. Replaces the hover-reveal that didn't land. */}
+              {t.approach.pillars.map((pillar, i) => (
+                <motion.g
+                  key={`label-${i}`}
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: activeIndex === i ? 1 : 0,
+                    y: activeIndex === i ? 0 : 6,
+                  }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ pointerEvents: 'none' }}
+                >
+                  <text
+                    x={LOBE_TEXT[i].x}
+                    y={LOBE_TEXT[i].y - 8}
+                    textAnchor="middle"
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 10,
+                      letterSpacing: '2px',
+                      fill: PILLAR_COLORS[i],
+                      textTransform: 'uppercase',
+                      opacity: 0.85,
+                    }}
+                  >
+                    {pillar.label}
+                  </text>
+                  <text
+                    x={LOBE_TEXT[i].x}
+                    y={LOBE_TEXT[i].y + 14}
+                    textAnchor="middle"
+                    style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: 20,
+                      fill: PILLAR_COLORS[i],
+                      fontStyle: 'italic',
+                      letterSpacing: '-0.5px',
+                      fontVariationSettings: '"opsz" 24, "SOFT" 50, "WONK" 1',
+                    }}
+                  >
+                    {pillar.tag}
+                  </text>
+                </motion.g>
+              ))}
+
+              {/* Crosshair ticks around the exact center — tiny decorative
+                  detail that reinforces "the center is the point". */}
+              <g stroke="var(--color-moss)" strokeWidth="0.7" opacity="0.45">
+                <line x1="400" y1="310" x2="400" y2="320" />
+                <line x1="400" y1="480" x2="400" y2="490" />
+                <line x1="310" y1="400" x2="320" y2="400" />
+                <line x1="480" y1="400" x2="490" y2="400" />
+              </g>
+
+              {/* Trillian wordmark — SVG text directly at the exact overlap
+                  center, no background box. tspan for ochre dot. */}
+              <motion.text
+                x={STAGE_C.x}
+                y={STAGE_C.y + 14}
+                textAnchor="middle"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: '-10% 0px' }}
+                transition={{ duration: 1.1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 56,
+                  letterSpacing: '-1.8px',
+                  fontWeight: 400,
+                  fontVariationSettings: '"opsz" 56, "SOFT" 50, "WONK" 1',
+                }}
+              >
+                <tspan style={{ fill: 'var(--color-ink)' }}>{t.meta.wordmark}</tspan>
+                <tspan
+                  style={{
+                    fill: 'var(--color-ochre)',
+                    fontStyle: 'italic',
+                    fontVariationSettings: '"opsz" 56, "SOFT" 80, "WONK" 1',
+                  }}
+                >
+                  .
+                </tspan>
+              </motion.text>
+
+              {/* Tiny rule under wordmark — "one operator" hint */}
+              <motion.g
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 1.5 }}
+              >
+                <line
+                  x1="376"
+                  y1="428"
+                  x2="424"
+                  y2="428"
+                  stroke="var(--color-moss)"
+                  strokeWidth="0.7"
+                  opacity="0.55"
+                />
+                <text
+                  x={STAGE_C.x}
+                  y={446}
+                  textAnchor="middle"
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 9.5,
+                    letterSpacing: '2px',
+                    fill: 'var(--color-ink-mute)',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  one operator
+                </text>
+              </motion.g>
+            </svg>
+          </div>
+
+          {/* 4 pillar texts in the 4 corners */}
+          {t.approach.pillars.map((pillar, i) => {
+            const align = i % 2 === 0 ? 'left' : 'right'
+            const gridArea = `p${i + 1}` as const
+            const isActive = activeIndex === i
+            return (
+              <RevealOnScroll key={i} delay={0.2 + i * 0.06}>
+                <article
+                  className="approach-pillar"
+                  data-active={isActive ? 'true' : undefined}
+                  style={{
+                    gridArea,
+                    textAlign: align,
+                    alignItems: align === 'right' ? 'flex-end' : 'flex-start',
+                  }}
+                  onClick={() => setActive(i)}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setActive(i)}
+                  tabIndex={0}
+                  role="button"
+                  aria-pressed={isActive}
+                  aria-label={`${pillar.label} ${pillar.tag}`}
+                >
+                  <div className="approach-pillar-head">
+                    <span
+                      className="approach-pillar-num"
+                      style={{ color: PILLAR_COLORS[i] }}
+                    >
+                      {pillar.label}
+                    </span>
+                    <span
+                      className="approach-pillar-rule"
+                      style={{ background: PILLAR_COLORS[i], opacity: 0.55 }}
+                      aria-hidden
+                    />
+                    <span className="approach-pillar-tag">{pillar.tag}</span>
+                  </div>
+
+                  <h3 className="approach-pillar-title">{pillar.title}</h3>
+
+                  <p className="approach-pillar-body">{pillar.body}</p>
+                </article>
+              </RevealOnScroll>
+            )
+          })}
+        </div>
+
+        {/* Footer — unifier + hint */}
+        <RevealOnScroll delay={0.35}>
+          <div className="approach-footer">
+            <span className="approach-footer-rule" aria-hidden />
+            <p className="approach-unifier">{t.approach.unifier}</p>
+            <span className="approach-footer-rule" aria-hidden />
           </div>
         </RevealOnScroll>
       </div>
+
+      <style>{`
+        .approach-section {
+          position: relative;
+          min-height: 100vh;
+          overflow: hidden;
+          border-top: 1px solid var(--color-hairline);
+          border-bottom: 1px solid var(--color-hairline);
+          display: flex;
+          flex-direction: column;
+        }
+        @media (min-width: 900px) and (min-height: 760px) {
+          .approach-section { height: 100vh; min-height: 720px; }
+        }
+
+        .approach-header {
+          display: flex;
+          flex-direction: column;
+          gap: 0.85rem;
+          max-width: 42ch;
+          margin-bottom: 1rem;
+        }
+        .approach-headline {
+          font-family: var(--font-display);
+          font-size: clamp(1.75rem, 3.4vw, 3rem);
+          line-height: 1.05;
+          letter-spacing: -0.025em;
+          font-weight: 400;
+          color: var(--color-ink);
+          margin: 0;
+          font-variation-settings: "opsz" 48, "SOFT" 50, "WONK" 1;
+          max-width: 16ch;
+        }
+
+        .approach-stage {
+          flex: 1;
+          min-height: 0;
+          display: grid;
+          grid-template-columns: minmax(200px, 1fr) minmax(420px, 660px) minmax(200px, 1fr);
+          grid-template-rows: 1fr auto 1fr;
+          grid-template-areas:
+            "p1  venn  p2"
+            ".   venn  . "
+            "p3  venn  p4";
+          gap: 1.25rem 2rem;
+          align-items: start;
+        }
+        @media (min-width: 1200px) {
+          .approach-stage {
+            gap: 1.75rem 2.5rem;
+          }
+        }
+        @media (max-width: 900px) {
+          .approach-stage {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto auto auto;
+            grid-template-areas:
+              "venn"
+              "p1"
+              "p2"
+              "p3"
+              "p4";
+            gap: 2rem;
+          }
+        }
+
+        .approach-venn {
+          grid-area: venn;
+          position: relative;
+          align-self: center;
+          justify-self: center;
+          width: 100%;
+          max-width: 660px;
+          aspect-ratio: 1 / 1;
+          display: grid;
+          place-items: center;
+        }
+        .approach-venn-svg {
+          width: 100%;
+          height: 100%;
+          display: block;
+          overflow: visible;
+        }
+        .approach-ring {
+          cursor: pointer;
+          transition: opacity 450ms cubic-bezier(0.16, 1, 0.3, 1),
+            stroke-width 250ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .approach-ring:hover,
+        .approach-ring:focus-visible {
+          stroke-width: 2.5;
+          outline: none;
+        }
+
+        .approach-pillar {
+          display: flex;
+          flex-direction: column;
+          gap: 0.7rem;
+          outline: none;
+          padding: 0.6rem 0;
+          cursor: pointer;
+          transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+            opacity 400ms cubic-bezier(0.16, 1, 0.3, 1);
+          max-width: 34ch;
+          background: transparent;
+          border: none;
+        }
+        .approach-pillar:hover,
+        .approach-pillar:focus-visible {
+          transform: translateY(-2px);
+        }
+        .approach-pillar[data-active] {
+          transform: translateY(-2px);
+        }
+        .approach-pillar[style*="text-align: right"] {
+          justify-self: end;
+        }
+        .approach-pillar-head {
+          display: flex;
+          align-items: center;
+          gap: 0.65rem;
+          font-family: var(--font-mono);
+          font-size: var(--text-micro);
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+        }
+        .approach-pillar[style*="text-align: right"] .approach-pillar-head {
+          flex-direction: row-reverse;
+        }
+        .approach-pillar-num {
+          font-weight: 500;
+        }
+        .approach-pillar-rule {
+          width: 22px;
+          height: 1px;
+          display: inline-block;
+          transition: width 400ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .approach-pillar[data-active] .approach-pillar-rule,
+        .approach-pillar:hover .approach-pillar-rule {
+          width: 36px;
+        }
+        .approach-pillar-tag {
+          color: var(--color-ink-mute);
+          transition: color 320ms;
+        }
+        .approach-pillar[data-active] .approach-pillar-tag {
+          color: var(--color-ink);
+        }
+        .approach-pillar-title {
+          font-family: var(--font-display);
+          font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+          line-height: 1.2;
+          letter-spacing: -0.015em;
+          font-weight: 400;
+          color: var(--color-ink);
+          margin: 0;
+          max-width: 18ch;
+          font-variation-settings: "opsz" 24, "SOFT" 50;
+        }
+        .approach-pillar-body {
+          font-family: var(--font-ui);
+          font-size: 0.8125rem;
+          line-height: 1.55;
+          color: var(--color-ink-soft);
+          margin: 0;
+          max-width: 34ch;
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          transition: color 320ms;
+        }
+        .approach-pillar[data-active] .approach-pillar-body {
+          color: var(--color-ink);
+        }
+        @media (max-width: 900px) {
+          .approach-pillar {
+            max-width: none;
+            align-items: flex-start !important;
+            text-align: left !important;
+          }
+          .approach-pillar[style*="text-align: right"] .approach-pillar-head {
+            flex-direction: row;
+          }
+          .approach-pillar-body {
+            -webkit-line-clamp: unset;
+          }
+        }
+
+        .approach-footer {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1.2rem;
+          margin-top: 1rem;
+        }
+        .approach-footer-rule {
+          flex: 0 0 clamp(32px, 8vw, 96px);
+          height: 1px;
+          background: var(--color-hairline);
+        }
+        .approach-unifier {
+          font-family: var(--font-display);
+          font-size: clamp(1rem, 1.4vw, 1.25rem);
+          line-height: 1.3;
+          font-weight: 400;
+          font-style: italic;
+          color: var(--color-moss);
+          margin: 0;
+          max-width: 40ch;
+          text-align: center;
+          font-variation-settings: "opsz" 24, "SOFT" 80;
+        }
+      `}</style>
     </section>
   )
 }

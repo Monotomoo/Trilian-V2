@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import LangToggle from './LangToggle'
+import VennLogo from './VennLogo'
 import { useContent } from '../hooks/useContent'
 
 export default function Footer() {
@@ -52,7 +53,7 @@ export default function Footer() {
           <div>{t.meta.location} · Est. 2026</div>
         </div>
 
-        {/* Gigantic wordmark */}
+        {/* Gigantic wordmark with minimal mark alongside */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -66,19 +67,39 @@ export default function Footer() {
             fontWeight: 400,
             color: 'var(--color-ink)',
             fontVariationSettings: '"opsz" 144, "SOFT" 50, "WONK" 1',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.32em',
+            flexWrap: 'wrap',
           }}
         >
-          {t.meta.wordmark}
-          <span
+          <motion.span
             aria-hidden
-            style={{
-              color: 'var(--color-ochre)',
-              marginLeft: '0.05em',
-              fontStyle: 'italic',
-              fontVariationSettings: '"opsz" 144, "SOFT" 80, "WONK" 1',
-            }}
+            initial={{ opacity: 0, scale: 0.85 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-10% 0px' }}
+            transition={{ duration: 1.1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            style={{ display: 'inline-flex', width: '0.82em', height: '0.82em' }}
           >
-            .
+            <VennLogo
+              variant="minimal"
+              size={200}
+              style={{ width: '100%', height: '100%' }}
+            />
+          </motion.span>
+          <span style={{ display: 'inline-flex', alignItems: 'baseline' }}>
+            {t.meta.wordmark}
+            <span
+              aria-hidden
+              style={{
+                color: 'var(--color-ochre)',
+                marginLeft: '0.05em',
+                fontStyle: 'italic',
+                fontVariationSettings: '"opsz" 144, "SOFT" 80, "WONK" 1',
+              }}
+            >
+              .
+            </span>
           </span>
         </motion.div>
 
@@ -116,7 +137,11 @@ export default function Footer() {
           />
           <FooterColumn
             label="2026"
-            rows={['Founding cohort', 'Twelve seats', 'Applications open']}
+            rows={[
+              { text: t.footer.blogLabel, href: t.footer.blogHref },
+              'Founding cohort · twelve seats',
+              'Applications open',
+            ]}
             align="right"
           />
         </div>

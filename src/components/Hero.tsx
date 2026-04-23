@@ -1,14 +1,12 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
 import RotatingWord from './RotatingWord'
+import Portrait from './Portrait'
 import { useContent } from '../hooks/useContent'
 
 export default function Hero() {
   const t = useContent()
   const ref = useRef<HTMLElement | null>(null)
-  const { pathname } = useLocation()
-  const auditHref = pathname.startsWith('/hr') ? '/hr/audit' : '/audit'
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -16,7 +14,7 @@ export default function Hero() {
   })
   const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '-6%'])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0])
-  const markY = useTransform(scrollYProgress, [0, 1], ['0%', '-18%'])
+  const portraitY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%'])
 
   const line1Words = t.hero.line1.split(' ')
   const wordStagger = (i: number) => 0.25 + i * 0.07
@@ -44,74 +42,6 @@ export default function Hero() {
             'linear-gradient(to bottom, transparent 0%, var(--color-hairline) 18%, var(--color-hairline) 82%, transparent 100%)',
         }}
       />
-
-      {/* Decorative mark — breathing moss disc, bottom-right */}
-      <motion.div
-        aria-hidden
-        style={{ y: markY }}
-        className="absolute bottom-[18vh] right-[6%] md:right-[8%] hidden sm:block pointer-events-none"
-      >
-        <motion.svg
-          width="180"
-          height="180"
-          viewBox="0 0 180 180"
-          style={{ display: 'block', opacity: 0.9 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.6, delay: 0.8 }}
-        >
-          {/* Outer breathing ring */}
-          <motion.circle
-            cx="90"
-            cy="90"
-            r="72"
-            fill="none"
-            stroke="var(--color-moss)"
-            strokeWidth="0.6"
-            opacity={0.35}
-            animate={{ r: [72, 82, 72], opacity: [0.35, 0.15, 0.35] }}
-            transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          {/* Mid ring */}
-          <motion.circle
-            cx="90"
-            cy="90"
-            r="48"
-            fill="none"
-            stroke="var(--color-moss)"
-            strokeWidth="0.7"
-            opacity={0.55}
-            animate={{ r: [48, 55, 48], opacity: [0.55, 0.3, 0.55] }}
-            transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-          />
-          {/* Inner ring */}
-          <motion.circle
-            cx="90"
-            cy="90"
-            r="26"
-            fill="none"
-            stroke="var(--color-moss)"
-            strokeWidth="0.9"
-            opacity={0.75}
-            animate={{ r: [26, 30, 26], opacity: [0.75, 0.5, 0.75] }}
-            transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-          />
-          {/* Center ochre dot */}
-          <motion.circle
-            cx="90"
-            cy="90"
-            r="4"
-            fill="var(--color-ochre)"
-            animate={{ r: [4, 5.5, 4], opacity: [0.9, 1, 0.9] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          {/* Crosshair marks */}
-          <line x1="90" y1="4" x2="90" y2="14" stroke="var(--color-moss)" strokeWidth="0.5" opacity="0.3" />
-          <line x1="90" y1="166" x2="90" y2="176" stroke="var(--color-moss)" strokeWidth="0.5" opacity="0.3" />
-          <line x1="4" y1="90" x2="14" y2="90" stroke="var(--color-moss)" strokeWidth="0.5" opacity="0.3" />
-          <line x1="166" y1="90" x2="176" y2="90" stroke="var(--color-moss)" strokeWidth="0.5" opacity="0.3" />
-        </motion.svg>
-      </motion.div>
 
       {/* Main content */}
       <motion.div
@@ -165,117 +95,170 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* CENTER — headline + sub */}
-        <div className="flex-1 flex flex-col justify-center py-16 md:py-20">
-          <h1
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(2.75rem, 8.2vw, 8rem)',
-              fontWeight: 400,
-              lineHeight: 0.96,
-              letterSpacing: '-0.032em',
-              color: 'var(--color-ink)',
-              margin: 0,
-              maxWidth: '16ch',
-              fontVariationSettings: '"opsz" 96, "SOFT" 50, "WONK" 0',
-              textWrap: 'balance' as 'balance',
-            }}
-          >
-            <span style={{ display: 'block' }}>
-              {line1Words.map((word, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: '0.5em' }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: wordStagger(i), ease: [0.16, 1, 0.3, 1] }}
-                  style={{ display: 'inline-block', marginRight: '0.24em' }}
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </span>
-
-            <span style={{ display: 'block', marginTop: '0.04em' }}>
-              <motion.span
-                initial={{ opacity: 0, y: '0.5em' }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: wordStagger(line1Words.length),
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                style={{ display: 'inline-block', marginRight: '0.3em' }}
-              >
-                {t.hero.line2Prefix}
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: wordStagger(line1Words.length + 1) }}
-                style={{ display: 'inline-block' }}
-              >
-                <RotatingWord
-                  words={t.hero.rotating}
-                  startDelay={wordStagger(line1Words.length + 1) + 0.3}
-                />
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: wordStagger(line1Words.length + 2) }}
-                style={{ display: 'inline-block' }}
-              >
-                {t.hero.line2Suffix}
-              </motion.span>
-            </span>
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.8,
-              delay: wordStagger(line1Words.length + 3),
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            style={{
-              fontFamily: 'var(--font-ui)',
-              fontSize: 'clamp(1.0625rem, 1.5vw, 1.3125rem)',
-              lineHeight: 1.55,
-              maxWidth: '46ch',
-              color: 'var(--color-ink-soft)',
-              margin: '2.25rem 0 0 0',
-            }}
-          >
-            {t.hero.sub}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.8,
-              delay: wordStagger(line1Words.length + 4),
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="mt-10 flex items-center gap-6 flex-wrap"
-          >
-            <Link to={auditHref} className="hero-audit-cta">
-              <span className="hero-audit-cta-pulse" aria-hidden />
-              <span className="hero-audit-cta-label">Run the 15-minute audit</span>
-              <span aria-hidden className="hero-audit-cta-arrow">→</span>
-            </Link>
-            <span
+        {/* CENTER — headline + sub + portrait */}
+        <div className="flex-1 py-16 md:py-20 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-center">
+          {/* Text column */}
+          <div className="md:col-span-8 lg:col-span-8">
+            <h1
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 'var(--text-micro)',
-                color: 'var(--color-ink-mute)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.12em',
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(2.75rem, 7.2vw, 7rem)',
+                fontWeight: 400,
+                lineHeight: 0.96,
+                letterSpacing: '-0.032em',
+                color: 'var(--color-ink)',
+                margin: 0,
+                maxWidth: '16ch',
+                fontVariationSettings: '"opsz" 96, "SOFT" 50, "WONK" 0',
+                textWrap: 'balance' as 'balance',
               }}
             >
-              Free · 7 questions · 3 minutes
-            </span>
+              <span style={{ display: 'block' }}>
+                {line1Words.map((word, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: '0.5em' }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: wordStagger(i), ease: [0.16, 1, 0.3, 1] }}
+                    style={{ display: 'inline-block', marginRight: '0.24em' }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </span>
+
+              <span style={{ display: 'block', marginTop: '0.04em' }}>
+                <motion.span
+                  initial={{ opacity: 0, y: '0.5em' }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: wordStagger(line1Words.length),
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  style={{ display: 'inline-block', marginRight: '0.3em' }}
+                >
+                  {t.hero.line2Prefix}
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: wordStagger(line1Words.length + 1) }}
+                  style={{ display: 'inline-block' }}
+                >
+                  <RotatingWord
+                    words={t.hero.rotating}
+                    startDelay={wordStagger(line1Words.length + 1) + 0.3}
+                  />
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: wordStagger(line1Words.length + 2) }}
+                  style={{ display: 'inline-block' }}
+                >
+                  {t.hero.line2Suffix}
+                </motion.span>
+              </span>
+            </h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.8,
+                delay: wordStagger(line1Words.length + 3),
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: 'clamp(1.0625rem, 1.5vw, 1.3125rem)',
+                lineHeight: 1.55,
+                maxWidth: '46ch',
+                color: 'var(--color-ink-soft)',
+                margin: '2.25rem 0 0 0',
+              }}
+            >
+              {t.hero.sub}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.8,
+                delay: wordStagger(line1Words.length + 4),
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="mt-10 flex items-center gap-6 flex-wrap"
+            >
+              <a href="#contact" className="hero-audit-cta">
+                <span className="hero-audit-cta-pulse" aria-hidden />
+                <span className="hero-audit-cta-label">{t.hero.ctaLabel}</span>
+                <span aria-hidden className="hero-audit-cta-arrow">→</span>
+              </a>
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 'var(--text-micro)',
+                  color: 'var(--color-ink-mute)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.12em',
+                }}
+              >
+                {t.hero.ctaMicro}
+              </span>
+            </motion.div>
+          </div>
+
+          {/* Portrait column — elegant dual-frame */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            style={{ y: portraitY }}
+            className="hidden md:block md:col-span-4 lg:col-span-4"
+          >
+            <div className="hero-portrait-wrap">
+              {/* Outer offset frame */}
+              <div aria-hidden className="hero-portrait-frame" />
+
+              {/* Portrait with hair-thin inner border */}
+              <div className="hero-portrait-inner">
+                <Portrait
+                  src="/vedra-1.jpg"
+                  alt={t.hero.portraitAlt}
+                  tone="natural"
+                  breathing
+                  objectPosition="50% 20%"
+                  aspectRatio="3 / 4"
+                  priority
+                />
+                {/* Top-left crop label */}
+                <span className="hero-portrait-label" aria-hidden>
+                  01 · Portrait
+                </span>
+                {/* Corner accent dot */}
+                <span className="hero-portrait-corner-dot" aria-hidden />
+              </div>
+
+              {/* Caption below frame */}
+              <div className="hero-portrait-caption">
+                <span>Vedra · Zagreb</span>
+                <span
+                  aria-hidden
+                  style={{
+                    width: 4,
+                    height: 4,
+                    borderRadius: '50%',
+                    background: 'var(--color-ochre)',
+                    opacity: 0.85,
+                    display: 'inline-block',
+                  }}
+                />
+                <span>2026</span>
+              </div>
+            </div>
           </motion.div>
         </div>
 
@@ -414,15 +397,9 @@ export default function Hero() {
           flex-shrink: 0;
         }
         @keyframes hero-cta-pulse {
-          0% {
-            box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-ochre) 55%, transparent);
-          }
-          70% {
-            box-shadow: 0 0 0 9px color-mix(in srgb, var(--color-ochre) 0%, transparent);
-          }
-          100% {
-            box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-ochre) 0%, transparent);
-          }
+          0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-ochre) 55%, transparent); }
+          70% { box-shadow: 0 0 0 9px color-mix(in srgb, var(--color-ochre) 0%, transparent); }
+          100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-ochre) 0%, transparent); }
         }
         .hero-audit-cta-arrow {
           display: inline-block;
@@ -432,8 +409,104 @@ export default function Hero() {
         .hero-audit-cta:focus-visible .hero-audit-cta-arrow {
           transform: translateX(5px);
         }
+
+        .hero-portrait-wrap {
+          position: relative;
+          width: 100%;
+          max-width: 300px;
+          margin: 0 auto;
+          padding: 0.85rem 0.85rem 0 0;
+        }
+        @media (min-width: 1200px) {
+          .hero-portrait-wrap { max-width: 340px; }
+        }
+        .hero-portrait-frame {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: calc(100% - 0.85rem);
+          aspect-ratio: 3 / 4;
+          border: 1px solid var(--color-ochre);
+          opacity: 0.9;
+          pointer-events: none;
+        }
+        .hero-portrait-frame::before {
+          content: '';
+          position: absolute;
+          top: -0.4rem;
+          right: -0.4rem;
+          width: 0.8rem;
+          height: 0.8rem;
+          border-top: 1px solid var(--color-ochre);
+          border-right: 1px solid var(--color-ochre);
+        }
+        .hero-portrait-frame::after {
+          content: '';
+          position: absolute;
+          bottom: -0.4rem;
+          left: -0.4rem;
+          width: 0.8rem;
+          height: 0.8rem;
+          border-bottom: 1px solid var(--color-ochre);
+          border-left: 1px solid var(--color-ochre);
+        }
+        .hero-portrait-inner {
+          position: relative;
+          width: calc(100% - 0.85rem);
+          margin-left: 0.85rem;
+          margin-top: 0.85rem;
+          border: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
+          overflow: hidden;
+          background: var(--color-bone-warm);
+        }
+        .hero-portrait-label {
+          position: absolute;
+          top: 0.9rem;
+          left: 0.9rem;
+          font-family: var(--font-mono);
+          font-size: 0.625rem;
+          color: var(--color-bone);
+          text-transform: uppercase;
+          letter-spacing: 0.18em;
+          padding: 0.3rem 0.55rem;
+          background: color-mix(in srgb, var(--color-ink) 65%, transparent);
+          border-radius: 2px;
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
+          z-index: 2;
+        }
+        .hero-portrait-corner-dot {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: var(--color-ochre);
+          box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-bone) 85%, transparent);
+          z-index: 2;
+          animation: hero-portrait-dot-pulse 3.2s ease-in-out infinite;
+        }
+        @keyframes hero-portrait-dot-pulse {
+          0%, 100% { opacity: 0.9; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.25); }
+        }
+        .hero-portrait-caption {
+          margin-top: 0.85rem;
+          padding-left: 0.85rem;
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          font-family: var(--font-mono);
+          font-size: 0.6875rem;
+          color: var(--color-ink-mute);
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+        }
+
         @media (prefers-reduced-motion: reduce) {
-          .hero-audit-cta-pulse {
+          .hero-audit-cta-pulse,
+          .hero-portrait-corner-dot {
             animation: none;
           }
         }

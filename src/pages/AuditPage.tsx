@@ -142,7 +142,7 @@ export default function AuditPage() {
               fontVariationSettings: '"opsz" 14, "SOFT" 30',
             }}
           >
-            Trillian HR
+            Trillian
           </span>
           <span
             className="hidden sm:inline"

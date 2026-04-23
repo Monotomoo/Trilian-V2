@@ -1,7 +1,6 @@
 import RevealOnScroll from './RevealOnScroll'
 import RevealHeading from './RevealHeading'
 import SectionLabel from './SectionLabel'
-import Portrait from './Portrait'
 import { useContent } from '../hooks/useContent'
 
 export default function FounderStory() {
@@ -23,36 +22,44 @@ export default function FounderStory() {
           <SectionLabel>{t.story.eyebrow}</SectionLabel>
         </RevealOnScroll>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-12 md:gap-16 lg:gap-24 items-start">
-          {/* Text */}
-          <div className="order-2 md:order-1">
+        <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-10 md:gap-20 items-start">
+          {/* Left — headline */}
+          <div className="md:sticky md:top-24">
             <RevealHeading
               delay={0.1}
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'var(--text-headline)',
-                lineHeight: 1.05,
-                letterSpacing: '-0.02em',
+                lineHeight: 1.03,
+                letterSpacing: '-0.025em',
                 fontWeight: 400,
                 color: 'var(--color-ink)',
-                margin: '0 0 3rem 0',
-                fontVariationSettings: '"opsz" 48, "SOFT" 50',
+                margin: 0,
+                fontVariationSettings: '"opsz" 96, "SOFT" 50, "WONK" 1',
               }}
             >
               {t.story.headline}
             </RevealHeading>
+          </div>
 
-            <div className="space-y-6">
+          {/* Right — paragraphs */}
+          <div>
+            <div className="space-y-7">
               {t.story.paragraphs.map((p, i) => (
                 <RevealOnScroll key={i} delay={0.15 + i * 0.08}>
                   <p
                     style={{
-                      fontFamily: 'var(--font-ui)',
-                      fontSize: '1.0625rem',
-                      lineHeight: 1.7,
-                      color: 'var(--color-ink-soft)',
+                      fontFamily: i === 0 ? 'var(--font-display)' : 'var(--font-ui)',
+                      fontSize:
+                        i === 0 ? 'clamp(1.375rem, 2vw, 1.75rem)' : '1.0625rem',
+                      lineHeight: i === 0 ? 1.3 : 1.7,
+                      color: i === 0 ? 'var(--color-moss)' : 'var(--color-ink-soft)',
+                      fontStyle: i === 0 ? 'italic' : 'normal',
+                      fontWeight: 400,
                       margin: 0,
-                      maxWidth: '54ch',
+                      maxWidth: '56ch',
+                      fontVariationSettings:
+                        i === 0 ? '"opsz" 24, "SOFT" 80, "WONK" 1' : undefined,
                     }}
                   >
                     {p}
@@ -63,7 +70,7 @@ export default function FounderStory() {
 
             <RevealOnScroll delay={0.5}>
               <div
-                className="mt-10 pt-6 border-t"
+                className="mt-10 pt-6 border-t flex flex-wrap items-center gap-x-6 gap-y-2"
                 style={{
                   borderColor: 'var(--color-hairline)',
                   fontFamily: 'var(--font-mono)',
@@ -71,59 +78,39 @@ export default function FounderStory() {
                   color: 'var(--color-ink-mute)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.12em',
-                  maxWidth: '52ch',
+                  maxWidth: '54ch',
                   lineHeight: 1.7,
                 }}
               >
-                {t.story.credentials}
+                <span>{t.story.credentials}</span>
               </div>
             </RevealOnScroll>
-          </div>
 
-          {/* Images column */}
-          <div className="order-1 md:order-2 space-y-6">
-            <RevealOnScroll delay={0.2} y={20}>
-              <div className="relative">
-                <Portrait
-                  src="/vedra-1.jpg"
-                  alt={t.story.portraitAlt}
-                  tone="natural"
-                  breathing
-                  objectPosition="50% 25%"
-                  aspectRatio="3 / 4"
-                  className="w-full"
+            {/* Scroll-hint into the slider */}
+            <RevealOnScroll delay={0.6}>
+              <div className="mt-12 flex items-center gap-3">
+                <span
+                  aria-hidden
+                  style={{
+                    width: 32,
+                    height: 1,
+                    background: 'var(--color-moss)',
+                    opacity: 0.6,
+                  }}
                 />
-                <div
-                  aria-hidden
-                  className="absolute top-4 left-4"
+                <span
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.6875rem',
-                    color: 'var(--color-bone)',
+                    fontSize: 'var(--text-micro)',
+                    color: 'var(--color-ink-mute)',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.15em',
-                    mixBlendMode: 'difference',
+                    letterSpacing: '0.14em',
                   }}
                 >
-                  01 / Portrait
-                </div>
-                <div
-                  aria-hidden
-                  className="absolute bottom-4 right-4 text-right"
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.6875rem',
-                    color: 'var(--color-bone)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.15em',
-                    mixBlendMode: 'difference',
-                  }}
-                >
-                  Vedra · 2026
-                </div>
+                  {t.story.moreLabel} ↓
+                </span>
               </div>
             </RevealOnScroll>
-
           </div>
         </div>
       </div>

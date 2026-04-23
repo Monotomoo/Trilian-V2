@@ -1,9 +1,9 @@
-import { useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { strings, type Lang, type Strings } from '../../content/strings'
 
 export function useLang(): Lang {
-  const { lang } = useParams<{ lang?: string }>()
-  return lang === 'hr' ? 'hr' : 'en'
+  const { pathname } = useLocation()
+  return pathname.startsWith('/hr') ? 'hr' : 'en'
 }
 
 export function useContent(): Strings {

@@ -3,6 +3,7 @@ import { MotionConfig } from 'framer-motion'
 import HomePage from './pages/HomePage'
 import AuditPage from './pages/AuditPage'
 import ApplyPage from './pages/ApplyPage'
+import BlogPage from './pages/BlogPage'
 
 export default function App() {
   return (
@@ -14,6 +15,8 @@ export default function App() {
         <Route path="/hr/audit" element={<AuditPage />} />
         <Route path="/apply" element={<ApplyPage />} />
         <Route path="/hr/apply" element={<ApplyPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/hr/blog" element={<BlogPage />} />
       </Routes>
     </MotionConfig>
   )

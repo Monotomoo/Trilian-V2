@@ -18,7 +18,7 @@ export default function ContactForm() {
 
     setStatus('sending')
 
-    const subject = encodeURIComponent('Trillian HR — note')
+    const subject = encodeURIComponent('Trillian — note')
     const body = encodeURIComponent(`From: ${from}\n\n${message}`)
 
     setTimeout(() => {
@@ -304,6 +304,58 @@ export default function ContactForm() {
                   </MagneticButton>
                 </div>
               </form>
+            </RevealOnScroll>
+
+            {/* Secondary CTA — calendar */}
+            <RevealOnScroll delay={0.35}>
+              <div
+                className="mt-14 flex flex-col items-center gap-2 text-center"
+                style={{
+                  paddingTop: '1.5rem',
+                  borderTop: '1px solid var(--color-hairline)',
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 'var(--text-micro)',
+                    color: 'var(--color-ink-mute)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.12em',
+                  }}
+                >
+                  {t.contact.calendar.label}
+                </span>
+                <a
+                  href={t.contact.calendar.href}
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 'clamp(1.125rem, 1.6vw, 1.375rem)',
+                    fontStyle: 'italic',
+                    color: 'var(--color-moss)',
+                    textDecoration: 'none',
+                    letterSpacing: '-0.005em',
+                    fontVariationSettings: '"opsz" 24, "SOFT" 80',
+                  }}
+                  className="calendar-link"
+                >
+                  {t.contact.calendar.linkLabel}
+                </a>
+                {t.contact.calendar.note && (
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.625rem',
+                      color: 'var(--color-ink-mute)',
+                      letterSpacing: '0.08em',
+                      opacity: 0.7,
+                      marginTop: '0.25rem',
+                    }}
+                  >
+                    {t.contact.calendar.note}
+                  </span>
+                )}
+              </div>
             </RevealOnScroll>
           </div>
 

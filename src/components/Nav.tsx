@@ -1,30 +1,53 @@
 import { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLocation } from 'react-router-dom'
 import LangToggle from './LangToggle'
-import { useContent } from '../hooks/useContent'
+import VennLogo from './VennLogo'
+import { useContent, useLang } from '../hooks/useContent'
 
 const NAV_META = [
-  { num: '03', href: '#approach', key: 'approach' },
-  { num: '05', href: '#services', key: 'services' },
-  { num: '07', href: '#story', key: 'story' },
-  { num: '09', href: '#principles', key: 'principles' },
-  { num: '10', href: '#contact', key: 'contact' },
+  { num: '01', href: '#hero', key: 'home' },
+  { num: '02', href: '#story', key: 'about' },
+  { num: '03', href: '#services', key: 'packages' },
+  { num: '04', href: '#approach', key: 'approach' },
+  { num: '05', href: '#contact', key: 'contact' },
+  { num: '06', href: '/blog', key: 'blog', external: true },
 ] as const
 
 export default function Nav() {
   const t = useContent()
+  const lang = useLang()
+  const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [activeHref, setActiveHref] = useState<string | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
 
+  const isBlogPage = location.pathname.endsWith('/blog')
+  const anchorHome = lang === 'hr' ? '/hr' : '/'
+
   const navItems = useMemo(
     () =>
-      NAV_META.map((m) => ({
-        ...m,
-        label: t.nav[m.key as keyof typeof t.nav] as string,
-      })),
-    [t]
+      NAV_META.map((m) => {
+        const isExternal = 'external' in m && m.external === true
+        let href: string
+        if (isExternal) {
+          href = m.href === '/blog' && lang === 'hr' ? '/hr/blog' : m.href
+        } else {
+          // Scroll anchor — prefix with route base when we're on a sub-page
+          href = isBlogPage ? `${anchorHome}${m.href}` : m.href
+        }
+        return {
+          num: m.num,
+          href,
+          key: m.key,
+          external: isExternal,
+          label: t.nav[m.key as keyof typeof t.nav] as string,
+        }
+      }),
+    [t, lang, isBlogPage, anchorHome]
   )
+
+  const applyHref = isBlogPage ? `${anchorHome}#contact` : '#contact'
 
   useEffect(() => {
     let raf = 0
@@ -34,6 +57,7 @@ export default function Nav() {
       const trigger = window.scrollY + window.innerHeight * 0.3
       let current: string | null = null
       for (const item of NAV_META) {
+        if (!item.href.startsWith('#')) continue
         const el = document.querySelector(item.href) as HTMLElement | null
         if (el) {
           const offset = el.getBoundingClientRect().top + window.scrollY
@@ -94,23 +118,20 @@ export default function Nav() {
           {/* Wordmark */}
           <a
             href="/"
-            className="group flex items-baseline gap-2.5"
+            className="group flex items-center gap-2.5"
             style={{ textDecoration: 'none', color: 'var(--color-ink)' }}
           >
             <span
               aria-hidden
               className="nav-pin"
               style={{
-                width: 6,
-                height: 6,
-                borderRadius: '50%',
-                background: 'var(--color-moss)',
-                display: 'inline-block',
+                display: 'inline-flex',
                 alignSelf: 'center',
-                transform: 'translateY(1px)',
-                transition: 'transform 500ms cubic-bezier(0.16, 1, 0.3, 1), background 300ms',
+                transition: 'transform 500ms cubic-bezier(0.16, 1, 0.3, 1)',
               }}
-            />
+            >
+              <VennLogo variant="minimal" size={22} />
+            </span>
             <span
               style={{
                 fontFamily: 'var(--font-display)',
@@ -139,7 +160,7 @@ export default function Nav() {
           {/* Desktop chapter list */}
           <ul
             className="hidden lg:flex items-center list-none m-0 p-0"
-            style={{ gap: '2rem' }}
+            style={{ gap: '2.2rem' }}
           >
             {navItems.map((item) => {
               const isActive = activeHref === item.href
@@ -151,15 +172,15 @@ export default function Nav() {
                     data-active={isActive ? 'true' : undefined}
                     aria-current={isActive ? 'true' : undefined}
                   >
-                    <span className="nav-chapter-num">{item.num}</span>
-                    <span className="nav-chapter-label">{item.label}</span>
                     {isActive && (
                       <motion.span
-                        layoutId="nav-active-underline"
-                        className="nav-chapter-underline"
-                        transition={{ type: 'spring', stiffness: 380, damping: 34 }}
+                        layoutId="nav-active-pin"
+                        className="nav-chapter-pin"
+                        aria-hidden
+                        transition={{ type: 'spring', stiffness: 420, damping: 32 }}
                       />
                     )}
+                    <span className="nav-chapter-label">{item.label}</span>
                   </a>
                 </li>
               )
@@ -170,7 +191,7 @@ export default function Nav() {
           <div className="flex items-center gap-5 md:gap-7">
             <LangToggle />
 
-            <a href="#contact" className="nav-apply hidden sm:inline-flex items-center">
+            <a href={applyHref} className="nav-apply hidden sm:inline-flex items-center">
               <span className="nav-apply-label">{t.nav.apply}</span>
               <span className="nav-apply-arrow" aria-hidden>
                 ↗
@@ -202,6 +223,7 @@ export default function Nav() {
             onClose={() => setMenuOpen(false)}
             items={navItems}
             applyLabel={t.nav.apply}
+            applyHref={applyHref}
           />
         )}
       </AnimatePresence>
@@ -213,10 +235,12 @@ function MobileIndex({
   onClose,
   items,
   applyLabel,
+  applyHref,
 }: {
   onClose: () => void
   items: { num: string; href: string; label: string }[]
   applyLabel: string
+  applyHref: string
 }) {
   return (
     <motion.div
@@ -288,7 +312,7 @@ function MobileIndex({
       >
         <LangToggle />
         <a
-          href="#contact"
+          href={applyHref}
           onClick={onClose}
           style={{
             background: 'var(--color-ink)',
@@ -321,110 +345,88 @@ function NavStyles() {
       .nav-chapter {
         position: relative;
         display: inline-flex;
-        align-items: baseline;
-        gap: 0.45rem;
+        align-items: center;
+        gap: 0.55rem;
         padding: 0.3rem 0;
         text-decoration: none;
         color: var(--color-ink);
       }
-      .nav-chapter-num {
-        font-family: var(--font-mono);
-        font-size: 0.6875rem;
-        letter-spacing: 0.12em;
-        color: var(--color-ink-mute);
-        transition: color 300ms cubic-bezier(0.16, 1, 0.3, 1);
+      .nav-chapter-pin {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--color-ochre);
+        display: inline-block;
+        flex-shrink: 0;
       }
       .nav-chapter-label {
+        font-family: var(--font-ui);
         font-size: 0.9375rem;
         font-weight: 400;
-        opacity: 0.78;
-        transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
+        opacity: 0.72;
+        letter-spacing: -0.002em;
+        transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1),
+          color 300ms cubic-bezier(0.16, 1, 0.3, 1),
+          font-style 0ms;
       }
       .nav-chapter:hover .nav-chapter-label,
-      .nav-chapter:focus-visible .nav-chapter-label,
+      .nav-chapter:focus-visible .nav-chapter-label {
+        opacity: 1;
+        color: var(--color-moss-deep);
+        font-style: italic;
+      }
       .nav-chapter[data-active] .nav-chapter-label {
         opacity: 1;
-      }
-      .nav-chapter[data-active] .nav-chapter-num {
-        color: var(--color-ochre);
-      }
-      .nav-chapter-underline {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 1px;
-        background: var(--color-moss);
-        border-radius: 1px;
-      }
-      .nav-chapter::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 1px;
-        background: color-mix(in srgb, var(--color-moss) 55%, transparent);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
-        pointer-events: none;
-      }
-      .nav-chapter:hover::after,
-      .nav-chapter:focus-visible::after {
-        transform: scaleX(1);
-      }
-      .nav-chapter[data-active]::after {
-        transform: scaleX(0);
       }
 
       .nav-apply {
         position: relative;
-        padding: 0.6rem 1.1rem;
-        background: var(--color-ink);
-        color: var(--color-bone);
-        font-size: 0.875rem;
+        padding: 0.55rem 1rem 0.55rem 1.05rem;
+        background: transparent;
+        color: var(--color-ink);
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
         font-weight: 500;
         text-decoration: none;
-        border-radius: 2px;
+        border-radius: 999px;
+        border: 1px solid var(--color-ink);
         overflow: hidden;
         isolation: isolate;
-        transition: padding 320ms cubic-bezier(0.16, 1, 0.3, 1);
+        letter-spacing: 0.01em;
+        transition: color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+          border-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
       }
       .nav-apply::before {
         content: '';
         position: absolute;
         inset: 0;
-        background: var(--color-moss);
+        background: var(--color-ink);
         transform: translateY(101%);
         transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
         z-index: -1;
+      }
+      .nav-apply:hover,
+      .nav-apply:focus-visible {
+        color: var(--color-bone);
+        border-color: var(--color-ink);
       }
       .nav-apply:hover::before,
       .nav-apply:focus-visible::before {
         transform: translateY(0);
       }
-      .nav-apply:hover,
-      .nav-apply:focus-visible {
-        padding-right: 1.55rem;
-      }
       .nav-apply-arrow {
         display: inline-block;
-        max-width: 0;
-        overflow: hidden;
-        white-space: nowrap;
-        transform: translateX(-6px);
-        opacity: 0;
-        transition: max-width 320ms cubic-bezier(0.16, 1, 0.3, 1),
-          transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
-          opacity 240ms ease;
+        font-size: 0.875rem;
+        line-height: 1;
+        transform: translate(0, 0);
+        transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
       }
       .nav-apply:hover .nav-apply-arrow,
       .nav-apply:focus-visible .nav-apply-arrow {
-        max-width: 1.2em;
-        margin-left: 0.45rem;
-        transform: translateX(0);
-        opacity: 1;
+        transform: translate(2px, -2px);
       }
 
       .nav-index-btn {

@@ -30,7 +30,7 @@ export default function AuditOutput({
     const trimmed = email.trim()
     if (!trimmed) return
     const href = `mailto:${encodeURIComponent(trimmed)}?subject=${encodeURIComponent(
-      'Your Trillian HR leak audit'
+      'Your Trillian leak audit'
     )}&body=${encodeURIComponent(diagnosisText)}`
     window.location.href = href
     setSent(true)
