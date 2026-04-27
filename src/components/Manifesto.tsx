@@ -289,7 +289,7 @@ export default function Manifesto() {
   return (
     <section
       id="manifesto"
-      className="relative py-32 md:py-48 border-t"
+      className="relative pt-10 md:pt-14 pb-24 md:pb-36 border-t"
       style={{
         background: 'var(--color-bone)',
         borderColor: 'var(--color-hairline)',

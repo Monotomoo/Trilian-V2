@@ -432,14 +432,14 @@ export default function Approach() {
         .approach-section {
           position: relative;
           min-height: 100vh;
-          overflow: hidden;
+          /* overflow-x: clip prevents horizontal overflow (the bg washes are
+             absolute-positioned) without trapping vertical content — earlier
+             `overflow: hidden` was clipping pillar 03 on shorter viewports. */
+          overflow-x: clip;
           border-top: 1px solid var(--color-hairline);
           border-bottom: 1px solid var(--color-hairline);
           display: flex;
           flex-direction: column;
-        }
-        @media (min-width: 900px) and (min-height: 760px) {
-          .approach-section { height: 100vh; min-height: 720px; }
         }
 
         .approach-header {
@@ -465,14 +465,16 @@ export default function Approach() {
           flex: 1;
           min-height: 0;
           display: grid;
-          /* Side by side: Venn left, pillar stack right */
-          grid-template-columns: minmax(380px, 1.05fr) minmax(320px, 1fr);
-          gap: 2.5rem 4rem;
+          /* Side by side: Venn left, pillar stack right.
+             minmax(0, 1fr) on the right column lets it shrink below
+             content-width so the section never overflows horizontally. */
+          grid-template-columns: minmax(320px, 1.05fr) minmax(0, 1fr);
+          gap: 2.5rem 3rem;
           align-items: center;
         }
         @media (min-width: 1200px) {
           .approach-stage {
-            gap: 3rem 5rem;
+            gap: 3rem 4.5rem;
           }
         }
         @media (max-width: 900px) {
@@ -511,9 +513,19 @@ export default function Approach() {
           flex-direction: column;
           gap: 1.75rem;
           max-width: 38rem;
+          min-width: 0;
+          width: 100%;
         }
         @media (min-width: 1200px) {
           .approach-pillars-column { gap: 2rem; }
+        }
+        .approach-pillar {
+          min-width: 0;
+        }
+        .approach-pillar-body {
+          /* belt-and-braces: prevent very long words from extending the column */
+          overflow-wrap: anywhere;
+          word-break: normal;
         }
 
         .approach-venn {
