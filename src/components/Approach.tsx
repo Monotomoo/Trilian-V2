@@ -434,7 +434,7 @@ export default function Approach() {
           min-height: 100vh;
           /* overflow-x: clip prevents horizontal overflow (the bg washes are
              absolute-positioned) without trapping vertical content — earlier
-             `overflow: hidden` was clipping pillar 03 on shorter viewports. */
+             overflow:hidden was clipping pillar 03 on shorter viewports. */
           overflow-x: clip;
           border-top: 1px solid var(--color-hairline);
           border-bottom: 1px solid var(--color-hairline);
