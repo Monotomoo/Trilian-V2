@@ -18,29 +18,41 @@ export type VennLogoVariant =
 
 type Props = {
   variant?: VennLogoVariant
+  /** 3 = classic triangle Venn (current site logo), 4 = quatrefoil. */
+  circles?: 3 | 4
   size?: number
   className?: string
   style?: CSSProperties
   title?: string
 }
 
-// Quatrefoil geometry scaled to a 100×100 viewBox — matches the Moj pristup
-// ratio. d=16, r=30 → r−d = 14 unit 4-way overlap at the exact center.
-const CIRCLES = [
+// Quatrefoil (4-circle) geometry — d=16, r=30 → 4-way overlap radius 14.
+const CIRCLES_4 = [
   { cx: 50, cy: 34 }, // N
   { cx: 66, cy: 50 }, // E
   { cx: 50, cy: 66 }, // S
   { cx: 34, cy: 50 }, // W
 ] as const
+
+// Three-circle classic Venn — triangle pointing up, d=16, r=30.
+// Distance between adjacent centers ≈ 27.7, overlap ≈ 32.3, 3-way overlap
+// radius = r-d = 14 (same as quatrefoil, so the wordmark fits identically).
+const CIRCLES_3 = [
+  { cx: 50, cy: 34 }, // top
+  { cx: 64, cy: 58 }, // bottom-right
+  { cx: 36, cy: 58 }, // bottom-left
+] as const
 const R = 30
 
 export default function VennLogo({
   variant = 'minimal',
+  circles = 3,
   size = 120,
   className = '',
   style,
   title = 'Trillian',
 }: Props) {
+  const CIRCLES = circles === 3 ? CIRCLES_3 : CIRCLES_4
   // Stroke width varies by variant.
   const strokeWidth =
     variant === 'minimal-hairline'
@@ -176,6 +188,7 @@ export default function VennLogo({
 // italic ochre period to match the rest of the site.
 export function VennLockup({
   variant = 'minimal',
+  circles = 3,
   markSize = 42,
   wordSize = '1.875rem',
   gap = '0.85rem',
@@ -183,6 +196,7 @@ export function VennLockup({
   style,
 }: {
   variant?: VennLogoVariant
+  circles?: 3 | 4
   markSize?: number
   wordSize?: string | number
   gap?: string
@@ -199,7 +213,7 @@ export function VennLockup({
         ...style,
       }}
     >
-      <VennLogo variant={variant} size={markSize} />
+      <VennLogo variant={variant} circles={circles} size={markSize} />
       <span
         style={{
           fontFamily: 'var(--font-display)',

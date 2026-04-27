@@ -79,21 +79,6 @@ export default function ServicesList() {
             />
           ))}
         </div>
-
-        <RevealOnScroll delay={0.2}>
-          <div
-            className="mt-8"
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 'var(--text-micro)',
-              color: 'var(--color-ink-mute)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.12em',
-            }}
-          >
-            {t.services.pricing}
-          </div>
-        </RevealOnScroll>
       </div>
     </section>
   )

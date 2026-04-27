@@ -110,7 +110,7 @@ const en: AuditContent = {
   meta: {
     eyebrow: '00 / The 15-Minute Audit',
     headline: 'Seven questions. One written diagnosis.',
-    sub: 'Free. No pitch. Takes about three minutes. Your answers stay in your browser until you send them.',
+    sub: 'Free. No pitch. Takes about fifteen minutes. Your answers stay in your browser until you send them.',
     begin: 'Begin',
     back: 'Back',
     next: 'Next',

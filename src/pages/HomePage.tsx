@@ -6,8 +6,6 @@ import Manifesto from '../components/Manifesto'
 import Approach from '../components/Approach'
 import LogoLab from '../components/LogoLab'
 import ServicesList from '../components/ServicesList'
-import FounderStory from '../components/FounderStory'
-import AboutSlider from '../components/AboutSlider'
 import TestimonialsPlaceholder from '../components/TestimonialsPlaceholder'
 import Principles from '../components/Principles'
 import BlogTeaser from '../components/BlogTeaser'
@@ -32,8 +30,6 @@ export default function HomePage() {
       <Approach />
       <LogoLab />
       <ServicesList />
-      <FounderStory />
-      <AboutSlider />
       <TestimonialsPlaceholder />
       <Principles />
       <BlogTeaser />

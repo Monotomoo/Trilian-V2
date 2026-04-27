@@ -361,8 +361,8 @@ export default function Manifesto() {
             </div>
           </div>
 
-          {/* Right — nervous-system diagram */}
-          <div className="md:col-span-5 lg:col-span-6 flex justify-center md:justify-end">
+          {/* Right — nervous-system diagram (desktop only — too tall to read on phones) */}
+          <div className="hidden md:flex md:col-span-5 lg:col-span-6 justify-center md:justify-end">
             <NervousSystemDiagram />
           </div>
         </div>

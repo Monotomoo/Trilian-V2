@@ -187,11 +187,13 @@ export default function Nav() {
             })}
           </ul>
 
-          {/* Right cluster */}
-          <div className="flex items-center gap-5 md:gap-7">
-            <LangToggle />
+          {/* Right cluster — compact on mobile, full on lg+ */}
+          <div className="flex items-center gap-4 md:gap-7">
+            <span className="hidden md:inline-flex">
+              <LangToggle />
+            </span>
 
-            <a href={applyHref} className="nav-apply hidden sm:inline-flex items-center">
+            <a href={applyHref} className="nav-apply hidden lg:inline-flex items-center">
               <span className="nav-apply-label">{t.nav.apply}</span>
               <span className="nav-apply-arrow" aria-hidden>
                 ↗
@@ -231,6 +233,27 @@ export default function Nav() {
   )
 }
 
+// Per-item tagline keyed by the NAV_META `key` field. Short editorial
+// summaries of what you'll find at that scroll target.
+const TAGLINES: Record<'en' | 'hr', Record<string, string>> = {
+  en: {
+    home: 'Back to the top',
+    about: 'Experience + academic path',
+    packages: 'Four programs + crisis protocol',
+    approach: 'Four tools, one operator',
+    contact: "Let's write",
+    blog: 'Notes from the practice',
+  },
+  hr: {
+    home: 'Povratak na vrh',
+    about: 'Iskustvo i akademski put',
+    packages: 'Četiri programa + krizni protokol',
+    approach: 'Četiri alata, jedan operator',
+    contact: 'Pišimo',
+    blog: 'Bilješke iz prakse',
+  },
+}
+
 function MobileIndex({
   onClose,
   items,
@@ -238,99 +261,176 @@ function MobileIndex({
   applyHref,
 }: {
   onClose: () => void
-  items: { num: string; href: string; label: string }[]
+  items: { num: string; href: string; key: string; label: string }[]
   applyLabel: string
   applyHref: string
 }) {
+  const t = useContent()
+  const lang = useLang()
+  const taglines = TAGLINES[lang]
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed inset-0 z-[60] flex flex-col"
-      style={{
-        background: 'var(--color-bone)',
-        padding: '1.5rem',
-      }}
+      className="fixed inset-0 z-[60] overflow-y-auto"
+      style={{ background: 'var(--color-bone)' }}
       role="dialog"
       aria-modal="true"
       aria-label="Index"
     >
-      <div className="flex items-center justify-between">
-        <span
+      {/* Ambient washes — subtle, editorial */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 35% at 22% 18%, color-mix(in srgb, var(--color-moss) 9%, transparent) 0%, transparent 70%), radial-gradient(ellipse 55% 40% at 82% 85%, color-mix(in srgb, var(--color-ochre) 7%, transparent) 0%, transparent 65%)',
+        }}
+      />
+      <div aria-hidden className="absolute inset-0 pointer-events-none grain-overlay" />
+
+      <div className="relative min-h-full flex flex-col" style={{ padding: '1.4rem 1.5rem 2.25rem' }}>
+        {/* Topbar — wordmark + close */}
+        <div className="flex items-center justify-between">
+          <span className="flex items-center gap-2.5" style={{ color: 'var(--color-ink)' }}>
+            <VennLogo variant="minimal" size={22} />
+            <span
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.125rem',
+                fontWeight: 500,
+                letterSpacing: '-0.01em',
+                fontVariationSettings: '"opsz" 14, "SOFT" 30',
+              }}
+            >
+              {t.meta.wordmark}
+            </span>
+          </span>
+          <button type="button" onClick={onClose} className="nav-close-btn">
+            Close
+            <span aria-hidden className="nav-close-glyph">
+              ×
+            </span>
+          </button>
+        </div>
+
+        {/* Index eyebrow */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="flex items-center gap-3 mt-10"
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: 'var(--text-micro)',
-            textTransform: 'uppercase',
-            letterSpacing: '0.12em',
             color: 'var(--color-ink-mute)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.14em',
           }}
         >
-          Index
-        </span>
-        <button type="button" onClick={onClose} className="nav-close-btn">
-          Close
-          <span aria-hidden className="nav-close-glyph">
-            ×
-          </span>
-        </button>
-      </div>
+          <span
+            aria-hidden
+            style={{
+              width: 24,
+              height: 1,
+              background: 'var(--color-moss)',
+              opacity: 0.6,
+            }}
+          />
+          <span>Index</span>
+        </motion.div>
 
-      <ul
-        className="list-none p-0"
-        style={{ margin: 'auto 0', display: 'flex', flexDirection: 'column' }}
-      >
-        {items.map((item, i) => (
-          <motion.li
-            key={item.href}
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.12 + i * 0.06, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            style={{ borderBottom: '1px solid var(--color-hairline)' }}
-          >
-            <a href={item.href} onClick={onClose} className="nav-mobile-link">
-              <span className="nav-mobile-num">{item.num}</span>
-              <span className="nav-mobile-label">{item.label}</span>
-              <span className="nav-mobile-arrow" aria-hidden>
-                →
-              </span>
-            </a>
-          </motion.li>
-        ))}
-      </ul>
+        {/* Nav items */}
+        <ul
+          className="list-none p-0 mt-5"
+          style={{ display: 'flex', flexDirection: 'column', margin: 0 }}
+        >
+          {items.map((item, i) => {
+            const tagline = taglines[item.key as keyof typeof taglines] ?? ''
+            return (
+              <motion.li
+                key={item.href}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.16 + i * 0.055,
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                style={{ borderBottom: '1px solid var(--color-hairline)' }}
+              >
+                <a href={item.href} onClick={onClose} className="nav-mobile-link">
+                  <span className="nav-mobile-num">{item.num}</span>
+                  <span className="nav-mobile-lines">
+                    <span className="nav-mobile-label">{item.label}</span>
+                    {tagline && <span className="nav-mobile-tagline">{tagline}</span>}
+                  </span>
+                  <span className="nav-mobile-arrow" aria-hidden>
+                    →
+                  </span>
+                </a>
+              </motion.li>
+            )
+          })}
+        </ul>
 
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.45, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="flex items-center justify-between"
-        style={{
-          paddingTop: '1.5rem',
-          borderTop: '1px solid var(--color-hairline)',
-        }}
-      >
-        <LangToggle />
-        <a
+        {/* Primary CTA — 15' Audit */}
+        <motion.a
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           href={applyHref}
           onClick={onClose}
-          style={{
-            background: 'var(--color-ink)',
-            color: 'var(--color-bone)',
-            padding: '0.65rem 1.2rem',
-            fontSize: '0.875rem',
-            fontWeight: 500,
-            textDecoration: 'none',
-            borderRadius: '2px',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-          }}
+          className="nav-mobile-cta"
         >
-          {applyLabel}
-          <span aria-hidden>↗</span>
-        </a>
-      </motion.div>
+          <span className="nav-mobile-cta-pulse" aria-hidden />
+          <span>{applyLabel}</span>
+          <span aria-hidden className="nav-mobile-cta-arrow">
+            ↗
+          </span>
+        </motion.a>
+
+        {/* Footer — practitioner + lang toggle */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
+          className="mt-10 pt-6"
+          style={{ borderTop: '1px solid var(--color-hairline)' }}
+        >
+          <div
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 'var(--text-micro)',
+              color: 'var(--color-ink-mute)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.14em',
+              lineHeight: 1.8,
+            }}
+          >
+            <div style={{ color: 'var(--color-ink)' }}>{t.meta.practitioner}</div>
+            <div>{t.contact.direct.location}</div>
+          </div>
+          <div className="mt-5 flex items-center justify-between">
+            <LangToggle />
+            <span
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.625rem',
+                color: 'var(--color-ink-mute)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.14em',
+                opacity: 0.7,
+              }}
+            >
+              v0.1 Prototype
+            </span>
+          </div>
+        </motion.div>
+      </div>
     </motion.div>
   )
 }
@@ -393,6 +493,7 @@ function NavStyles() {
         overflow: hidden;
         isolation: isolate;
         letter-spacing: 0.01em;
+        white-space: nowrap;
         transition: color 280ms cubic-bezier(0.16, 1, 0.3, 1),
           border-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
         display: inline-flex;
@@ -493,40 +594,125 @@ function NavStyles() {
 
       .nav-mobile-link {
         display: flex;
-        align-items: baseline;
-        gap: 1.1rem;
+        align-items: center;
+        gap: 1rem;
         padding: 1.1rem 0;
         text-decoration: none;
         color: var(--color-ink);
         position: relative;
+        transition: padding 320ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .nav-mobile-link:hover,
+      .nav-mobile-link:focus-visible {
+        padding-left: 0.5rem;
       }
       .nav-mobile-num {
         font-family: var(--font-mono);
         font-size: 0.75rem;
         color: var(--color-ink-mute);
-        letter-spacing: 0.12em;
+        letter-spacing: 0.14em;
         min-width: 2.2rem;
+        align-self: flex-start;
+        padding-top: 0.4rem;
+        transition: color 320ms;
+      }
+      .nav-mobile-link:hover .nav-mobile-num {
+        color: var(--color-moss);
+      }
+      .nav-mobile-lines {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        flex: 1;
+        min-width: 0;
       }
       .nav-mobile-label {
         font-family: var(--font-display);
-        font-size: clamp(2.25rem, 10vw, 3.75rem);
+        font-size: clamp(2rem, 8.5vw, 3rem);
         line-height: 1;
         letter-spacing: -0.02em;
         font-variation-settings: "opsz" 40, "SOFT" 40;
         text-transform: lowercase;
-        flex: 1;
+      }
+      .nav-mobile-tagline {
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        color: var(--color-ink-mute);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        line-height: 1.3;
       }
       .nav-mobile-arrow {
         font-family: var(--font-display);
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         opacity: 0.35;
         transform: translateX(-6px);
-        transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms;
+        transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms,
+          color 280ms;
+        align-self: center;
       }
       .nav-mobile-link:hover .nav-mobile-arrow,
       .nav-mobile-link:focus-visible .nav-mobile-arrow {
         opacity: 1;
         transform: translateX(0);
+        color: var(--color-moss);
+      }
+
+      /* Mobile CTA — matches the hero audit button treatment. */
+      .nav-mobile-cta {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        margin-top: 2rem;
+        padding: 1rem 1.75rem;
+        background: var(--color-ink);
+        color: var(--color-bone);
+        font-family: var(--font-ui);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        text-decoration: none;
+        border-radius: 2px;
+        overflow: hidden;
+        isolation: isolate;
+        align-self: flex-start;
+        transition: padding 320ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .nav-mobile-cta::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: var(--color-moss);
+        transform: translateY(101%);
+        transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: -1;
+      }
+      .nav-mobile-cta:hover::before,
+      .nav-mobile-cta:focus-visible::before {
+        transform: translateY(0);
+      }
+      .nav-mobile-cta-pulse {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--color-ochre);
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-ochre) 55%, transparent);
+        animation: nav-cta-pulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+        flex-shrink: 0;
+      }
+      @keyframes nav-cta-pulse {
+        0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-ochre) 55%, transparent); }
+        70% { box-shadow: 0 0 0 9px color-mix(in srgb, var(--color-ochre) 0%, transparent); }
+        100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-ochre) 0%, transparent); }
+      }
+      .nav-mobile-cta-arrow {
+        transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .nav-mobile-cta:hover .nav-mobile-cta-arrow,
+      .nav-mobile-cta:focus-visible .nav-mobile-cta-arrow {
+        transform: translate(3px, -3px);
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -535,8 +721,10 @@ function NavStyles() {
         .nav-apply-arrow,
         .nav-pin,
         .nav-close-glyph,
-        .nav-mobile-arrow {
+        .nav-mobile-arrow,
+        .nav-mobile-cta-pulse {
           transition: none !important;
+          animation: none !important;
         }
       }
     `}</style>

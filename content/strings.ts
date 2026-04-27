@@ -41,7 +41,7 @@ export const strings = {
       dossier: ['Croatian', 'MSc HR · EFZG', 'P&G · Hitachi · dm', 'ICF · Phyto / 07·2026'],
       portraitAlt: 'Vedra Regul Erent-Ondrušek — portrait',
       ctaLabel: 'Run the 15-minute audit',
-      ctaMicro: 'Free · 7 questions · 3 minutes',
+      ctaMicro: 'Free · 7 questions · 15 minutes',
     },
     manifesto: {
       eyebrow: '02 / Manifesto',
@@ -76,7 +76,7 @@ export const strings = {
     },
     approach: {
       eyebrow: '03 / My approach',
-      headline: 'Four tools. One operator.',
+      headline: 'Three tools. One operator.',
       pillars: [
         {
           label: '01',
@@ -92,18 +92,12 @@ export const strings = {
         },
         {
           label: '03',
-          tag: 'Phytotherapy',
-          title: 'A tincture with your name on the bottle.',
-          body: "Croatia is rich in plants with active compounds that support immunity, sleep and relaxation. As a certified phyto-aromatherapist I've studied their chemistry and love making fresh, potent preparations. Shelf supplements can't match a freshly made, individualized phyto preparation. Note: I don't fill batch orders and don't sell preparations to treat diseases.",
-        },
-        {
-          label: '04',
-          tag: 'Body work',
-          title: 'Power posture and regulation through the body.',
-          body: "[AI draft — Vedra to finalize.] The body remembers what the calendar demands. Fifteen years inside fitness and contemporary dance taught me protocols for power posture — the body position that signals authority in under a second — and for regulating through movement: short breath and micro-movement sequences that release tension in shoulders, neck, and diaphragm. You don't need a yoga class before the meeting. You need two minutes of precise practice so the body receives the signal that it's safe.",
+          tag: 'Body work and care',
+          title: 'Power posture, breath, and plant-based recovery.',
+          body: "[AI draft — Vedra to finalize the merged text.] The body remembers what the calendar demands. Fifteen years inside fitness and contemporary dance gave me protocols for power posture — body position that signals authority in under a second — and regulation through movement: breath and micro-movement sequences that release shoulder, neck, and diaphragm tension. Combined with phyto-aromatherapy: as a certified phyto-aromatherapist I prepare fresh, individualized preparations that outperform shelf supplements (no batch orders, no disease treatment). Two minutes of precise practice plus a tincture with your name on the bottle.",
         },
       ],
-      unifier: 'Four disciplines, one operator. You need all of them.',
+      unifier: 'Three disciplines, one operator. You need all three.',
     },
     gallery: {
       eyebrow: '04 / Field notes',
@@ -135,7 +129,7 @@ export const strings = {
     },
     services: {
       eyebrow: '04 / Packages',
-      headline: 'Four programs for the operator.',
+      headline: 'Four programs',
       hint: 'Click a package to see the sessions inside. Pricing on request.',
       items: [
         {
@@ -145,12 +139,11 @@ export const strings = {
           format: '1:1 · program',
           who: 'Senior operators stepping into visibility. Internal promotions where the bar just moved. External hires entering politically unfamiliar ground.',
           beats: [
-            { label: 'Session 01', text: 'Stakeholder Mapping' },
-            { label: 'Session 02', text: 'First Wins strategy' },
-            { label: 'Session 03', text: 'Somatic Leadership' },
-            { label: 'Session 04', text: 'Phyto protocol (as needed)' },
-            { label: 'Session 05', text: 'Weekly 1:1 review' },
-            { label: 'Session 06', text: '90-day outcome audit' },
+            { label: 'Method 01', text: 'Stakeholder Mapping' },
+            { label: 'Method 02', text: 'First Wins strategy' },
+            { label: 'Method 03', text: 'Somatic Leadership' },
+            { label: 'Method 04', text: 'Phyto protocol (as needed)' },
+            { label: 'Method 05', text: '90-day outcome audit' },
           ],
           deliverables: [
             'Written 100-day plan and stakeholder map',
@@ -166,12 +159,12 @@ export const strings = {
           format: '1:1 or couple · project-based',
           who: 'Couples where one person is carrying invisible operations. Families navigating illness, moves, or school transitions. Operators who built companies and then tried to wing it at home.',
           beats: [
-            { label: 'Session 01', text: 'Family RACI matrix' },
-            { label: 'Session 02', text: 'Domestic Kanban' },
-            { label: 'Session 03', text: 'Shared Vision board' },
-            { label: 'Session 04', text: 'Weekly ops meeting template' },
-            { label: 'Session 05', text: 'Quarterly review' },
-            { label: 'Session 06', text: 'Somatic protocol for household stress' },
+            { label: 'Method 01', text: 'Family RACI matrix' },
+            { label: 'Method 02', text: 'Domestic Kanban' },
+            { label: 'Method 03', text: 'Shared Vision board' },
+            { label: 'Method 04', text: 'Weekly ops meeting template' },
+            { label: 'Method 05', text: 'Quarterly review' },
+            { label: 'Method 06', text: 'Somatic protocol for household stress' },
           ],
           deliverables: [
             'Household RACI document and weekly-ops template',
@@ -187,12 +180,12 @@ export const strings = {
           format: '1:1 · 15 min free start',
           who: 'High-functioning people who can feel the system creaking. Before burnout, while you still have choice.',
           beats: [
-            { label: 'Session 01', text: 'Energy Profit & Loss analysis' },
-            { label: 'Session 02', text: 'Performance Gap analysis' },
-            { label: 'Session 03', text: 'Executive posture & authority' },
-            { label: 'Session 04', text: 'Phyto protocol' },
-            { label: 'Session 05', text: 'Calendar autopsy' },
-            { label: 'Session 06', text: '30-day follow-up' },
+            { label: 'Method 01', text: 'Energy Profit & Loss analysis' },
+            { label: 'Method 02', text: 'Performance Gap analysis' },
+            { label: 'Method 03', text: 'Executive posture & authority' },
+            { label: 'Method 04', text: 'Phyto protocol' },
+            { label: 'Method 05', text: 'Calendar autopsy' },
+            { label: 'Method 06', text: '30-day follow-up' },
           ],
           deliverables: [
             'Written audit summary with one named lever',
@@ -208,12 +201,12 @@ export const strings = {
           format: 'Bespoke · crisis protocol',
           who: 'People in the middle of a crisis they did not choose. Partners, parents, operators who still have people depending on them.',
           beats: [
-            { label: 'Session 01', text: 'Business Continuity Plan (BCP)' },
-            { label: 'Session 02', text: 'OPM for crisis' },
-            { label: 'Session 03', text: 'Support architecture map' },
-            { label: 'Session 04', text: 'Weekly 1:1s' },
-            { label: 'Session 05', text: 'Phyto protocol for exhaustion' },
-            { label: 'Session 06', text: 'Direct phone access' },
+            { label: 'Method 01', text: 'Business Continuity Plan (BCP)' },
+            { label: 'Method 02', text: 'OPM for crisis' },
+            { label: 'Method 03', text: 'Support architecture map' },
+            { label: 'Method 04', text: 'Weekly 1:1s' },
+            { label: 'Method 05', text: 'Phyto protocol for exhaustion' },
+            { label: 'Method 06', text: 'Direct phone access' },
           ],
           deliverables: [
             'Written continuity plan and support architecture',
@@ -226,7 +219,7 @@ export const strings = {
       pricing: 'Pricing on request. Vedra will publish three fixed packages with clear session counts soon.',
       labels: {
         who: 'Who it\'s for',
-        beats: 'Sessions',
+        beats: 'Possible methods',
         deliverables: 'Something additional',
         principle: 'Principle',
         expand: 'Open',
@@ -234,7 +227,7 @@ export const strings = {
       },
     },
     story: {
-      eyebrow: '05 / About',
+      eyebrow: '06 / About me',
       headline: 'You and me.',
       paragraphs: [
         "I'm not a typical coach. I'm probably worse.",
@@ -247,7 +240,7 @@ export const strings = {
       moreLabel: 'More about me',
     },
     about: {
-      eyebrow: '05 / About me',
+      eyebrow: '06 / About me · the operating manual',
       headline: 'Experience and academic path.',
       intro: "One day, after an exhausting stretch of life, my psychotherapist told me I'd be an excellent coach for working with people. There is no higher endorsement than from a woman who knows my darkest shadow self. Here's the tangible evidence, too.",
       slides: [
@@ -262,7 +255,7 @@ export const strings = {
           num: '02',
           title: 'Academic base',
           body: 'BA in sociology and German (2015). German studies are known for being gentle with students, which is where I developed iron discipline and lifelong imposter syndrome. When I started working in HR, the imposter syndrome demanded that I complete a postgraduate degree in HR Management (2021) at EFZG. The crown of that program: a paper on whether engaged onboarding is important for engaged work.',
-          photo: '/s2-2-768x512.jpg',
+          photo: '/about-academic.jpg',
           photoAlt: 'Academic study scene',
         },
         {
@@ -290,16 +283,15 @@ export const strings = {
           num: '06',
           title: 'School of life',
           body: "Maybe the most important one. I grew up in a family where my father was paralyzed when I was ten, alongside three younger brothers. I know first-hand how much it would have meant to us to have someone help organize our lives after that kind of change. Even so, I'm proud of how we carried it through — you can read about the hero Draško Regul here.",
-          photo: '/vedra-1.jpg',
-          photoAlt: 'Vedra Regul Erent-Ondrušek portrait',
+          photo: '/about-life.jpg',
+          photoAlt: 'Regul family — life chapter',
         },
         {
           num: '07',
           title: 'Family',
           body: "I'm the mother of one charming small boy, Vilim, and wife to an even more charming lawyer, Filip — with whom I share the joy of corporate life. Both are frequent victims of my OPM, BCP and similar acronym implementations in our life together.",
-          photo: null,
-          photoAlt: 'Family photo — placeholder',
-          missingPhoto: true,
+          photo: '/about-family.jpg',
+          photoAlt: 'Family',
         },
       ],
       labels: {
@@ -310,7 +302,7 @@ export const strings = {
       },
     },
     testimonials: {
-      eyebrow: '06 / Proof',
+      eyebrow: '05 / Proof',
       headline: 'No testimonials yet. On purpose.',
       body: "The 2026 founding cohort runs through the end of the year. Early clients shape how this practice gets built — and get my undivided attention while the calendar isn't full. You'll see testimonials here when I've earned them.",
     },
@@ -341,7 +333,7 @@ export const strings = {
         },
         {
           title: 'Generalists with discipline beat specialists without.',
-          body: 'Four toolkits inside one operator outperform one toolkit inside a purist, every time.',
+          body: 'Three toolkits inside one operator outperform one toolkit inside a purist, every time.',
           tag: 'Practice',
         },
         {
@@ -352,14 +344,14 @@ export const strings = {
       ],
     },
     contact: {
-      eyebrow: '08 / Contact',
+      eyebrow: '07 / Contact',
       headline: "Let's write.",
       sub: 'The practice is new, the calendar is not full, and I read everything that lands in the inbox myself. Write a letter — short or long — and I reply personally, usually within 48 hours. Or book a call below.',
       paths: [
         {
           label: '01 / Fast',
           title: '15-minute audit.',
-          body: 'Free diagnostic. Seven questions, three minutes, one written diagnosis. No pitch.',
+          body: 'Free diagnostic. Seven questions, fifteen minutes, one written diagnosis. No pitch.',
           cta: 'Open the audit',
           href: '#note',
         },
@@ -466,6 +458,14 @@ export const strings = {
       body: 'Short, infrequent reads. Corporate tools applied to private life, phyto-protocols, and the diagnostics behind each package.',
       previewLabel: 'Queued',
       cta: 'Open the blog',
+      pitch: {
+        eyebrow: 'Have something to add?',
+        headline: 'Pitch a piece for the blog.',
+        body: "Personal essays, case studies from inside corporate HR, phyto experiments, body-work field notes \u2014 anything from the operator's craft. One paragraph in your reply is enough to start.",
+        cta: 'Pitch a post',
+        ctaHref:
+          'mailto:vedra.re.ondrusek@gmail.com?subject=Trillian%20blog%20%E2%80%94%20pitch',
+      },
     },
   },
 
@@ -499,7 +499,7 @@ export const strings = {
       dossier: ['Hrvatica', 'MSc HR · EFZG', 'P&G · Hitachi · dm', 'ICF · Fito / 07·2026'],
       portraitAlt: 'Vedra Regul Erent-Ondrušek — portret',
       ctaLabel: 'Javi se za 15′ AUDIT',
-      ctaMicro: 'Besplatno · 7 pitanja · 3 minute',
+      ctaMicro: 'Besplatno · 7 pitanja · 15 minuta',
     },
     manifesto: {
       eyebrow: '02 / Manifest',
@@ -534,7 +534,7 @@ export const strings = {
     },
     approach: {
       eyebrow: '03 / Moj pristup',
-      headline: 'Četiri alata. Jedan operator.',
+      headline: 'Tri alata. Jedan operator.',
       pillars: [
         {
           label: '01',
@@ -550,18 +550,12 @@ export const strings = {
         },
         {
           label: '03',
-          tag: 'Fitoterapija',
-          title: 'Tinktura s tvojim imenom na bočici.',
-          body: 'Hrvatska je bogata biljem koje obiluje aktivnim tvarima koje pozitivno djeluju na imunitet, nesanicu i opuštanje. Kao certificirana fitoaromaterapeutkinja educirala sam se o kemijskim spojevima tih biljaka te uživam u izradi snažnih i svježih fitoterapijskih biljnih pripravaka. Pripravci na tržištu (dodaci prehrani) nemaju snagu i koncentraciju aktivnih tvari kao svježe pripremljen i individualiziran pripravak. Napomena: ne izrađujem tinkture po narudžbi i ne prodajem pripravke za liječenje bolesti.',
-        },
-        {
-          label: '04',
-          tag: 'Rad s tijelom',
-          title: 'Power posture i regulacija kroz tijelo.',
-          body: '[AI draft — Vedra će finalizirati.] Tijelo pamti što kalendar traži. Petnaest godina u fitnesu i suvremenom plesu dalo mi je protokole za power posture — položaj tijela koji u sekundi šalje signal autoriteta — i za regulaciju kroz pokret: kratke sekvence disanja i mikropokreta koje otključavaju napetost u ramenima, vratu i dijafragmi. Ne trebaš sat joge prije važnog sastanka. Trebaš dvije minute precizne prakse kada tijelo dobije poruku da je sigurno.',
+          tag: 'Rad s tijelom i njega',
+          title: 'Power posture, dah i biljni oporavak.',
+          body: '[AI draft — Vedra će finalizirati spojeni tekst.] Tijelo pamti što kalendar traži. Petnaest godina u fitnesu i suvremenom plesu dalo mi je protokole za power posture — položaj tijela koji u sekundi šalje signal autoriteta — i za regulaciju kroz pokret: sekvence disanja i mikropokreti koje otključavaju napetost u ramenima, vratu i dijafragmi. Spojeno s fitoaromaterapijom: kao certificirana fitoaromaterapeutkinja izrađujem svježe, individualizirane pripravke koji nadmašuju dodatke prehrani s polica (bez serija po narudžbi, bez liječenja bolesti). Dvije minute precizne prakse plus tinktura s tvojim imenom na bočici.',
         },
       ],
-      unifier: 'Četiri discipline, jedan operator. Trebaš sve četiri.',
+      unifier: 'Tri discipline, jedan operator. Trebaš sve tri.',
     },
     gallery: {
       eyebrow: '04 / Bilješke s terena',
@@ -593,7 +587,7 @@ export const strings = {
     },
     services: {
       eyebrow: '04 / Paketi',
-      headline: 'Četiri programa za operatora.',
+      headline: 'Četiri programa',
       hint: 'Klikni paket da otvoriš sesije. Cijena na upit.',
       items: [
         {
@@ -603,12 +597,11 @@ export const strings = {
           format: '1:1 · program',
           who: 'Viši operatori koji ulaze u ulogu s vidljivošću. Interne promocije gdje se letvica podigla. Vanjski angažmani u politički nepoznat teren.',
           beats: [
-            { label: 'Sesija 01', text: 'Stakeholder Mapping' },
-            { label: 'Sesija 02', text: 'First Wins strategija' },
-            { label: 'Sesija 03', text: 'Somatic Leadership' },
-            { label: 'Sesija 04', text: 'Fitoterapijski protokol (po potrebi)' },
-            { label: 'Sesija 05', text: 'Tjedni 1:1 pregled' },
-            { label: 'Sesija 06', text: '90-dnevna revizija' },
+            { label: 'Metoda 01', text: 'Stakeholder Mapping' },
+            { label: 'Metoda 02', text: 'First Wins strategija' },
+            { label: 'Metoda 03', text: 'Somatic Leadership' },
+            { label: 'Metoda 04', text: 'Fitoterapijski protokol (po potrebi)' },
+            { label: 'Metoda 05', text: '90-dnevna revizija' },
           ],
           deliverables: [
             'Napisan plan prvih 100 dana i mapa dionika',
@@ -624,12 +617,12 @@ export const strings = {
           format: '1:1 ili par · projektno',
           who: 'Parovi gdje jedna osoba nosi nevidljive operacije. Obitelji koje navigiraju bolest, selidbu ili školske tranzicije. Operatori koji su gradili tvrtke i pokušali snaći se doma na sreću.',
           beats: [
-            { label: 'Sesija 01', text: 'Family RACI matrica' },
-            { label: 'Sesija 02', text: 'Domestic Kanban' },
-            { label: 'Sesija 03', text: 'Shared Vision Board' },
-            { label: 'Sesija 04', text: 'Predložak tjednog ops sastanka' },
-            { label: 'Sesija 05', text: 'Kvartalna revizija' },
-            { label: 'Sesija 06', text: 'Somatski protokol za stres u kući' },
+            { label: 'Metoda 01', text: 'Family RACI matrica' },
+            { label: 'Metoda 02', text: 'Domestic Kanban' },
+            { label: 'Metoda 03', text: 'Shared Vision Board' },
+            { label: 'Metoda 04', text: 'Predložak tjednog ops sastanka' },
+            { label: 'Metoda 05', text: 'Kvartalna revizija' },
+            { label: 'Metoda 06', text: 'Somatski protokol za stres u kući' },
           ],
           deliverables: [
             'RACI dokument domaćinstva i predložak tjednih opsa',
@@ -645,12 +638,12 @@ export const strings = {
           format: '1:1 · 15 min besplatna proba',
           who: 'Bilo tko visoko funkcionalan tko osjeća da sustav škripi. Prije izgaranja, dok još imaš izbor.',
           beats: [
-            { label: 'Sesija 01', text: 'Energy Profit & Loss analiza' },
-            { label: 'Sesija 02', text: 'Performance Gap Analysis' },
-            { label: 'Sesija 03', text: 'Executive Posture & Authority' },
-            { label: 'Sesija 04', text: 'Fitoterapijski protokol' },
-            { label: 'Sesija 05', text: 'Kalendarska autopsija' },
-            { label: 'Sesija 06', text: '30-dnevni follow-up' },
+            { label: 'Metoda 01', text: 'Energy Profit & Loss analiza' },
+            { label: 'Metoda 02', text: 'Performance Gap Analysis' },
+            { label: 'Metoda 03', text: 'Executive Posture & Authority' },
+            { label: 'Metoda 04', text: 'Fitoterapijski protokol' },
+            { label: 'Metoda 05', text: 'Kalendarska autopsija' },
+            { label: 'Metoda 06', text: '30-dnevni follow-up' },
           ],
           deliverables: [
             'Pisani sažetak audita s jednom imenovanom polugom',
@@ -666,12 +659,12 @@ export const strings = {
           format: 'Po mjeri · krizni protokol',
           who: 'Ljudi usred krize koju nisu izabrali. Partneri, roditelji, operatori koji i dalje imaju ljude koji o njima ovise.',
           beats: [
-            { label: 'Sesija 01', text: 'Business Continuity Plan (BCP)' },
-            { label: 'Sesija 02', text: 'OPM za krizu' },
-            { label: 'Sesija 03', text: 'Karta podrške i delegacija' },
-            { label: 'Sesija 04', text: 'Tjedni 1:1' },
-            { label: 'Sesija 05', text: 'Fitoterapijski protokol za iscrpljenost' },
-            { label: 'Sesija 06', text: 'Direktan telefonski pristup' },
+            { label: 'Metoda 01', text: 'Business Continuity Plan (BCP)' },
+            { label: 'Metoda 02', text: 'OPM za krizu' },
+            { label: 'Metoda 03', text: 'Karta podrške i delegacija' },
+            { label: 'Metoda 04', text: 'Tjedni 1:1' },
+            { label: 'Metoda 05', text: 'Fitoterapijski protokol za iscrpljenost' },
+            { label: 'Metoda 06', text: 'Direktan telefonski pristup' },
           ],
           deliverables: [
             'Pisani plan kontinuiteta i arhitektura podrške',
@@ -684,7 +677,7 @@ export const strings = {
       pricing: 'Cijena na upit. Vedra uskoro objavljuje tri fiksna paketa s jasnim brojem sesija.',
       labels: {
         who: 'Za koga je',
-        beats: 'Sesije',
+        beats: 'Moguće metode',
         deliverables: 'Još u paketu',
         principle: 'Princip',
         expand: 'Otvori',
@@ -692,7 +685,7 @@ export const strings = {
       },
     },
     story: {
-      eyebrow: '05 / O meni',
+      eyebrow: '06 / O meni',
       headline: 'Ti i ja.',
       paragraphs: [
         'Nisam tipičan coach. Vjerojatno sam gora.',
@@ -705,7 +698,7 @@ export const strings = {
       moreLabel: 'Više o meni',
     },
     about: {
-      eyebrow: '05 / O meni',
+      eyebrow: '06 / O meni · operativni priručnik',
       headline: 'Iskustvo i akademski put.',
       intro: 'Jednog dana, nakon iscrpljujućeg razdoblja života, moja psihoterapeutkinja mi je rekla da bih bila izvrstan coach za rad s ljudima. Nema većeg priznanja od žene koja poznaje moj najcrnji shadow self. No, evo i nekih opipljivih dokaza.',
       slides: [
@@ -720,7 +713,7 @@ export const strings = {
           num: '02',
           title: 'Akademska baza',
           body: 'Diplomirala sam sociologiju i njemački jezik (2015). Germanisti su poznati po blagonaklonosti prema svojim studentima, tako da sam tu razvila čeličnu disciplinu i cjeloživotni imposter sindrom. Kada sam počela raditi u HR-u, imposter sindrom je zahtijevao da završim poslijediplomski studij Upravljanje ljudskim potencijalima (2021) na EFZG-u. Kruna tog studija: znanstveni rad o odnosu strukturiranog onboardinga i angažmana zaposlenika.',
-          photo: '/s2-2-768x512.jpg',
+          photo: '/about-academic.jpg',
           photoAlt: 'Akademski rad',
         },
         {
@@ -748,16 +741,15 @@ export const strings = {
           num: '06',
           title: 'Životna škola',
           body: 'Možda i najvažnija. Odrasla sam u obitelji u kojoj je otac ostao nepokretan kad sam imala 10 godina, uz 3 mlađa brata. Iz prve ruke znam koliko bi nam značilo da smo tada imali nekoga tko bi nam organizirao život nakon takve promjene. No, i ovako sam ponosna na to kako smo svi to iznijeli, a o heroju Drašku Regulu može se pročitati više.',
-          photo: '/vedra-1.jpg',
-          photoAlt: 'Vedra Regul Erent-Ondrušek portret',
+          photo: '/about-life.jpg',
+          photoAlt: 'Obitelj Regul — životna škola',
         },
         {
           num: '07',
           title: 'Obitelj',
           body: 'Majka sam jednog simpatičnog malog dječaka Vilima i supruga još simpatičnijeg pravnika Filipa s kojim dijelim sreću korporativnog svijeta. Obojica su česte žrtve mojih implementacija OPM-a, BCP-a i sličnih kratica u naš život.',
-          photo: null,
-          photoAlt: 'Obiteljska fotografija — placeholder',
-          missingPhoto: true,
+          photo: '/about-family.jpg',
+          photoAlt: 'Obitelj',
         },
       ],
       labels: {
@@ -768,7 +760,7 @@ export const strings = {
       },
     },
     testimonials: {
-      eyebrow: '06 / Dokaz',
+      eyebrow: '05 / Dokaz',
       headline: 'Bez svjedočanstava. Zasad. Namjerno.',
       body: 'Osnivačka generacija 2026. traje do kraja godine. Rani klijenti oblikuju kako ova praksa izgleda — i dobivaju moju nepodijeljenu pažnju dok kalendar nije pun. Svjedočanstva ćeš vidjeti kad ih zaslužim.',
     },
@@ -799,7 +791,7 @@ export const strings = {
         },
         {
           title: 'Generalisti s disciplinom pobjeđuju specijaliste bez.',
-          body: 'Četiri alata u jednom operatoru nadmašuju jedan alat kod purista, svaki put.',
+          body: 'Tri alata u jednom operatoru nadmašuju jedan alat kod purista, svaki put.',
           tag: 'Praksa',
         },
         {
@@ -810,14 +802,14 @@ export const strings = {
       ],
     },
     contact: {
-      eyebrow: '08 / Kontakt',
+      eyebrow: '07 / Kontakt',
       headline: 'Pišimo.',
       sub: 'Praksa je nova, kalendar nije pun, a sve što stigne u inbox sama čitam. Napiši pismo — kratko ili dugo — i javljam se osobno, obično unutar 48 sati. Ili zakaži poziv ispod.',
       paths: [
         {
           label: '01 / Brzo',
           title: 'Petnaestminutni audit.',
-          body: 'Besplatna dijagnoza. Sedam pitanja, tri minute, jedna pisana dijagnoza. Bez prodaje.',
+          body: 'Besplatna dijagnoza. Sedam pitanja, petnaest minuta, jedna pisana dijagnoza. Bez prodaje.',
           cta: 'Otvori audit',
           href: '#note',
         },
@@ -924,6 +916,14 @@ export const strings = {
       body: 'Kratki, rijetki tekstovi. Korporativni alati primijenjeni u privatni život, fito-protokoli i dijagnostika iza svakog paketa.',
       previewLabel: 'U redu',
       cta: 'Otvori blog',
+      pitch: {
+        eyebrow: 'Imaš nešto za dodati?',
+        headline: 'Predloži tekst za blog.',
+        body: 'Osobni esej, studija slučaja iz korporativnog HR-a, fito eksperiment, bilješka s rada s tijelom — bilo što iz craft-a operatora. Dovoljan je jedan paragraf u odgovoru za početak.',
+        cta: 'Predloži tekst',
+        ctaHref:
+          'mailto:vedra.re.ondrusek@gmail.com?subject=Trillian%20blog%20%E2%80%94%20prijedlog%20teksta',
+      },
     },
   },
 } as const

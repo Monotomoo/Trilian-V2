@@ -163,6 +163,24 @@ export default function BlogTeaser() {
             </div>
           </RevealOnScroll>
         </div>
+
+        {/* Pitch strip — call for guest contributors */}
+        <RevealOnScroll delay={0.3}>
+          <aside className="blog-pitch">
+            <div className="blog-pitch-meta">
+              <span className="blog-pitch-eyebrow">{t.blogTeaser.pitch.eyebrow}</span>
+              <h3 className="blog-pitch-headline">{t.blogTeaser.pitch.headline}</h3>
+            </div>
+            <p className="blog-pitch-body">{t.blogTeaser.pitch.body}</p>
+            <a href={t.blogTeaser.pitch.ctaHref} className="blog-pitch-cta">
+              <span className="blog-pitch-cta-pulse" aria-hidden />
+              <span>{t.blogTeaser.pitch.cta}</span>
+              <span aria-hidden className="blog-pitch-cta-arrow">
+                ↗
+              </span>
+            </a>
+          </aside>
+        </RevealOnScroll>
       </div>
 
       <style>{`
@@ -270,6 +288,122 @@ export default function BlogTeaser() {
           transform: translateX(0);
           opacity: 1;
           color: var(--color-ink);
+        }
+
+        /* Pitch strip — quiet invitation for guest contributors. */
+        .blog-pitch {
+          margin-top: 4.5rem;
+          padding: 2.25rem 0 0;
+          border-top: 1px solid var(--color-hairline);
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          align-items: end;
+        }
+        @media (min-width: 900px) {
+          .blog-pitch {
+            grid-template-columns: minmax(220px, 320px) minmax(0, 1fr) auto;
+            gap: 2rem 3rem;
+            margin-top: 5.5rem;
+          }
+        }
+        .blog-pitch-meta {
+          display: flex;
+          flex-direction: column;
+          gap: 0.65rem;
+        }
+        .blog-pitch-eyebrow {
+          font-family: var(--font-mono);
+          font-size: var(--text-micro);
+          color: var(--color-ochre);
+          text-transform: uppercase;
+          letter-spacing: 0.16em;
+        }
+        .blog-pitch-headline {
+          font-family: var(--font-display);
+          font-size: clamp(1.375rem, 2.2vw, 1.875rem);
+          line-height: 1.15;
+          letter-spacing: -0.018em;
+          font-weight: 400;
+          font-style: italic;
+          color: var(--color-ink);
+          margin: 0;
+          max-width: 18ch;
+          font-variation-settings: "opsz" 36, "SOFT" 80, "WONK" 1;
+        }
+        .blog-pitch-body {
+          font-family: var(--font-ui);
+          font-size: 0.9375rem;
+          line-height: 1.6;
+          color: var(--color-ink-soft);
+          margin: 0;
+          max-width: 52ch;
+        }
+
+        .blog-pitch-cta {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.55rem;
+          padding: 0.85rem 1.45rem;
+          background: transparent;
+          color: var(--color-ink);
+          font-family: var(--font-ui);
+          font-size: 0.875rem;
+          font-weight: 500;
+          letter-spacing: 0.01em;
+          text-decoration: none;
+          border: 1px solid var(--color-ink);
+          border-radius: 999px;
+          overflow: hidden;
+          isolation: isolate;
+          white-space: nowrap;
+          transition: color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+            border-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .blog-pitch-cta::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: var(--color-ink);
+          transform: translateY(101%);
+          transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+          z-index: -1;
+        }
+        .blog-pitch-cta:hover,
+        .blog-pitch-cta:focus-visible {
+          color: var(--color-bone);
+        }
+        .blog-pitch-cta:hover::before,
+        .blog-pitch-cta:focus-visible::before {
+          transform: translateY(0);
+        }
+        .blog-pitch-cta-pulse {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: var(--color-ochre);
+          flex-shrink: 0;
+          box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-ochre) 55%, transparent);
+          animation: blog-pitch-cta-pulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+        }
+        @keyframes blog-pitch-cta-pulse {
+          0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-ochre) 55%, transparent); }
+          70% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--color-ochre) 0%, transparent); }
+          100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-ochre) 0%, transparent); }
+        }
+        .blog-pitch-cta-arrow {
+          transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .blog-pitch-cta:hover .blog-pitch-cta-arrow,
+        .blog-pitch-cta:focus-visible .blog-pitch-cta-arrow {
+          transform: translate(2px, -2px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .blog-pitch-cta-pulse {
+            animation: none;
+          }
         }
       `}</style>
     </section>

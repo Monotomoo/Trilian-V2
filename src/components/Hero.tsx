@@ -23,7 +23,7 @@ export default function Hero() {
     <section
       ref={ref}
       id="hero"
-      className="relative min-h-[100dvh] overflow-hidden"
+      className="relative overflow-hidden"
       style={{ background: 'var(--color-bone)' }}
     >
       {/* Ambient drift — behind everything */}
@@ -46,7 +46,7 @@ export default function Hero() {
       {/* Main content */}
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
-        className="relative mx-auto max-w-[1440px] w-full px-6 md:px-12 min-h-[100dvh] flex flex-col z-10"
+        className="relative mx-auto max-w-[1440px] w-full px-6 md:px-12 flex flex-col z-10"
       >
         {/* TOP — eyebrow + meta */}
         <div className="pt-28 md:pt-36 flex items-start justify-between gap-8">
@@ -96,7 +96,7 @@ export default function Hero() {
         </div>
 
         {/* CENTER — headline + sub + portrait */}
-        <div className="flex-1 py-16 md:py-20 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-center">
+        <div className="py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-center">
           {/* Text column */}
           <div className="md:col-span-8 lg:col-span-8">
             <h1

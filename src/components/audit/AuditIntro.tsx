@@ -97,7 +97,7 @@ export default function AuditIntro({
         >
           <span>Seven questions</span>
           <Dot />
-          <span>~3 minutes</span>
+          <span>~15 minutes</span>
           <Dot />
           <span>One written diagnosis</span>
         </motion.div>

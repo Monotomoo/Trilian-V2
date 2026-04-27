@@ -8,70 +8,146 @@ type Variant = {
   description: string
 }
 
-// Eight flavors of the minimal mark — same ink-outline quatrefoil, each
-// tweaking one dimension so you can compare fairly.
-const VARIANTS: Variant[] = [
+// FIVE three-circle variants — the new direction. Classic Venn triangle
+// pointing up, ink outlines, minimal palette.
+const THREE_VARIANTS: Variant[] = [
   {
     id: 'minimal',
     name: '01 · Minimal',
-    description: 'The baseline. 1.5 px ink outlines, nothing else.',
+    description: 'Three thin ink rings in a triangle. The cleanest read.',
   },
   {
     id: 'minimal-hairline',
     name: '02 · Hairline',
-    description: 'Same mark at 0.9 px — quieter, more refined at small sizes.',
+    description: 'Same triangle at 0.9 px — refined, almost editorial.',
   },
   {
     id: 'minimal-bold',
     name: '03 · Bold',
-    description: '2.2 px strokes — reads louder at thumbnail size, works as a favicon.',
+    description: '2.2 px strokes — louder at favicon size, more iconic.',
   },
   {
     id: 'minimal-pin-ochre',
     name: '04 · Ochre pin',
-    description: 'Minimal outlines with a single ochre dot at the true center.',
-  },
-  {
-    id: 'minimal-pin-ink',
-    name: '05 · Ink pin',
-    description: 'Same as minimal but with a matching ink dot — quieter accent.',
-  },
-  {
-    id: 'minimal-dashed-inner',
-    name: '06 · Dashed inner',
-    description: 'Minimal + a tiny dashed ring inside each circle. Adds detail.',
-  },
-  {
-    id: 'minimal-tint',
-    name: '07 · Moss tint',
-    description: 'Minimal outlines with a whisper of moss wash inside each circle.',
-  },
-  {
-    id: 'minimal-gradient',
-    name: '08 · Gradient stroke',
-    description: 'Strokes fade from dark top to softer bottom. Hand-drawn feel.',
-  },
-  {
-    id: 'minimal-segmented',
-    name: '09 · Segmented',
-    description: 'Dashed rings — ethereal, slightly hand-drawn.',
-  },
-  {
-    id: 'minimal-double',
-    name: '10 · Double stroke',
-    description: 'A second thin ring concentric inside each — more architectural.',
+    description: 'Triangle outlines with a single ochre dot at the 3-way center.',
   },
   {
     id: 'minimal-tick',
-    name: '11 · Compass ticks',
-    description: 'Minimal + tick marks at the four cardinal points of each circle.',
-  },
-  {
-    id: 'minimal-dots-only',
-    name: '12 · Dot cluster',
-    description: 'No rings — just four filled dots with an ochre center pin. Most abstract.',
+    name: '05 · Compass ticks',
+    description: 'Tick marks at the cardinal points of each circle. More structural.',
   },
 ]
+
+function VariantCard({ v, circles }: { v: Variant; circles: 3 | 4 }) {
+  return (
+    <article className="logo-lab-card">
+      <div className="logo-lab-name-row">
+        <h3 className="logo-lab-name">{v.name}</h3>
+      </div>
+
+      <div className="logo-lab-preview">
+        <VennLogo
+          variant={v.id}
+          circles={circles}
+          size={180}
+          title={`Trillian — ${v.name}`}
+        />
+      </div>
+
+      <p className="logo-lab-desc">{v.description}</p>
+
+      <div className="logo-lab-lockup-block">
+        <span className="logo-lab-sub-label">Lockup</span>
+        <div className="logo-lab-lockup">
+          <VennLockup variant={v.id} circles={circles} markSize={44} wordSize="1.875rem" />
+        </div>
+        <div className="logo-lab-lockup logo-lab-lockup-small">
+          <VennLockup
+            variant={v.id}
+            circles={circles}
+            markSize={28}
+            wordSize="1.25rem"
+            gap="0.55rem"
+          />
+        </div>
+      </div>
+
+      <div className="logo-lab-sizes">
+        <span className="logo-lab-sub-label">At size</span>
+        <span className="logo-lab-size">
+          <VennLogo variant={v.id} circles={circles} size={44} />
+        </span>
+        <span className="logo-lab-size">
+          <VennLogo variant={v.id} circles={circles} size={28} />
+        </span>
+        <span className="logo-lab-size">
+          <VennLogo variant={v.id} circles={circles} size={18} />
+        </span>
+      </div>
+    </article>
+  )
+}
+
+function GroupHeader({
+  eyebrow,
+  title,
+  body,
+}: {
+  eyebrow: string
+  title: string
+  body: string
+}) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8 md:gap-16 items-end mb-10 md:mb-16">
+      <RevealOnScroll>
+        <div>
+          <span
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 'var(--text-micro)',
+              color: 'var(--color-moss)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.16em',
+              display: 'inline-block',
+              marginBottom: '1rem',
+            }}
+          >
+            {eyebrow}
+          </span>
+          <h2
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(1.75rem, 3vw, 2.625rem)',
+              lineHeight: 1.05,
+              letterSpacing: '-0.025em',
+              fontWeight: 400,
+              color: 'var(--color-ink)',
+              margin: 0,
+              maxWidth: '22ch',
+              fontVariationSettings: '"opsz" 48, "SOFT" 50, "WONK" 1',
+            }}
+          >
+            {title}
+          </h2>
+        </div>
+      </RevealOnScroll>
+      <RevealOnScroll delay={0.18}>
+        <p
+          style={{
+            fontFamily: 'var(--font-ui)',
+            fontSize: '1rem',
+            lineHeight: 1.65,
+            color: 'var(--color-ink-soft)',
+            margin: 0,
+            maxWidth: '52ch',
+          }}
+        >
+          {body}
+        </p>
+      </RevealOnScroll>
+    </div>
+  )
+}
 
 export default function LogoLab() {
   return (
@@ -95,91 +171,24 @@ export default function LogoLab() {
 
       <div className="relative mx-auto max-w-[1440px] px-6 md:px-12">
         <RevealOnScroll>
-          <SectionLabel>Logo lab · minimal</SectionLabel>
+          <SectionLabel>Logo lab</SectionLabel>
         </RevealOnScroll>
 
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8 md:gap-16 items-end">
-          <RevealOnScroll delay={0.1}>
-            <h2
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(2rem, 3.6vw, 3.25rem)',
-                lineHeight: 1.05,
-                letterSpacing: '-0.025em',
-                fontWeight: 400,
-                color: 'var(--color-ink)',
-                margin: 0,
-                maxWidth: '22ch',
-                fontVariationSettings: '"opsz" 48, "SOFT" 50, "WONK" 1',
-              }}
-            >
-              Eight flavors of the minimal mark — with the Trillian lockup.
-            </h2>
-          </RevealOnScroll>
-          <RevealOnScroll delay={0.18}>
-            <p
-              style={{
-                fontFamily: 'var(--font-ui)',
-                fontSize: '1rem',
-                lineHeight: 1.65,
-                color: 'var(--color-ink-soft)',
-                margin: 0,
-                maxWidth: '52ch',
-              }}
-            >
-              All variants keep the ink-outline quatrefoil. Only one dimension
-              changes per flavor (stroke weight, a center pin, an inner dash, a
-              hint of tint). Each card shows the mark alone, the mark beside
-              <em> Trillian</em> as a horizontal lockup, and small thumbnails at
-              favicon sizes.
-            </p>
-          </RevealOnScroll>
-        </div>
+        {/* THREE CIRCLES — featured group, the new direction */}
+        <div className="mt-10">
+          <GroupHeader
+            eyebrow="— Three circles · the new direction"
+            title="Five three-circle variations to lock in."
+            body="Classic Venn triangle pointing up. Each card shows the mark on its own, the mark beside the Trillian wordmark as a horizontal lockup, and small thumbnails at favicon sizes. Tell me which number to promote and I'll deploy it across Nav, Footer, Blog hero, and favicon in one pass."
+          />
 
-        <div className="logo-lab-grid mt-16 md:mt-24">
-          {VARIANTS.map((v) => (
-            <RevealOnScroll key={v.id} delay={0.08}>
-              <article className="logo-lab-card">
-                {/* Name row */}
-                <div className="logo-lab-name-row">
-                  <h3 className="logo-lab-name">{v.name}</h3>
-                </div>
-
-                {/* Big mark */}
-                <div className="logo-lab-preview">
-                  <VennLogo variant={v.id} size={180} title={`Trillian — ${v.name}`} />
-                </div>
-
-                {/* Description */}
-                <p className="logo-lab-desc">{v.description}</p>
-
-                {/* Lockup — mark + Trillian wordmark */}
-                <div className="logo-lab-lockup-block">
-                  <span className="logo-lab-sub-label">Lockup</span>
-                  <div className="logo-lab-lockup">
-                    <VennLockup variant={v.id} markSize={44} wordSize="1.875rem" />
-                  </div>
-                  <div className="logo-lab-lockup logo-lab-lockup-small">
-                    <VennLockup variant={v.id} markSize={28} wordSize="1.25rem" gap="0.55rem" />
-                  </div>
-                </div>
-
-                {/* Favicon sizes */}
-                <div className="logo-lab-sizes">
-                  <span className="logo-lab-sub-label">At size</span>
-                  <span className="logo-lab-size">
-                    <VennLogo variant={v.id} size={44} />
-                  </span>
-                  <span className="logo-lab-size">
-                    <VennLogo variant={v.id} size={28} />
-                  </span>
-                  <span className="logo-lab-size">
-                    <VennLogo variant={v.id} size={18} />
-                  </span>
-                </div>
-              </article>
-            </RevealOnScroll>
-          ))}
+          <div className="logo-lab-grid">
+            {THREE_VARIANTS.map((v) => (
+              <RevealOnScroll key={`three-${v.id}`} delay={0.08}>
+                <VariantCard v={v} circles={3} />
+              </RevealOnScroll>
+            ))}
+          </div>
         </div>
       </div>
 

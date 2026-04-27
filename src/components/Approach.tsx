@@ -4,36 +4,32 @@ import RevealOnScroll from './RevealOnScroll'
 import SectionLabel from './SectionLabel'
 import { useContent } from '../hooks/useContent'
 
-// Each pillar's signature color — four distinct earthy tones so every ring
-// reads as its own pillar. Muted enough to live alongside the bone-warm
-// palette; chromatically spread across cool-green-warm-brown so they don't
-// all blur together.
+// Each pillar's signature color — three distinct earthy tones, one per ring.
+// Cool / green / warm-brown spread so every petal reads as its own pillar.
 const PILLAR_COLORS = [
-  '#3A4C5E', // 01 Korporativni alati — slate blue-grey (cool, structural)
+  '#3A4C5E', // 01 Corporate tools — slate blue-grey (cool, structural)
   '#5B7A5A', // 02 Coaching — moss (growth, present-future)
-  '#C29142', // 03 Fitoterapija — saffron (plants, warm)
-  '#8E5236', // 04 Rad s tijelom — clay/umber (body, grounded)
+  '#8E5236', // 03 Body work + care — clay/umber (body, plants, grounded)
 ] as const
 
-// Quatrefoil layout: circles at N, E, S, W of stage center (400, 400) with
-// r=240 and d=130. The 4-way overlap lens has radius r-d = 110 viewBox units
-// — the Trillian mark sits centered in that overlap, no box needed.
+// Classic three-circle Venn (triangle pointing up). viewBox 0 0 800 800,
+// stage center (400, 400). d = 130, r = 240. Distance between adjacent
+// circle centers = d√3 ≈ 225, overlap = 2r − d√3 ≈ 255. The 3-way central
+// overlap has radius (r − d) = 110 viewBox units — the Trillian mark fits.
 const SVG_CIRCLES = [
-  { cx: 400, cy: 270 }, // N
-  { cx: 530, cy: 400 }, // E
-  { cx: 400, cy: 530 }, // S
-  { cx: 270, cy: 400 }, // W
+  { cx: 400, cy: 270 }, // top
+  { cx: 513, cy: 465 }, // bottom-right (cos30°·d ≈ 113, sin30°·d = 65)
+  { cx: 287, cy: 465 }, // bottom-left
 ] as const
 const CIRCLE_R = 240
 const STAGE_C = { x: 400, y: 400 }
 
-// Pure-lobe center for each circle — where the click-reveal tag lands.
-// distance from stage center = (r + d) / 2 = (240 + 130) / 2 = 185 units.
+// Pure-lobe center for each circle — where the click-reveal tag lands. Each
+// position sits in the OUTER part of its circle, away from the 3-way overlap.
 const LOBE_TEXT = [
-  { x: 400, y: 200 }, // N
-  { x: 600, y: 400 }, // E
-  { x: 400, y: 600 }, // S
-  { x: 200, y: 400 }, // W
+  { x: 400, y: 165 }, // top — above center of top circle
+  { x: 615, y: 545 }, // bottom-right — outer corner of BR circle
+  { x: 185, y: 545 }, // bottom-left — outer corner of BL circle
 ] as const
 
 export default function Approach() {
@@ -84,9 +80,9 @@ export default function Approach() {
           </RevealOnScroll>
         </div>
 
-        {/* Stage: 4 pillar texts in corners + Venn center */}
+        {/* Stage: Venn (left) + pillar stack (right) */}
         <div className="approach-stage">
-          {/* Venn */}
+          {/* Venn diagram */}
           <div className="approach-venn">
             <svg
               viewBox="0 0 800 800"
@@ -385,60 +381,51 @@ export default function Approach() {
             </svg>
           </div>
 
-          {/* 4 pillar texts in the 4 corners */}
-          {t.approach.pillars.map((pillar, i) => {
-            const align = i % 2 === 0 ? 'left' : 'right'
-            const gridArea = `p${i + 1}` as const
-            const isActive = activeIndex === i
-            return (
-              <RevealOnScroll key={i} delay={0.2 + i * 0.06}>
-                <article
-                  className="approach-pillar"
-                  data-active={isActive ? 'true' : undefined}
-                  style={{
-                    gridArea,
-                    textAlign: align,
-                    alignItems: align === 'right' ? 'flex-end' : 'flex-start',
-                  }}
-                  onClick={() => setActive(i)}
-                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setActive(i)}
-                  tabIndex={0}
-                  role="button"
-                  aria-pressed={isActive}
-                  aria-label={`${pillar.label} ${pillar.tag}`}
-                >
-                  <div className="approach-pillar-head">
-                    <span
-                      className="approach-pillar-num"
-                      style={{ color: PILLAR_COLORS[i] }}
-                    >
-                      {pillar.label}
-                    </span>
-                    <span
-                      className="approach-pillar-rule"
-                      style={{ background: PILLAR_COLORS[i], opacity: 0.55 }}
-                      aria-hidden
-                    />
-                    <span className="approach-pillar-tag">{pillar.tag}</span>
-                  </div>
+          {/* Pillar stack — all 3 in the right column. Hover/click syncs
+              with the matching Venn circle on the left. */}
+          <div className="approach-pillars-column">
+            <RevealOnScroll>
+              <p className="approach-unifier-top">{t.approach.unifier}</p>
+            </RevealOnScroll>
+            {t.approach.pillars.map((pillar, i) => {
+              const isActive = activeIndex === i
+              return (
+                <RevealOnScroll key={i} delay={0.2 + i * 0.06}>
+                  <article
+                    className="approach-pillar"
+                    data-active={isActive ? 'true' : undefined}
+                    onClick={() => setActive(i)}
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setActive(i)}
+                    tabIndex={0}
+                    role="button"
+                    aria-pressed={isActive}
+                    aria-label={`${pillar.label} ${pillar.tag}`}
+                  >
+                    <div className="approach-pillar-head">
+                      <span
+                        className="approach-pillar-num"
+                        style={{ color: PILLAR_COLORS[i] }}
+                      >
+                        {pillar.label}
+                      </span>
+                      <span
+                        className="approach-pillar-rule"
+                        style={{ background: PILLAR_COLORS[i], opacity: 0.55 }}
+                        aria-hidden
+                      />
+                      <span className="approach-pillar-tag">{pillar.tag}</span>
+                    </div>
 
-                  <h3 className="approach-pillar-title">{pillar.title}</h3>
+                    <h3 className="approach-pillar-title">{pillar.title}</h3>
 
-                  <p className="approach-pillar-body">{pillar.body}</p>
-                </article>
-              </RevealOnScroll>
-            )
-          })}
+                    <p className="approach-pillar-body">{pillar.body}</p>
+                  </article>
+                </RevealOnScroll>
+              )
+            })}
+          </div>
         </div>
 
-        {/* Footer — unifier + hint */}
-        <RevealOnScroll delay={0.35}>
-          <div className="approach-footer">
-            <span className="approach-footer-rule" aria-hidden />
-            <p className="approach-unifier">{t.approach.unifier}</p>
-            <span className="approach-footer-rule" aria-hidden />
-          </div>
-        </RevealOnScroll>
       </div>
 
       <style>{`
@@ -478,41 +465,63 @@ export default function Approach() {
           flex: 1;
           min-height: 0;
           display: grid;
-          grid-template-columns: minmax(200px, 1fr) minmax(420px, 660px) minmax(200px, 1fr);
-          grid-template-rows: 1fr auto 1fr;
-          grid-template-areas:
-            "p1  venn  p2"
-            ".   venn  . "
-            "p3  venn  p4";
-          gap: 1.25rem 2rem;
-          align-items: start;
+          /* Side by side: Venn left, pillar stack right */
+          grid-template-columns: minmax(380px, 1.05fr) minmax(320px, 1fr);
+          gap: 2.5rem 4rem;
+          align-items: center;
         }
         @media (min-width: 1200px) {
           .approach-stage {
-            gap: 1.75rem 2.5rem;
+            gap: 3rem 5rem;
           }
         }
         @media (max-width: 900px) {
           .approach-stage {
             grid-template-columns: 1fr;
-            grid-template-rows: auto auto auto auto auto;
-            grid-template-areas:
-              "venn"
-              "p1"
-              "p2"
-              "p3"
-              "p4";
-            gap: 2rem;
+            gap: 2.5rem;
+            align-items: start;
           }
         }
 
+        .approach-unifier-top {
+          font-family: var(--font-display);
+          font-size: clamp(1.125rem, 1.7vw, 1.5rem);
+          line-height: 1.3;
+          font-weight: 400;
+          font-style: italic;
+          color: var(--color-moss);
+          margin: 0 0 0.5rem 0;
+          padding: 0 1.25rem;
+          max-width: 36ch;
+          text-align: left;
+          font-variation-settings: "opsz" 24, "SOFT" 80, "WONK" 1;
+        }
+        .approach-unifier-top::before {
+          content: '';
+          display: block;
+          width: 32px;
+          height: 1px;
+          background: var(--color-moss);
+          opacity: 0.55;
+          margin: 0 0 0.75rem;
+        }
+
+        .approach-pillars-column {
+          display: flex;
+          flex-direction: column;
+          gap: 1.75rem;
+          max-width: 38rem;
+        }
+        @media (min-width: 1200px) {
+          .approach-pillars-column { gap: 2rem; }
+        }
+
         .approach-venn {
-          grid-area: venn;
           position: relative;
           align-self: center;
           justify-self: center;
           width: 100%;
-          max-width: 660px;
+          max-width: 560px;
           aspect-ratio: 1 / 1;
           display: grid;
           place-items: center;
@@ -539,23 +548,27 @@ export default function Approach() {
           flex-direction: column;
           gap: 0.7rem;
           outline: none;
-          padding: 0.6rem 0;
+          padding: 1.1rem 1.25rem;
           cursor: pointer;
           transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
-            opacity 400ms cubic-bezier(0.16, 1, 0.3, 1);
-          max-width: 34ch;
+            opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+            background 400ms cubic-bezier(0.16, 1, 0.3, 1),
+            border-color 400ms cubic-bezier(0.16, 1, 0.3, 1);
           background: transparent;
-          border: none;
+          border: 1px solid transparent;
+          border-left: 1px solid var(--color-hairline);
+          border-radius: 2px;
         }
         .approach-pillar:hover,
         .approach-pillar:focus-visible {
-          transform: translateY(-2px);
+          transform: translateX(2px);
+          background: color-mix(in srgb, var(--color-bone) 50%, transparent);
+          border-left-color: var(--color-moss);
         }
         .approach-pillar[data-active] {
-          transform: translateY(-2px);
-        }
-        .approach-pillar[style*="text-align: right"] {
-          justify-self: end;
+          transform: translateX(2px);
+          background: color-mix(in srgb, var(--color-moss) 5%, transparent);
+          border-left-color: var(--color-moss);
         }
         .approach-pillar-head {
           display: flex;
@@ -565,9 +578,6 @@ export default function Approach() {
           font-size: var(--text-micro);
           text-transform: uppercase;
           letter-spacing: 0.14em;
-        }
-        .approach-pillar[style*="text-align: right"] .approach-pillar-head {
-          flex-direction: row-reverse;
         }
         .approach-pillar-num {
           font-weight: 500;
@@ -591,22 +601,22 @@ export default function Approach() {
         }
         .approach-pillar-title {
           font-family: var(--font-display);
-          font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+          font-size: clamp(1.25rem, 1.7vw, 1.5rem);
           line-height: 1.2;
           letter-spacing: -0.015em;
           font-weight: 400;
           color: var(--color-ink);
           margin: 0;
-          max-width: 18ch;
+          max-width: 26ch;
           font-variation-settings: "opsz" 24, "SOFT" 50;
         }
         .approach-pillar-body {
           font-family: var(--font-ui);
-          font-size: 0.8125rem;
-          line-height: 1.55;
+          font-size: 0.9375rem;
+          line-height: 1.6;
           color: var(--color-ink-soft);
           margin: 0;
-          max-width: 34ch;
+          max-width: 52ch;
           display: -webkit-box;
           -webkit-line-clamp: 4;
           -webkit-box-orient: vertical;
@@ -617,43 +627,11 @@ export default function Approach() {
           color: var(--color-ink);
         }
         @media (max-width: 900px) {
-          .approach-pillar {
-            max-width: none;
-            align-items: flex-start !important;
-            text-align: left !important;
-          }
-          .approach-pillar[style*="text-align: right"] .approach-pillar-head {
-            flex-direction: row;
-          }
           .approach-pillar-body {
             -webkit-line-clamp: unset;
           }
         }
 
-        .approach-footer {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 1.2rem;
-          margin-top: 1rem;
-        }
-        .approach-footer-rule {
-          flex: 0 0 clamp(32px, 8vw, 96px);
-          height: 1px;
-          background: var(--color-hairline);
-        }
-        .approach-unifier {
-          font-family: var(--font-display);
-          font-size: clamp(1rem, 1.4vw, 1.25rem);
-          line-height: 1.3;
-          font-weight: 400;
-          font-style: italic;
-          color: var(--color-moss);
-          margin: 0;
-          max-width: 40ch;
-          text-align: center;
-          font-variation-settings: "opsz" 24, "SOFT" 80;
-        }
       `}</style>
     </section>
   )
