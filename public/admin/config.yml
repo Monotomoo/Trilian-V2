@@ -1,0 +1,485 @@
+# Decap CMS configuration for Trillian.
+#
+# Edits commit straight to the `main` branch on GitHub and Vercel rebuilds
+# the site. Two locale files are kept in lockstep: strings.en.json and
+# strings.hr.json. Each section below is one "card" in the admin UI.
+#
+# Local dev: run `npx decap-server` in another terminal, then visit
+#   http://localhost:4001/admin
+# to edit without GitHub OAuth (writes straight to local JSON files).
+
+backend:
+  name: github
+  repo: Monotomoo/Trilian-V2
+  branch: main
+  # Phase D: replace with the production Vercel URL once the OAuth proxy
+  # is deployed. Until then, use `local_backend: true` for offline editing.
+  base_url: https://trilian-v2.vercel.app
+  auth_endpoint: api/oauth
+
+local_backend: true
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+i18n:
+  structure: multiple_files
+  locales: [en, hr]
+  default_locale: en
+
+collections:
+  # ───────────────────────────────────────────────────────────────────
+  # SITE COPY — every editable string + photo on the homepage.
+  # Each `file` entry is a separate card in the admin sidebar; they all
+  # write back into strings.{locale}.json (Decap merges the slices).
+  # ───────────────────────────────────────────────────────────────────
+  - name: site
+    label: "Site copy"
+    label_singular: "Section"
+    description: "All headlines, body copy, and photos on the homepage."
+    editor:
+      preview: false
+    files:
+      # ───── 01 · Brand / meta ─────
+      - file: "content/strings.{{locale}}.json"
+        name: meta
+        label: "01 · Brand & meta"
+        i18n: true
+        format: json
+        fields:
+          - label: "Meta"
+            name: "meta"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Wordmark", name: "wordmark", widget: "string", i18n: true }
+              - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true }
+              - { label: "Location", name: "location", widget: "string", i18n: true }
+              - { label: "Practitioner name", name: "practitioner", widget: "string", i18n: true }
+
+      # ───── 02 · Navigation ─────
+      - file: "content/strings.{{locale}}.json"
+        name: nav
+        label: "02 · Navigation labels"
+        i18n: true
+        format: json
+        fields:
+          - label: "Nav"
+            name: "nav"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Home", name: "home", widget: "string", i18n: true }
+              - { label: "About", name: "about", widget: "string", i18n: true }
+              - { label: "Packages", name: "packages", widget: "string", i18n: true }
+              - { label: "Approach", name: "approach", widget: "string", i18n: true }
+              - { label: "Contact", name: "contact", widget: "string", i18n: true }
+              - { label: "Blog", name: "blog", widget: "string", i18n: true }
+              - { label: "Apply CTA label", name: "apply", widget: "string", i18n: true }
+              - { label: "Services (legacy)", name: "services", widget: "string", i18n: true, required: false }
+              - { label: "Story (legacy)", name: "story", widget: "string", i18n: true, required: false }
+              - { label: "Principles (legacy)", name: "principles", widget: "string", i18n: true, required: false }
+
+      # ───── 03 · Hero ─────
+      - file: "content/strings.{{locale}}.json"
+        name: hero
+        label: "03 · Hero (top of page)"
+        i18n: true
+        format: json
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Eyebrow (small label above headline)", name: "eyebrow", widget: "string", i18n: true }
+              - { label: "Headline line 1", name: "line1", widget: "string", i18n: true }
+              - { label: "Headline line 2 — prefix", name: "line2Prefix", widget: "string", i18n: true }
+              - { label: "Headline line 2 — suffix", name: "line2Suffix", widget: "string", i18n: true }
+              - label: "Rotating words (replace one another in headline)"
+                name: "rotating"
+                widget: "list"
+                field: { label: "Word", name: "word", widget: "string" }
+                i18n: true
+              - { label: "Subheading", name: "sub", widget: "text", i18n: true }
+              - { label: "Scroll label", name: "scroll", widget: "string", i18n: true }
+              - label: "Dossier badges (row at bottom of hero)"
+                name: "dossier"
+                widget: "list"
+                field: { label: "Badge", name: "badge", widget: "string" }
+                i18n: true
+              - { label: "Portrait photo", name: "portrait", widget: "image", i18n: true }
+              - { label: "Portrait alt-text", name: "portraitAlt", widget: "string", i18n: true }
+              - { label: "CTA label", name: "ctaLabel", widget: "string", i18n: true }
+              - { label: "CTA fine-print under button", name: "ctaMicro", widget: "string", i18n: true }
+
+      # ───── 04 · Manifesto ─────
+      - file: "content/strings.{{locale}}.json"
+        name: manifesto
+        label: "04 · Manifesto"
+        i18n: true
+        format: json
+        fields:
+          - label: "Manifesto"
+            name: "manifesto"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
+              - { label: "Headline", name: "headline", widget: "string", i18n: true }
+              - label: "Lines (one paragraph per item)"
+                name: "lines"
+                widget: "list"
+                field: { label: "Line", name: "line", widget: "text" }
+                i18n: true
+              - { label: "Emphasis line (must match one of the lines exactly)", name: "emphasis", widget: "text", i18n: true }
+
+      # ───── 05 · Marquee (scrolling keywords strip) ─────
+      - file: "content/strings.{{locale}}.json"
+        name: marquee
+        label: "05 · Marquee keywords"
+        i18n: true
+        format: json
+        fields:
+          - label: "Marquee"
+            name: "marquee"
+            widget: "object"
+            i18n: true
+            fields:
+              - label: "Words"
+                name: "words"
+                widget: "list"
+                field: { label: "Word", name: "word", widget: "string" }
+                i18n: true
+
+      # ───── 06 · Approach (Moj pristup — three pillars) ─────
+      - file: "content/strings.{{locale}}.json"
+        name: approach
+        label: "06 · Approach (Moj pristup)"
+        i18n: true
+        format: json
+        fields:
+          - label: "Approach"
+            name: "approach"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
+              - { label: "Headline", name: "headline", widget: "string", i18n: true }
+              - label: "Pillars (3 items)"
+                name: "pillars"
+                widget: "list"
+                i18n: true
+                fields:
+                  - { label: "Number (e.g. 01)", name: "label", widget: "string" }
+                  - { label: "Tag (short name)", name: "tag", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Body", name: "body", widget: "text" }
+              - { label: "Unifier line (italic, top of right column)", name: "unifier", widget: "text", i18n: true }
+
+      # ───── 07 · Packages (Paketi) ─────
+      - file: "content/strings.{{locale}}.json"
+        name: services
+        label: "07 · Packages (Paketi)"
+        i18n: true
+        format: json
+        fields:
+          - label: "Services"
+            name: "services"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
+              - { label: "Headline", name: "headline", widget: "string", i18n: true }
+              - { label: "Hint (small text under headline)", name: "hint", widget: "string", i18n: true }
+              - label: "Packages (4 items)"
+                name: "items"
+                widget: "list"
+                i18n: true
+                fields:
+                  - { label: "Outcome (the headline of the card)", name: "outcome", widget: "string" }
+                  - { label: "Body (short pitch under outcome)", name: "body", widget: "text" }
+                  - { label: "Scope (program name in upper-right)", name: "scope", widget: "string" }
+                  - { label: "Format (e.g. 1:1 · 100 days)", name: "format", widget: "string" }
+                  - { label: "Who it's for", name: "who", widget: "text" }
+                  - label: "Possible methods"
+                    name: "beats"
+                    widget: "list"
+                    fields:
+                      - { label: "Method label (e.g. Method 01)", name: "label", widget: "string" }
+                      - { label: "Method name", name: "text", widget: "string" }
+                  - label: "Something additional (deliverables)"
+                    name: "deliverables"
+                    widget: "list"
+                    field: { label: "Item", name: "item", widget: "string" }
+                  - { label: "Principle (motto at bottom of card)", name: "principle", widget: "text" }
+              - { label: "Pricing line (under packages)", name: "pricing", widget: "string", i18n: true, required: false }
+              - label: "Card labels"
+                name: "labels"
+                widget: "object"
+                i18n: true
+                fields:
+                  - { label: "Who heading", name: "who", widget: "string" }
+                  - { label: "Methods heading", name: "beats", widget: "string" }
+                  - { label: "Something additional heading", name: "deliverables", widget: "string" }
+                  - { label: "Principle heading", name: "principle", widget: "string" }
+                  - { label: "Open button", name: "expand", widget: "string" }
+                  - { label: "Close button", name: "collapse", widget: "string" }
+
+      # ───── 08 · Story (Ti i ja intro — currently unmounted, kept) ─────
+      - file: "content/strings.{{locale}}.json"
+        name: story
+        label: "08 · Story intro (Ti i ja) [unused]"
+        i18n: true
+        format: json
+        fields:
+          - label: "Story"
+            name: "story"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
+              - { label: "Headline", name: "headline", widget: "string", i18n: true }
+              - label: "Paragraphs"
+                name: "paragraphs"
+                widget: "list"
+                field: { label: "Paragraph", name: "p", widget: "text" }
+                i18n: true
+              - { label: "Credentials line", name: "credentials", widget: "string", i18n: true }
+              - { label: "Portrait alt-text", name: "portraitAlt", widget: "string", i18n: true }
+              - { label: "More-link label", name: "moreLabel", widget: "string", i18n: true }
+
+      # ───── 09 · About me chapters (slider/grid data) ─────
+      - file: "content/strings.{{locale}}.json"
+        name: about
+        label: "09 · About me chapters"
+        i18n: true
+        format: json
+        fields:
+          - label: "About"
+            name: "about"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
+              - { label: "Headline", name: "headline", widget: "string", i18n: true }
+              - { label: "Intro paragraph", name: "intro", widget: "text", i18n: true }
+              - label: "Chapters (each = one row in About me section)"
+                name: "slides"
+                widget: "list"
+                i18n: true
+                fields:
+                  - { label: "Number (e.g. 01)", name: "num", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Body", name: "body", widget: "text" }
+                  - { label: "Photo", name: "photo", widget: "image", required: false }
+                  - { label: "Photo alt-text", name: "photoAlt", widget: "string" }
+              - label: "Labels (small UI strings)"
+                name: "labels"
+                widget: "object"
+                i18n: true
+                fields:
+                  - { label: "Previous", name: "prev", widget: "string" }
+                  - { label: "Next", name: "next", widget: "string" }
+                  - { label: "Slide progress label", name: "progress", widget: "string" }
+                  - { label: "Missing photo placeholder text", name: "missingPhoto", widget: "string" }
+
+      # ───── 10 · Testimonials ─────
+      - file: "content/strings.{{locale}}.json"
+        name: testimonials
+        label: "10 · Testimonials"
+        i18n: true
+        format: json
+        fields:
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
+              - { label: "Headline", name: "headline", widget: "string", i18n: true }
+              - { label: "Body", name: "body", widget: "text", i18n: true }
+
+      # ───── 11 · Principles (currently unmounted, replaced by About) ─────
+      - file: "content/strings.{{locale}}.json"
+        name: principles
+        label: "11 · Principles [unused]"
+        i18n: true
+        format: json
+        fields:
+          - label: "Principles"
+            name: "principles"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
+              - { label: "Headline", name: "headline", widget: "string", i18n: true }
+              - { label: "Sub-headline", name: "sub", widget: "text", i18n: true }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                i18n: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Body", name: "body", widget: "text" }
+                  - { label: "Tag", name: "tag", widget: "string" }
+
+      # ───── 12 · Contact ─────
+      - file: "content/strings.{{locale}}.json"
+        name: contact
+        label: "12 · Contact"
+        i18n: true
+        format: json
+        fields:
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
+              - { label: "Headline", name: "headline", widget: "string", i18n: true }
+              - { label: "Sub-headline", name: "sub", widget: "text", i18n: true }
+              - label: "Three paths (cards above the form)"
+                name: "paths"
+                widget: "list"
+                i18n: true
+                fields:
+                  - { label: "Label (e.g. 01 / Fast)", name: "label", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Body", name: "body", widget: "text" }
+                  - { label: "CTA text", name: "cta", widget: "string" }
+                  - { label: "Link target (#anchor or mailto:)", name: "href", widget: "string" }
+              - label: "Direct contact (footer of contact section)"
+                name: "direct"
+                widget: "object"
+                i18n: true
+                fields:
+                  - { label: "Label (Or direct)", name: "label", widget: "string" }
+                  - { label: "Email", name: "email", widget: "string" }
+                  - { label: "Phone", name: "phone", widget: "string" }
+                  - { label: "Location", name: "location", widget: "string" }
+              - label: "Note form labels"
+                name: "note"
+                widget: "object"
+                i18n: true
+                fields:
+                  - { label: "Eyebrow above form", name: "eyebrow", widget: "string" }
+                  - { label: "Form headline", name: "headline", widget: "string" }
+                  - { label: "Form sub-headline", name: "sub", widget: "string" }
+                  - { label: "Message field placeholder", name: "placeholder", widget: "string" }
+                  - { label: "Submit button (idle)", name: "submit", widget: "string" }
+                  - { label: "Submit button (sending)", name: "sending", widget: "string" }
+                  - { label: "Submit button (sent)", name: "sent", widget: "string" }
+                  - { label: "From-field label", name: "fromLabel", widget: "string" }
+                  - { label: "From-field placeholder", name: "fromPlaceholder", widget: "string" }
+              - label: "Calendar secondary CTA"
+                name: "calendar"
+                widget: "object"
+                i18n: true
+                fields:
+                  - { label: "Label (above link)", name: "label", widget: "string" }
+                  - { label: "Link text", name: "linkLabel", widget: "string" }
+                  - { label: "Href (URL or mailto:)", name: "href", widget: "string" }
+                  - { label: "Note (small caption under link)", name: "note", widget: "string", required: false }
+
+      # ───── 13 · Footer ─────
+      - file: "content/strings.{{locale}}.json"
+        name: footer
+        label: "13 · Footer"
+        i18n: true
+        format: json
+        fields:
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Tagline", name: "tagline", widget: "string", i18n: true }
+              - { label: "Copyright line", name: "copyright", widget: "string", i18n: true }
+              - { label: "Legal line", name: "legal", widget: "string", i18n: true }
+              - { label: "Blog link label", name: "blogLabel", widget: "string", i18n: true }
+              - { label: "Blog link href", name: "blogHref", widget: "string", i18n: true }
+
+      # ───── 14 · Blog page ─────
+      - file: "content/strings.{{locale}}.json"
+        name: blog
+        label: "14 · Blog page"
+        i18n: true
+        format: json
+        fields:
+          - label: "Blog"
+            name: "blog"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
+              - { label: "Headline", name: "headline", widget: "string", i18n: true }
+              - { label: "Intro paragraph", name: "intro", widget: "text", i18n: true }
+              - label: "Empty-state card"
+                name: "empty"
+                widget: "object"
+                i18n: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Body", name: "body", widget: "text" }
+                  - { label: "Back-button label", name: "cta", widget: "string" }
+                  - { label: "Back-button href", name: "ctaHref", widget: "string" }
+              - { label: "Upcoming-posts label", name: "upcomingLabel", widget: "string", i18n: true }
+              - label: "Upcoming posts"
+                name: "upcomingPosts"
+                widget: "list"
+                i18n: true
+                fields:
+                  - { label: "Number (e.g. 01)", name: "num", widget: "string" }
+                  - { label: "Category", name: "category", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Teaser", name: "teaser", widget: "text" }
+              - label: "Subscribe form"
+                name: "subscribe"
+                widget: "object"
+                i18n: true
+                fields:
+                  - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+                  - { label: "Headline", name: "headline", widget: "string" }
+                  - { label: "Sub", name: "sub", widget: "text" }
+                  - { label: "Email placeholder", name: "placeholder", widget: "string" }
+                  - { label: "Submit (idle)", name: "submit", widget: "string" }
+                  - { label: "Submit (sending)", name: "sending", widget: "string" }
+                  - { label: "Submit (sent)", name: "sent", widget: "string" }
+                  - { label: "Note under form", name: "note", widget: "string" }
+              - label: "Misc labels"
+                name: "labels"
+                widget: "object"
+                i18n: true
+                fields:
+                  - { label: "Back", name: "back", widget: "string" }
+                  - { label: "Read more", name: "readMore", widget: "string" }
+                  - { label: "Published", name: "published", widget: "string" }
+
+      # ───── 15 · Blog teaser (homepage strip) ─────
+      - file: "content/strings.{{locale}}.json"
+        name: blogTeaser
+        label: "15 · Blog teaser (homepage)"
+        i18n: true
+        format: json
+        fields:
+          - label: "Blog teaser"
+            name: "blogTeaser"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
+              - { label: "Headline", name: "headline", widget: "string", i18n: true }
+              - { label: "Body", name: "body", widget: "text", i18n: true }
+              - { label: "Preview label (Queued)", name: "previewLabel", widget: "string", i18n: true }
+              - { label: "CTA (Open the blog)", name: "cta", widget: "string", i18n: true }
+              - label: "Pitch box (Have something to add?)"
+                name: "pitch"
+                widget: "object"
+                i18n: true
+                fields:
+                  - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+                  - { label: "Headline", name: "headline", widget: "string" }
+                  - { label: "Body", name: "body", widget: "text" }
+                  - { label: "CTA label", name: "cta", widget: "string" }
+                  - { label: "CTA href (mailto: or URL)", name: "ctaHref", widget: "string" }

@@ -1,0 +1,532 @@
+{
+  "meta": {
+    "wordmark": "Trillian",
+    "subtitle": "coaching",
+    "location": "Zagreb",
+    "practitioner": "Vedra Regul Erent-Ondrušek"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "packages": "Packages",
+    "approach": "Approach",
+    "contact": "Contact",
+    "blog": "Blog",
+    "apply": "15′ Audit",
+    "services": "Packages",
+    "story": "About",
+    "principles": "Principles"
+  },
+  "hero": {
+    "eyebrow": "01 / Hello",
+    "line1": "Run your life",
+    "line2Prefix": "like you run a",
+    "line2Suffix": ".",
+    "rotating": [
+      "business",
+      "company",
+      "team",
+      "system"
+    ],
+    "sub": "Corporate tools applied to everyday life. Corporate methodology meets performance biology. Structure and measurable results.",
+    "scroll": "Scroll",
+    "dossier": [
+      "Croatian",
+      "MSc HR · EFZG",
+      "P&G · Hitachi · dm",
+      "ICF · Phyto / 07·2026"
+    ],
+    "portrait": "/uploads/vedra-1.jpg",
+    "portraitAlt": "Vedra Regul Erent-Ondrušek — portrait",
+    "ctaLabel": "Run the 15-minute audit",
+    "ctaMicro": "Free · 7 questions · 15 minutes"
+  },
+  "manifesto": {
+    "eyebrow": "02 / Manifesto",
+    "headline": "Not the coaching type?",
+    "lines": [
+      "My method isn't sitting on a couch talking about problems.",
+      "This is implementation of concrete tools — Organizational Performance Model, Kanban, RACI, Stakeholder mapping — inside your private life.",
+      "Optimize your most important resources: Time, Energy, Focus.",
+      "Don't improvise where you don't have to.",
+      "If your business has KPIs and clear roles, why doesn't your private life?",
+      "Install an operating system that links corporate logic and biological regeneration."
+    ],
+    "emphasis": "Install an operating system that links corporate logic and biological regeneration."
+  },
+  "marquee": {
+    "words": [
+      "RACI",
+      "OPM",
+      "Kanban",
+      "Phytotherapy",
+      "BCP",
+      "Power posture",
+      "100-day plan",
+      "Stakeholders",
+      "80/20",
+      "Nervous system",
+      "Somatic",
+      "Executive",
+      "Recovery",
+      "Authority"
+    ]
+  },
+  "approach": {
+    "eyebrow": "03 / My approach",
+    "headline": "Three tools. One operator.",
+    "pillars": [
+      {
+        "label": "01",
+        "tag": "Corporate tools",
+        "title": "Proven corporate tools, applied privately.",
+        "body": "Process analysis (where does your time actually go?), RACI matrices (who is accountable at home?), OPM (how to keep moving after change?), 80/20 (highest benefit for lowest input?), and more — tailored to you. Goal: maximum efficiency, minimum wasted energy."
+      },
+      {
+        "label": "02",
+        "tag": "Coaching",
+        "title": "Present-and-future, not past.",
+        "body": "Coaching focuses on present and future and asks sharp questions — I support you in finding your own answers to life decisions and professional challenges. Consulting lets me say what I think should be done. I attend and love psychotherapy but I'm not a licensed therapist and won't treat diagnoses. Here we do coaching and consulting."
+      },
+      {
+        "label": "03",
+        "tag": "Body work and care",
+        "title": "Power posture, breath, and plant-based recovery.",
+        "body": "[AI draft — Vedra to finalize the merged text.] The body remembers what the calendar demands. Fifteen years inside fitness and contemporary dance gave me protocols for power posture — body position that signals authority in under a second — and regulation through movement: breath and micro-movement sequences that release shoulder, neck, and diaphragm tension. Combined with phyto-aromatherapy: as a certified phyto-aromatherapist I prepare fresh, individualized preparations that outperform shelf supplements (no batch orders, no disease treatment). Two minutes of precise practice plus a tincture with your name on the bottle."
+      }
+    ],
+    "unifier": "Three disciplines, one operator. You need all three."
+  },
+  "gallery": {
+    "eyebrow": "04 / Field notes",
+    "headline": "Where the work lives.",
+    "caption": "A practice has weather, hours, and a room. These are the edges of mine.",
+    "items": [
+      {
+        "label": "01 / Morning",
+        "title": "Before the inbox opens.",
+        "body": "Notebook, tea, thirty minutes nobody else owns.",
+        "theme": "ochre",
+        "illustration": "sunrise"
+      },
+      {
+        "label": "02 / Field",
+        "title": "Plants that do the repair work.",
+        "body": "Phyto protocols calibrated to actual nervous systems, not marketing promises.",
+        "theme": "moss",
+        "illustration": "botanical"
+      },
+      {
+        "label": "03 / City",
+        "title": "Zagreb, 10000.",
+        "body": "Where the practice lives. International clients remote, locals in the room.",
+        "theme": "moss-ochre",
+        "illustration": "horizon"
+      }
+    ]
+  },
+  "services": {
+    "eyebrow": "04 / Packages",
+    "headline": "Four programs",
+    "hint": "Click a package to see the sessions inside. Pricing on request.",
+    "items": [
+      {
+        "outcome": "Walk into a new role already in command.",
+        "body": "A program for people preparing for a promotion — or who just got one. Authority established by week two, not month three.",
+        "scope": "First 100 Days: Authority Accelerator",
+        "format": "1:1 · program",
+        "who": "Senior operators stepping into visibility. Internal promotions where the bar just moved. External hires entering politically unfamiliar ground.",
+        "beats": [
+          {
+            "label": "Method 01",
+            "text": "Stakeholder Mapping"
+          },
+          {
+            "label": "Method 02",
+            "text": "First Wins strategy"
+          },
+          {
+            "label": "Method 03",
+            "text": "Somatic Leadership"
+          },
+          {
+            "label": "Method 04",
+            "text": "Phyto protocol (as needed)"
+          },
+          {
+            "label": "Method 05",
+            "text": "90-day outcome audit"
+          }
+        ],
+        "deliverables": [
+          "Written 100-day plan and stakeholder map",
+          "Direct phone access for the first 30 days",
+          "Somatic regulation protocols for high-pressure moments"
+        ],
+        "principle": "Authority is established by day 14, not argued for on day 90."
+      },
+      {
+        "outcome": "Run your household like it deserves a strategy.",
+        "body": "Manage a household with the precision of a successful company. Less friction, more shared energy, clearer ownership.",
+        "scope": "Strategic Household Operations",
+        "format": "1:1 or couple · project-based",
+        "who": "Couples where one person is carrying invisible operations. Families navigating illness, moves, or school transitions. Operators who built companies and then tried to wing it at home.",
+        "beats": [
+          {
+            "label": "Method 01",
+            "text": "Family RACI matrix"
+          },
+          {
+            "label": "Method 02",
+            "text": "Domestic Kanban"
+          },
+          {
+            "label": "Method 03",
+            "text": "Shared Vision board"
+          },
+          {
+            "label": "Method 04",
+            "text": "Weekly ops meeting template"
+          },
+          {
+            "label": "Method 05",
+            "text": "Quarterly review"
+          },
+          {
+            "label": "Method 06",
+            "text": "Somatic protocol for household stress"
+          }
+        ],
+        "deliverables": [
+          "Household RACI document and weekly-ops template",
+          "Family BCP (Business Continuity Plan) template",
+          "Custom stress-recovery practices for the partnership"
+        ],
+        "principle": "A home without strategy is a home run by whoever breaks first."
+      },
+      {
+        "outcome": "Diagnose what is breaking your week.",
+        "body": "For professionals who can feel their energy leaking. Energy P&L, calendar autopsy, posture, phyto support — calibrated to the actual leak.",
+        "scope": "High-Performance Audit",
+        "format": "1:1 · 15 min free start",
+        "who": "High-functioning people who can feel the system creaking. Before burnout, while you still have choice.",
+        "beats": [
+          {
+            "label": "Method 01",
+            "text": "Energy Profit & Loss analysis"
+          },
+          {
+            "label": "Method 02",
+            "text": "Performance Gap analysis"
+          },
+          {
+            "label": "Method 03",
+            "text": "Executive posture & authority"
+          },
+          {
+            "label": "Method 04",
+            "text": "Phyto protocol"
+          },
+          {
+            "label": "Method 05",
+            "text": "Calendar autopsy"
+          },
+          {
+            "label": "Method 06",
+            "text": "30-day follow-up"
+          }
+        ],
+        "deliverables": [
+          "Written audit summary with one named lever",
+          "Individualized phyto preparation (two-week supply)",
+          "Before/after energy baseline"
+        ],
+        "principle": "The leak is never where the noise is."
+      },
+      {
+        "outcome": "Keep operating through a family crisis.",
+        "body": "Illness. Bereavement. Divorce. Apply corporate Business Continuity Planning (BCP) and Organization Performance Model (OPM) to private life at moments of extreme stress.",
+        "scope": "Crisis Support · I deserve support",
+        "format": "Bespoke · crisis protocol",
+        "who": "People in the middle of a crisis they did not choose. Partners, parents, operators who still have people depending on them.",
+        "beats": [
+          {
+            "label": "Method 01",
+            "text": "Business Continuity Plan (BCP)"
+          },
+          {
+            "label": "Method 02",
+            "text": "OPM for crisis"
+          },
+          {
+            "label": "Method 03",
+            "text": "Support architecture map"
+          },
+          {
+            "label": "Method 04",
+            "text": "Weekly 1:1s"
+          },
+          {
+            "label": "Method 05",
+            "text": "Phyto protocol for exhaustion"
+          },
+          {
+            "label": "Method 06",
+            "text": "Direct phone access"
+          }
+        ],
+        "deliverables": [
+          "Written continuity plan and support architecture",
+          "Bespoke cadence — no session limit",
+          "Direct phone access for acute moments"
+        ],
+        "principle": "You don't think your way out of a crisis. You operate through it — while you heal."
+      }
+    ],
+    "pricing": "Pricing on request. Vedra will publish three fixed packages with clear session counts soon.",
+    "labels": {
+      "who": "Who it's for",
+      "beats": "Possible methods",
+      "deliverables": "Something additional",
+      "principle": "Principle",
+      "expand": "Open",
+      "collapse": "Close"
+    }
+  },
+  "story": {
+    "eyebrow": "06 / About me",
+    "headline": "You and me.",
+    "paragraphs": [
+      "I'm not a typical coach. I'm probably worse.",
+      "Behind me: 10 years of corporate HR — four of them at Procter & Gamble, the global gold standard for systems and process. BA in sociology and German, MSc in HR management from EFZG. Currently training for ICF-accredited Executive Coach certification.",
+      "I'm also a certified phyto-aromatherapist, using the science of plant extracts to build protocols for biology and health — plus a certified fitness instructor, using body knowledge for power posture and stress regulation.",
+      "What does that mean for you? I offer you proven tools. Why am I worse? Because I expect results."
+    ],
+    "credentials": "ICF certification · July 2026. Phytotherapy certification · July 2026.",
+    "portraitAlt": "Vedra Regul Erent-Ondrušek",
+    "moreLabel": "More about me"
+  },
+  "about": {
+    "eyebrow": "06 / About me · the operating manual",
+    "headline": "Experience and academic path.",
+    "intro": "One day, after an exhausting stretch of life, my psychotherapist told me I'd be an excellent coach for working with people. There is no higher endorsement than from a woman who knows my darkest shadow self. Here's the tangible evidence, too.",
+    "slides": [
+      {
+        "num": "01",
+        "title": "Corporate Special Forces",
+        "body": "Ten years of corporate work — four at Procter & Gamble, the rest at Hitachi, Transcom and dm-drogeriemarkt. P&G is the global gold standard for systems and process. I learned to become a machine for efficiency — and for enjoying the work. I currently lead CE South HR operations at P&G.",
+        "photo": "/uploads/about-pg.jpg",
+        "photoAlt": "Vedra Regul Erent-Ondrušek (P&G) with Diana Kobas Dešković (MODE1)"
+      },
+      {
+        "num": "02",
+        "title": "Academic base",
+        "body": "BA in sociology and German (2015). German studies are known for being gentle with students, which is where I developed iron discipline and lifelong imposter syndrome. When I started working in HR, the imposter syndrome demanded that I complete a postgraduate degree in HR Management (2021) at EFZG. The crown of that program: a paper on whether engaged onboarding is important for engaged work.",
+        "photo": "/uploads/about-academic.jpg",
+        "photoAlt": "Academic study scene"
+      },
+      {
+        "num": "03",
+        "title": "Executive Coaching",
+        "body": "I'm currently training for ICF-accredited Executive Coach certification. Coaching isn't a hobby for me — it's a serious discipline with clear standards and results. So far I've worked as a grief coach, a service I developed as part of my project Memoria.hr, writing and reading eulogies.",
+        "photo": "/uploads/about-coaching.jpg",
+        "photoAlt": "Coaching session"
+      },
+      {
+        "num": "04",
+        "title": "Phytotherapy and aromatherapy",
+        "body": "Did you know standardized supplements contain far lower active-compound concentrations than a fresh, rich phytotherapy preparation? Wellbeing covers our physical, mental and emotional health — and I have used the power of herbal compounds for years for immunity, deep sleep, and staying calm in chaotic situations. In July 2026 I become a certified phyto-aromatherapist. I use this knowledge to build phyto-protocols for my coaching packages.",
+        "photo": "/uploads/about-phyto.jpg",
+        "photoAlt": "Phytotherapy — plant preparations"
+      },
+      {
+        "num": "05",
+        "title": "Body work: power posture and relaxation",
+        "body": "I completed Fitness School (2013) and the Ana Maletić School of Contemporary Dance (2009) alongside high school. In my twenties I taught courses and workshops in Tribal Fusion bellydance, and I still dance today at Plesni centar Dhalia — which I co-founded. I use this knowledge to train power posture in clients and to release stress through body and movement.",
+        "photo": "/uploads/about-body.jpg",
+        "photoAlt": "Body work — movement and posture"
+      },
+      {
+        "num": "06",
+        "title": "School of life",
+        "body": "Maybe the most important one. I grew up in a family where my father was paralyzed when I was ten, alongside three younger brothers. I know first-hand how much it would have meant to us to have someone help organize our lives after that kind of change. Even so, I'm proud of how we carried it through — you can read about the hero Draško Regul here.",
+        "photo": "/uploads/about-life.jpg",
+        "photoAlt": "Regul family — life chapter"
+      },
+      {
+        "num": "07",
+        "title": "Family",
+        "body": "I'm the mother of one charming small boy, Vilim, and wife to an even more charming lawyer, Filip — with whom I share the joy of corporate life. Both are frequent victims of my OPM, BCP and similar acronym implementations in our life together.",
+        "photo": "/uploads/about-family.jpg",
+        "photoAlt": "Family"
+      }
+    ],
+    "labels": {
+      "prev": "Previous",
+      "next": "Next",
+      "progress": "Slide",
+      "missingPhoto": "MISSING PHOTO — Vedra to send"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "05 / Proof",
+    "headline": "No testimonials yet. On purpose.",
+    "body": "The 2026 founding cohort runs through the end of the year. Early clients shape how this practice gets built — and get my undivided attention while the calendar isn't full. You'll see testimonials here when I've earned them."
+  },
+  "principles": {
+    "eyebrow": "07 / Principles",
+    "headline": "The operating manual.",
+    "sub": "Six rules that run under every engagement. If you disagree with most of them, we are probably not a fit.",
+    "items": [
+      {
+        "title": "Authority precedes permission.",
+        "body": "You don't earn the right to lead by asking for it. You establish it, precisely, before anyone checks.",
+        "tag": "Leadership"
+      },
+      {
+        "title": "The body keeps your schedule.",
+        "body": "If your nervous system says no, your calendar is lying. Fix the body, or the plan fails.",
+        "tag": "Somatic"
+      },
+      {
+        "title": "A career is a system, not a ladder.",
+        "body": "Ladders have rungs. Systems have leverage points. Find yours.",
+        "tag": "Career"
+      },
+      {
+        "title": "Crisis runs on structure.",
+        "body": "The only thing that works when nothing else does is cadence. Plan the next two weeks. Then the next two.",
+        "tag": "Crisis"
+      },
+      {
+        "title": "Generalists with discipline beat specialists without.",
+        "body": "Three toolkits inside one operator outperform one toolkit inside a purist, every time.",
+        "tag": "Practice"
+      },
+      {
+        "title": "The loudest complaint is never the leak.",
+        "body": "Symptoms are downstream. Diagnose where the energy actually goes, not where it gets noticed.",
+        "tag": "Diagnostic"
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "07 / Contact",
+    "headline": "Let's write.",
+    "sub": "The practice is new, the calendar is not full, and I read everything that lands in the inbox myself. Write a letter — short or long — and I reply personally, usually within 48 hours. Or book a call below.",
+    "paths": [
+      {
+        "label": "01 / Fast",
+        "title": "15-minute audit.",
+        "body": "Free diagnostic. Seven questions, fifteen minutes, one written diagnosis. No pitch.",
+        "cta": "Open the audit",
+        "href": "#note"
+      },
+      {
+        "label": "02 / Open",
+        "title": "Write a letter.",
+        "body": "Short or long. Specific or not. I read all of them.",
+        "cta": "Email me",
+        "href": "mailto:vedra.re.ondrusek@gmail.com"
+      },
+      {
+        "label": "03 / Book",
+        "title": "Book a call.",
+        "body": "Skip the form — pick a time on the calendar directly.",
+        "cta": "Open the calendar",
+        "href": "#kontakt"
+      }
+    ],
+    "direct": {
+      "label": "Or direct",
+      "email": "vedra.re.ondrusek@gmail.com",
+      "phone": "+385 95 922 9547",
+      "location": "Zagreb, Croatia"
+    },
+    "note": {
+      "eyebrow": "Or",
+      "headline": "Send a note now.",
+      "sub": "One field. No structure required.",
+      "placeholder": "What's on your mind?",
+      "submit": "Send",
+      "sending": "Sending…",
+      "sent": "Sent. I'll come back to you within two working days.",
+      "fromLabel": "From",
+      "fromPlaceholder": "name@domain.com"
+    },
+    "calendar": {
+      "label": "Prefer to skip the form?",
+      "linkLabel": "Email me to book a 15-minute call →",
+      "href": "mailto:vedra.re.ondrusek@gmail.com?subject=Booking%20a%2015-minute%20call",
+      "note": ""
+    }
+  },
+  "footer": {
+    "tagline": "Practice of Vedra Regul Erent-Ondrušek",
+    "copyright": "© 2026 Trillian",
+    "legal": "Zagreb, Croatia · OIB on request",
+    "blogLabel": "Read the blog",
+    "blogHref": "/blog"
+  },
+  "blog": {
+    "eyebrow": "Blog · Notes from the practice",
+    "headline": "Field notes on running life like an operation.",
+    "intro": "Short reads on corporate tools applied to private life, phyto-protocols, and what actually moves the needle on energy. Published when the thinking is done, not on a calendar.",
+    "empty": {
+      "title": "The blog opens in weeks, not months.",
+      "body": "Below: the three pieces queued for the first drop. Leave your email and I'll send the first one directly.",
+      "cta": "Back to site",
+      "ctaHref": "/"
+    },
+    "upcomingLabel": "First in the queue",
+    "upcomingPosts": [
+      {
+        "num": "01",
+        "category": "Authority",
+        "title": "Why authority has to be set by day 14 — not argued for on day 90.",
+        "teaser": "The cost of waiting for permission, and four calibrated moves that establish who you are going to be in a new role before anyone else writes it for you."
+      },
+      {
+        "num": "02",
+        "category": "Phyto",
+        "title": "Tinctures that actually sleep with you.",
+        "teaser": "Why shelf supplements are half-dose theater, what three Croatian plants outperform them at sleep and calm, and how an individualized preparation gets built."
+      },
+      {
+        "num": "03",
+        "category": "Systems",
+        "title": "RACI the household. No, really.",
+        "teaser": "The one-page template that ended a year of low-grade domestic friction in our home. Plus the OPM move that comes next."
+      }
+    ],
+    "subscribe": {
+      "eyebrow": "Get the first one",
+      "headline": "I send one email when the first post drops.",
+      "sub": "No newsletter, no drip, no marketing. One note in your inbox when the first piece is up.",
+      "placeholder": "you@domain.com",
+      "submit": "Notify me",
+      "sending": "Sending…",
+      "sent": "Noted — I'll reach out when the first post is up.",
+      "note": "Mailto-based for now; replies land in my inbox."
+    },
+    "labels": {
+      "back": "Back",
+      "readMore": "Read",
+      "published": "Published"
+    }
+  },
+  "blogTeaser": {
+    "eyebrow": "— Blog",
+    "headline": "Notes from the practice.",
+    "body": "Short, infrequent reads. Corporate tools applied to private life, phyto-protocols, and the diagnostics behind each package.",
+    "previewLabel": "Queued",
+    "cta": "Open the blog",
+    "pitch": {
+      "eyebrow": "Have something to add?",
+      "headline": "Pitch a piece for the blog.",
+      "body": "Personal essays, case studies from inside corporate HR, phyto experiments, body-work field notes — anything from the operator's craft. One paragraph in your reply is enough to start.",
+      "cta": "Pitch a post",
+      "ctaHref": "mailto:vedra.re.ondrusek@gmail.com?subject=Trillian%20blog%20%E2%80%94%20pitch"
+    }
+  }
+}

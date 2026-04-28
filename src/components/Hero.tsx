@@ -226,7 +226,7 @@ export default function Hero() {
               {/* Portrait with hair-thin inner border */}
               <div className="hero-portrait-inner">
                 <Portrait
-                  src="/vedra-1.jpg"
+                  src={t.hero.portrait}
                   alt={t.hero.portraitAlt}
                   tone="natural"
                   breathing

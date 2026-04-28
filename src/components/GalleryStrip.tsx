@@ -3,6 +3,7 @@ import RevealHeading from './RevealHeading'
 import SectionLabel from './SectionLabel'
 import ImagePlaceholder from './ImagePlaceholder'
 import { useContent } from '../hooks/useContent'
+import type { Illustration, PlaceholderTheme } from '../../content/strings'
 
 export default function GalleryStrip() {
   const t = useContent()
@@ -65,8 +66,8 @@ export default function GalleryStrip() {
                 >
                   <ImagePlaceholder
                     variant="portrait"
-                    theme={item.theme}
-                    illustration={item.illustration}
+                    theme={item.theme as PlaceholderTheme}
+                    illustration={item.illustration as Illustration}
                     label={item.label}
                     alt={item.title}
                   />

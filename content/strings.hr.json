@@ -1,0 +1,532 @@
+{
+  "meta": {
+    "wordmark": "Trillian",
+    "subtitle": "coaching",
+    "location": "Zagreb",
+    "practitioner": "Vedra Regul Erent-Ondrušek"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "O meni",
+    "packages": "Paketi",
+    "approach": "Moj pristup",
+    "contact": "Kontakt",
+    "blog": "Blog",
+    "apply": "15′ Audit",
+    "services": "Paketi",
+    "story": "O meni",
+    "principles": "Principi"
+  },
+  "hero": {
+    "eyebrow": "01 / Bok",
+    "line1": "Upravljaj svojim životom",
+    "line2Prefix": "kao što upravljaš",
+    "line2Suffix": ".",
+    "rotating": [
+      "biznisom",
+      "kompanijom",
+      "operacijom",
+      "timom"
+    ],
+    "sub": "Implementiraj korporativne alate u svakodnevni život. Korporativna metodologija susreće biologiju performansi. Struktura i mjerljivi rezultati.",
+    "scroll": "Skrolaj",
+    "dossier": [
+      "Hrvatica",
+      "MSc HR · EFZG",
+      "P&G · Hitachi · dm",
+      "ICF · Fito / 07·2026"
+    ],
+    "portrait": "/uploads/vedra-1.jpg",
+    "portraitAlt": "Vedra Regul Erent-Ondrušek — portret",
+    "ctaLabel": "Javi se za 15′ AUDIT",
+    "ctaMicro": "Besplatno · 7 pitanja · 15 minuta"
+  },
+  "manifesto": {
+    "eyebrow": "02 / Manifest",
+    "headline": "Nisi tip za coaching?",
+    "lines": [
+      "Moja metoda nije sjedenje na kauču i pričanje o problemima.",
+      "Ovo je implementacija konkretnih alata — Organizational Performance Model, Kanban, RACI, Stakeholder mapping — u tvoj privatni život.",
+      "Optimiziraj svoje najvažnije resurse: Vrijeme, Energiju, Fokus.",
+      "Ne improviziraj gdje ne treba.",
+      "Ako tvoj biznis ima KPI-je i jasne uloge, zašto tvoj privatni život nema?",
+      "Instaliraj operativni sustav koji spaja korporativnu logiku i biološku regeneraciju."
+    ],
+    "emphasis": "Instaliraj operativni sustav koji spaja korporativnu logiku i biološku regeneraciju."
+  },
+  "marquee": {
+    "words": [
+      "RACI",
+      "OPM",
+      "Kanban",
+      "Fitoterapija",
+      "BCP",
+      "Power posture",
+      "Prvih 100 dana",
+      "Dionici",
+      "80/20",
+      "Živčani sustav",
+      "Somatsko",
+      "Executive",
+      "Oporavak",
+      "Autoritet"
+    ]
+  },
+  "approach": {
+    "eyebrow": "03 / Moj pristup",
+    "headline": "Tri alata. Jedan operator.",
+    "pillars": [
+      {
+        "label": "01",
+        "tag": "Korporativni alati",
+        "title": "Provjerene korporativne metode, primijenjene privatno.",
+        "body": "Radimo analize procesa (kamo odlazi tvoje vrijeme?), RACI tablice (tko je u kući izvršitelj zadatka?), OPM (kako dalje nakon promjene?), 80/20 analize (što mi donosi najviše dobrobiti za najmanji ulog?) te mnoge druge po individualnoj potrebi. Cilj: maksimalna efikasnost uz minimalno rasipanje energije."
+      },
+      {
+        "label": "02",
+        "tag": "Coaching",
+        "title": "Sadašnjost i budućnost, ne prošlost.",
+        "body": "Coaching je fokusiran na sadašnjost i budućnost te postavlja snažna pitanja — kao coach podržavam te u otkrivanju vlastitih rješenja za životne odluke ili poslovne izazove. Savjetovanje mi dozvoljava da kažem svoje mišljenje o tome kako bi neki problem trebalo riješiti. Osobno pohađam i volim psihoterapiju, ali nisam licencirani psihoterapeut te ne mogu liječiti dijagnoze. Ovdje radimo coaching i savjetovanje."
+      },
+      {
+        "label": "03",
+        "tag": "Rad s tijelom i njega",
+        "title": "Power posture, dah i biljni oporavak.",
+        "body": "[AI draft — Vedra će finalizirati spojeni tekst.] Tijelo pamti što kalendar traži. Petnaest godina u fitnesu i suvremenom plesu dalo mi je protokole za power posture — položaj tijela koji u sekundi šalje signal autoriteta — i za regulaciju kroz pokret: sekvence disanja i mikropokreti koje otključavaju napetost u ramenima, vratu i dijafragmi. Spojeno s fitoaromaterapijom: kao certificirana fitoaromaterapeutkinja izrađujem svježe, individualizirane pripravke koji nadmašuju dodatke prehrani s polica (bez serija po narudžbi, bez liječenja bolesti). Dvije minute precizne prakse plus tinktura s tvojim imenom na bočici."
+      }
+    ],
+    "unifier": "Tri discipline, jedan operator. Trebaš sve tri."
+  },
+  "gallery": {
+    "eyebrow": "04 / Bilješke s terena",
+    "headline": "Gdje se posao događa.",
+    "caption": "Praksa ima vrijeme, sate i prostoriju. Ovo su rubovi moje.",
+    "items": [
+      {
+        "label": "01 / Jutro",
+        "title": "Prije nego što se inbox otvori.",
+        "body": "Bilježnica, čaj, tridesetak minuta koje nitko drugi ne posjeduje.",
+        "theme": "ochre",
+        "illustration": "sunrise"
+      },
+      {
+        "label": "02 / Polje",
+        "title": "Biljke koje rade popravak.",
+        "body": "Fito protokoli kalibrirani na stvarni živčani sustav, ne na marketinška obećanja.",
+        "theme": "moss",
+        "illustration": "botanical"
+      },
+      {
+        "label": "03 / Grad",
+        "title": "Zagreb, 10000.",
+        "body": "Gdje praksa živi. Internacionalni klijenti remote, lokalni u sobi.",
+        "theme": "moss-ochre",
+        "illustration": "horizon"
+      }
+    ]
+  },
+  "services": {
+    "eyebrow": "04 / Paketi",
+    "headline": "Četiri programa",
+    "hint": "Klikni paket da otvoriš sesije. Cijena na upit.",
+    "items": [
+      {
+        "outcome": "Uđi u novu ulogu već s autoritetom.",
+        "body": "Program za one koji se pripremaju za promaknuće ili su nedavno dobili višu poziciju. Autoritet postavljen do drugog tjedna, ne trećeg mjeseca.",
+        "scope": "First 100 Days: Authority Accelerator",
+        "format": "1:1 · program",
+        "who": "Viši operatori koji ulaze u ulogu s vidljivošću. Interne promocije gdje se letvica podigla. Vanjski angažmani u politički nepoznat teren.",
+        "beats": [
+          {
+            "label": "Metoda 01",
+            "text": "Stakeholder Mapping"
+          },
+          {
+            "label": "Metoda 02",
+            "text": "First Wins strategija"
+          },
+          {
+            "label": "Metoda 03",
+            "text": "Somatic Leadership"
+          },
+          {
+            "label": "Metoda 04",
+            "text": "Fitoterapijski protokol (po potrebi)"
+          },
+          {
+            "label": "Metoda 05",
+            "text": "90-dnevna revizija"
+          }
+        ],
+        "deliverables": [
+          "Napisan plan prvih 100 dana i mapa dionika",
+          "Direktan telefonski pristup tijekom prvih 30 dana",
+          "Somatski protokoli za trenutke pritiska"
+        ],
+        "principle": "Autoritet se postavlja do 14. dana. Ne argumentira se na 90."
+      },
+      {
+        "outcome": "Vodi domaćinstvo kao da zaslužuje strategiju.",
+        "body": "Upravljaj kućanstvom preciznošću uspješne tvrtke. Manje trenja, više zajedničke energije, jasnije vlasništvo.",
+        "scope": "Strategic Household Operations",
+        "format": "1:1 ili par · projektno",
+        "who": "Parovi gdje jedna osoba nosi nevidljive operacije. Obitelji koje navigiraju bolest, selidbu ili školske tranzicije. Operatori koji su gradili tvrtke i pokušali snaći se doma na sreću.",
+        "beats": [
+          {
+            "label": "Metoda 01",
+            "text": "Family RACI matrica"
+          },
+          {
+            "label": "Metoda 02",
+            "text": "Domestic Kanban"
+          },
+          {
+            "label": "Metoda 03",
+            "text": "Shared Vision Board"
+          },
+          {
+            "label": "Metoda 04",
+            "text": "Predložak tjednog ops sastanka"
+          },
+          {
+            "label": "Metoda 05",
+            "text": "Kvartalna revizija"
+          },
+          {
+            "label": "Metoda 06",
+            "text": "Somatski protokol za stres u kući"
+          }
+        ],
+        "deliverables": [
+          "RACI dokument domaćinstva i predložak tjednih opsa",
+          "Obiteljski BCP (Business Continuity Plan) predložak",
+          "Prilagođene prakse oporavka za partnerstvo"
+        ],
+        "principle": "Dom bez strategije vodi onaj tko prvi pukne."
+      },
+      {
+        "outcome": "Utvrdi što ti razbija tjedan.",
+        "body": "Za profesionalce koji osjećaju da im 'curi' energija. Energetski P&L, kalendarska autopsija, postura i fito podrška — kalibrirano na stvarno curenje.",
+        "scope": "High-Performance Audit",
+        "format": "1:1 · 15 min besplatna proba",
+        "who": "Bilo tko visoko funkcionalan tko osjeća da sustav škripi. Prije izgaranja, dok još imaš izbor.",
+        "beats": [
+          {
+            "label": "Metoda 01",
+            "text": "Energy Profit & Loss analiza"
+          },
+          {
+            "label": "Metoda 02",
+            "text": "Performance Gap Analysis"
+          },
+          {
+            "label": "Metoda 03",
+            "text": "Executive Posture & Authority"
+          },
+          {
+            "label": "Metoda 04",
+            "text": "Fitoterapijski protokol"
+          },
+          {
+            "label": "Metoda 05",
+            "text": "Kalendarska autopsija"
+          },
+          {
+            "label": "Metoda 06",
+            "text": "30-dnevni follow-up"
+          }
+        ],
+        "deliverables": [
+          "Pisani sažetak audita s jednom imenovanom polugom",
+          "Individualni fito pripravak (zaliha za dva tjedna)",
+          "Prije/poslije bazna linija energije"
+        ],
+        "principle": "Curenje nije tamo gdje je buka."
+      },
+      {
+        "outcome": "Nastavi funkcionirati kad život ne funkcionira.",
+        "body": "Bolest. Gubitak. Razvod. Primjena korporativnog Business Continuity Planning-a (BCP) i Organization Performance Model-a (OPM) na privatni život u trenucima ekstremnog stresa.",
+        "scope": "Crisis Support · Zaslužujem podršku",
+        "format": "Po mjeri · krizni protokol",
+        "who": "Ljudi usred krize koju nisu izabrali. Partneri, roditelji, operatori koji i dalje imaju ljude koji o njima ovise.",
+        "beats": [
+          {
+            "label": "Metoda 01",
+            "text": "Business Continuity Plan (BCP)"
+          },
+          {
+            "label": "Metoda 02",
+            "text": "OPM za krizu"
+          },
+          {
+            "label": "Metoda 03",
+            "text": "Karta podrške i delegacija"
+          },
+          {
+            "label": "Metoda 04",
+            "text": "Tjedni 1:1"
+          },
+          {
+            "label": "Metoda 05",
+            "text": "Fitoterapijski protokol za iscrpljenost"
+          },
+          {
+            "label": "Metoda 06",
+            "text": "Direktan telefonski pristup"
+          }
+        ],
+        "deliverables": [
+          "Pisani plan kontinuiteta i arhitektura podrške",
+          "Prilagođena kadenca — bez limita sesija",
+          "Direktan telefonski pristup za akutne trenutke"
+        ],
+        "principle": "Iz krize se ne razmišlja. Operira se kroz nju — dok se ozdravljuje."
+      }
+    ],
+    "pricing": "Cijena na upit. Vedra uskoro objavljuje tri fiksna paketa s jasnim brojem sesija.",
+    "labels": {
+      "who": "Za koga je",
+      "beats": "Moguće metode",
+      "deliverables": "Još u paketu",
+      "principle": "Princip",
+      "expand": "Otvori",
+      "collapse": "Zatvori"
+    }
+  },
+  "story": {
+    "eyebrow": "06 / O meni",
+    "headline": "Ti i ja.",
+    "paragraphs": [
+      "Nisam tipičan coach. Vjerojatno sam gora.",
+      "Iza mene je 10 godina korporativne karijere, četiri u Procter & Gambleu — svjetskom zlatnom standardu za sustave i procese. Diplomirala sam sociologiju i njemački jezik, poslijediplomski Upravljanje ljudskim potencijalima na EFZG-u. Trenutačno sam u treningu za ICF akreditiranog Executive Coacha.",
+      "Certificirani sam fitoaromaterapeut te koristim znanost o ekstraktima biljaka kako bih kreirala fito-protokole za biologiju i zdravlje. Plus: instruktorica fitnesa — koristim znanja o tijelu za power posture i upravljanje stresom.",
+      "Što to znači za tebe? Nudim ti provjerene alate. Zašto sam gora? Jer očekujem rezultate."
+    ],
+    "credentials": "ICF certifikacija · srpanj 2026. Certifikat iz fitoterapije · srpanj 2026.",
+    "portraitAlt": "Vedra Regul Erent-Ondrušek",
+    "moreLabel": "Više o meni"
+  },
+  "about": {
+    "eyebrow": "06 / O meni · operativni priručnik",
+    "headline": "Iskustvo i akademski put.",
+    "intro": "Jednog dana, nakon iscrpljujućeg razdoblja života, moja psihoterapeutkinja mi je rekla da bih bila izvrstan coach za rad s ljudima. Nema većeg priznanja od žene koja poznaje moj najcrnji shadow self. No, evo i nekih opipljivih dokaza.",
+    "slides": [
+      {
+        "num": "01",
+        "title": "Korporativni Special Forces",
+        "body": "Iza mene je 10 godina korporativne karijere, od čega su četiri u Procter & Gambleu, a ostale u Hitachiju, Transcomu i dm-drogeriemarktu. P&G je svjetski zlatni standard za sustave i procese. Tamo sam naučila postati stroj za efikasnost, ali i za uživanje u poslu. Trenutno u P&G-u vodim CE South HR operacije.",
+        "photo": "/uploads/about-pg.jpg",
+        "photoAlt": "Vedra Regul Erent-Ondrušek (P&G) s Dianom Kobas Dešković (MODE1)"
+      },
+      {
+        "num": "02",
+        "title": "Akademska baza",
+        "body": "Diplomirala sam sociologiju i njemački jezik (2015). Germanisti su poznati po blagonaklonosti prema svojim studentima, tako da sam tu razvila čeličnu disciplinu i cjeloživotni imposter sindrom. Kada sam počela raditi u HR-u, imposter sindrom je zahtijevao da završim poslijediplomski studij Upravljanje ljudskim potencijalima (2021) na EFZG-u. Kruna tog studija: znanstveni rad o odnosu strukturiranog onboardinga i angažmana zaposlenika.",
+        "photo": "/uploads/about-academic.jpg",
+        "photoAlt": "Akademski rad"
+      },
+      {
+        "num": "03",
+        "title": "Executive Coaching",
+        "body": "Trenutačno sam u treningu za ICF akreditiranog Executive Coacha. Coaching ne smatram hobijem, već ozbiljnom disciplinom s jasnim standardima i rezultatima. Do sada sam radila coaching u obliku grief coaching-a, usluge koju sam razvila u sklopu svog projekta Memoria.hr — pisanje i čitanje govora na sprovodima.",
+        "photo": "/uploads/about-coaching.jpg",
+        "photoAlt": "Coaching sesija"
+      },
+      {
+        "num": "04",
+        "title": "Fitoterapija i aromaterapija",
+        "body": "Jesi znao da je u standardiziranim dodacima prehrani znatno manja količina djelatnih tvari nego u svježem fitoterapijskom pripravku? Wellbeing obuhvaća naše fizičko, mentalno i emocionalno zdravlje, a ja godinama koristim snagu biljnih droga za imunitet, izvrstan duboki san te da ostanem smirena u kaotičnim situacijama. U srpnju 2026. postajem certificirani fitoaromaterapeut. Znanja o kemijskim svojstvima biljaka koristim za izradu fito-protokola za svoje coaching pakete.",
+        "photo": "/uploads/about-phyto.jpg",
+        "photoAlt": "Fitoterapija — biljni pripravci"
+      },
+      {
+        "num": "05",
+        "title": "Rad s tijelom: Power Posture i relaksacija",
+        "body": "Završila sam Fitnes učilište (2013) i Školu suvremenog plesa Ane Maletić (2009) uz gimnaziju. U dvadesetima sam vodila tečajeve i radionice Tribal Fusion trbušnog plesa, a plešem i danas u Plesnom centru Dhalia, čija sam suosnivačica. Ta znanja koristim za treniranje power posture položaja tijela kod klijenata te za opuštanje stresa kroz tijelo i pokret.",
+        "photo": "/uploads/about-body.jpg",
+        "photoAlt": "Rad s tijelom — pokret i postura"
+      },
+      {
+        "num": "06",
+        "title": "Životna škola",
+        "body": "Možda i najvažnija. Odrasla sam u obitelji u kojoj je otac ostao nepokretan kad sam imala 10 godina, uz 3 mlađa brata. Iz prve ruke znam koliko bi nam značilo da smo tada imali nekoga tko bi nam organizirao život nakon takve promjene. No, i ovako sam ponosna na to kako smo svi to iznijeli, a o heroju Drašku Regulu može se pročitati više.",
+        "photo": "/uploads/about-life.jpg",
+        "photoAlt": "Obitelj Regul — životna škola"
+      },
+      {
+        "num": "07",
+        "title": "Obitelj",
+        "body": "Majka sam jednog simpatičnog malog dječaka Vilima i supruga još simpatičnijeg pravnika Filipa s kojim dijelim sreću korporativnog svijeta. Obojica su česte žrtve mojih implementacija OPM-a, BCP-a i sličnih kratica u naš život.",
+        "photo": "/uploads/about-family.jpg",
+        "photoAlt": "Obitelj"
+      }
+    ],
+    "labels": {
+      "prev": "Prethodno",
+      "next": "Dalje",
+      "progress": "Slide",
+      "missingPhoto": "NEDOSTAJE FOTO — Vedra će poslati"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "05 / Dokaz",
+    "headline": "Bez svjedočanstava. Zasad. Namjerno.",
+    "body": "Osnivačka generacija 2026. traje do kraja godine. Rani klijenti oblikuju kako ova praksa izgleda — i dobivaju moju nepodijeljenu pažnju dok kalendar nije pun. Svjedočanstva ćeš vidjeti kad ih zaslužim."
+  },
+  "principles": {
+    "eyebrow": "07 / Principi",
+    "headline": "Operativni priručnik.",
+    "sub": "Šest pravila koja idu ispod svakog angažmana. Ako se ne slažeš s većinom, vjerojatno nismo dobar par.",
+    "items": [
+      {
+        "title": "Autoritet prethodi dozvoli.",
+        "body": "Pravo da vodiš ne zaslužuješ traženjem. Uspostavljaš ga, precizno, prije nego što itko provjeri.",
+        "tag": "Vodstvo"
+      },
+      {
+        "title": "Tijelo drži raspored.",
+        "body": "Ako ti živčani sustav kaže ne, kalendar laže. Popravi tijelo, ili plan pada.",
+        "tag": "Somatsko"
+      },
+      {
+        "title": "Karijera je sustav, ne ljestve.",
+        "body": "Ljestve imaju prečke. Sustavi imaju točke poluge. Pronađi svoje.",
+        "tag": "Karijera"
+      },
+      {
+        "title": "Kriza funkcionira na strukturi.",
+        "body": "Jedino što radi kad ništa drugo ne radi je kadenca. Isplaniraj sljedeća dva tjedna. Pa sljedeća dva.",
+        "tag": "Kriza"
+      },
+      {
+        "title": "Generalisti s disciplinom pobjeđuju specijaliste bez.",
+        "body": "Tri alata u jednom operatoru nadmašuju jedan alat kod purista, svaki put.",
+        "tag": "Praksa"
+      },
+      {
+        "title": "Najglasnija žalba nikad nije curenje.",
+        "body": "Simptomi su nizvodno. Dijagnosticiraj gdje energija stvarno odlazi, ne gdje se primjećuje.",
+        "tag": "Dijagnoza"
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "07 / Kontakt",
+    "headline": "Pišimo.",
+    "sub": "Praksa je nova, kalendar nije pun, a sve što stigne u inbox sama čitam. Napiši pismo — kratko ili dugo — i javljam se osobno, obično unutar 48 sati. Ili zakaži poziv ispod.",
+    "paths": [
+      {
+        "label": "01 / Brzo",
+        "title": "Petnaestminutni audit.",
+        "body": "Besplatna dijagnoza. Sedam pitanja, petnaest minuta, jedna pisana dijagnoza. Bez prodaje.",
+        "cta": "Otvori audit",
+        "href": "#note"
+      },
+      {
+        "label": "02 / Otvoreno",
+        "title": "Napiši pismo.",
+        "body": "Kratko ili dugo. Konkretno ili ne. Čitam sva.",
+        "cta": "Pošalji email",
+        "href": "mailto:vedra.re.ondrusek@gmail.com"
+      },
+      {
+        "label": "03 / Zakaži",
+        "title": "Zakaži poziv.",
+        "body": "Preskoči obrazac — odaberi termin direktno u kalendaru.",
+        "cta": "Otvori kalendar",
+        "href": "#kontakt"
+      }
+    ],
+    "direct": {
+      "label": "Ili direktno",
+      "email": "vedra.re.ondrusek@gmail.com",
+      "phone": "+385 95 922 9547",
+      "location": "Zagreb, Hrvatska"
+    },
+    "note": {
+      "eyebrow": "Ili",
+      "headline": "Pošalji poruku sada.",
+      "sub": "Jedno polje. Bez strukture.",
+      "placeholder": "Što ti je na umu?",
+      "submit": "Pošalji",
+      "sending": "Šaljem…",
+      "sent": "Poslano. Javim se u roku od dva radna dana.",
+      "fromLabel": "Od",
+      "fromPlaceholder": "ime@domena.com"
+    },
+    "calendar": {
+      "label": "Preskoči obrazac?",
+      "linkLabel": "Pošalji email za 15-minutni poziv →",
+      "href": "mailto:vedra.re.ondrusek@gmail.com?subject=Zaka%C5%BEujem%2015-minutni%20poziv",
+      "note": ""
+    }
+  },
+  "footer": {
+    "tagline": "Praksa Vedre Regul Erent-Ondrušek",
+    "copyright": "© 2026 Trillian",
+    "legal": "Zagreb, Hrvatska · OIB na upit",
+    "blogLabel": "Pročitaj blog",
+    "blogHref": "/hr/blog"
+  },
+  "blog": {
+    "eyebrow": "Blog · Bilješke iz prakse",
+    "headline": "Bilješke o vođenju života kao operacije.",
+    "intro": "Kratki tekstovi o primjeni korporativnih alata u privatnom životu, fito-protokolima i onome što stvarno pomiče iglu na energiji. Objavljuje se kad je tekst spreman, ne po kalendaru.",
+    "empty": {
+      "title": "Blog se otvara u tjednima, ne mjesecima.",
+      "body": "Ispod: tri teksta u redu za prvo objavljivanje. Ostavi email i javim se osobno kad prvi izađe.",
+      "cta": "Natrag na stranicu",
+      "ctaHref": "/hr"
+    },
+    "upcomingLabel": "Prvi u redu",
+    "upcomingPosts": [
+      {
+        "num": "01",
+        "category": "Autoritet",
+        "title": "Zašto autoritet treba postaviti do 14. dana — a ne argumentirati na 90.",
+        "teaser": "Koliko košta čekanje dozvole, i četiri kalibrirana poteza koji postavljaju tko ćeš biti u novoj ulozi prije nego što itko drugi napiše priču umjesto tebe."
+      },
+      {
+        "num": "02",
+        "category": "Fito",
+        "title": "Tinkture koje stvarno spavaju s tobom.",
+        "teaser": "Zašto su dodaci prehrani na polici polovično kazalište, koje tri hrvatske biljke ih nadmašuju za san i smirenje, i kako se radi individualizirani pripravak."
+      },
+      {
+        "num": "03",
+        "category": "Sustavi",
+        "title": "RACI za kućanstvo. Da, ozbiljno.",
+        "teaser": "Predložak na jednoj stranici koji je kod nas doma završio godinu tihog trenja. Plus OPM potez koji dolazi poslije."
+      }
+    ],
+    "subscribe": {
+      "eyebrow": "Javi kad izađe",
+      "headline": "Pošalji jedan email kad prvi tekst izađe.",
+      "sub": "Bez newslettera, bez dripa, bez marketinga. Jedna poruka u inbox kad prvi tekst bude gotov.",
+      "placeholder": "ti@domena.com",
+      "submit": "Prijavi me",
+      "sending": "Šaljem…",
+      "sent": "Zabilježeno — javim se kad prvi tekst izađe.",
+      "note": "Za sada mailto — odgovori padaju direktno u moj inbox."
+    },
+    "labels": {
+      "back": "Natrag",
+      "readMore": "Čitaj",
+      "published": "Objavljeno"
+    }
+  },
+  "blogTeaser": {
+    "eyebrow": "— Blog",
+    "headline": "Bilješke iz prakse.",
+    "body": "Kratki, rijetki tekstovi. Korporativni alati primijenjeni u privatni život, fito-protokoli i dijagnostika iza svakog paketa.",
+    "previewLabel": "U redu",
+    "cta": "Otvori blog",
+    "pitch": {
+      "eyebrow": "Imaš nešto za dodati?",
+      "headline": "Predloži tekst za blog.",
+      "body": "Osobni esej, studija slučaja iz korporativnog HR-a, fito eksperiment, bilješka s rada s tijelom — bilo što iz craft-a operatora. Dovoljan je jedan paragraf u odgovoru za početak.",
+      "cta": "Predloži tekst",
+      "ctaHref": "mailto:vedra.re.ondrusek@gmail.com?subject=Trillian%20blog%20%E2%80%94%20prijedlog%20teksta"
+    }
+  }
+}
