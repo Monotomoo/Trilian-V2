@@ -4,7 +4,6 @@ import ScrollProgress from '../components/ScrollProgress'
 import Hero from '../components/Hero'
 import Manifesto from '../components/Manifesto'
 import Approach from '../components/Approach'
-import LogoLab from '../components/LogoLab'
 import ServicesList from '../components/ServicesList'
 import TestimonialsPlaceholder from '../components/TestimonialsPlaceholder'
 import Principles from '../components/Principles'
@@ -28,7 +27,6 @@ export default function HomePage() {
       <Hero />
       <Manifesto />
       <Approach />
-      <LogoLab />
       <ServicesList />
       <TestimonialsPlaceholder />
       <Principles />

@@ -1,19 +1,17 @@
 # Decap CMS configuration for Trillian.
 #
-# Edits commit straight to the `main` branch on GitHub and Vercel rebuilds
-# the site. Two locale files are kept in lockstep: strings.en.json and
-# strings.hr.json. Each section below is one "card" in the admin UI.
+# One file entry covering the whole site, with each section as a collapsed
+# object widget. Vedra opens the section she needs, edits, saves. Edits
+# write straight back into content/strings.{en,hr}.json.
 #
 # Local dev: run `npx decap-server` in another terminal, then visit
-#   http://localhost:4001/admin
-# to edit without GitHub OAuth (writes straight to local JSON files).
+#   http://localhost:4001/admin/
+# to edit without GitHub OAuth.
 
 backend:
   name: github
   repo: Monotomoo/Trilian-V2
   branch: main
-  # Phase D: replace with the production Vercel URL once the OAuth proxy
-  # is deployed. Until then, use `local_backend: true` for offline editing.
   base_url: https://trilian-v2.vercel.app
   auth_endpoint: api/oauth
 
@@ -22,34 +20,25 @@ local_backend: true
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
-i18n:
-  structure: multiple_files
-  locales: [en, hr]
-  default_locale: en
-
 collections:
-  # ───────────────────────────────────────────────────────────────────
-  # SITE COPY — every editable string + photo on the homepage.
-  # Each `file` entry is a separate card in the admin sidebar; they all
-  # write back into strings.{locale}.json (Decap merges the slices).
-  # ───────────────────────────────────────────────────────────────────
   - name: site
     label: "Site copy"
-    label_singular: "Section"
-    description: "All headlines, body copy, and photos on the homepage."
+    label_singular: "Document"
+    description: "All headlines, body copy, and photos on the homepage. Edit English and Croatian as separate documents."
     editor:
       preview: false
     files:
-      # ───── 01 · Brand / meta ─────
-      - file: "content/strings.{{locale}}.json"
-        name: meta
-        label: "01 · Brand & meta"
-        i18n: true
+      - file: "content/strings.en.json"
+        name: en
+        label: "English copy"
         format: json
-        fields:
-          - label: "Meta"
+        fields: &siteFields
+
+          # ───── 01 · Brand & meta ─────
+          - label: "01 · Brand & meta"
             name: "meta"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Wordmark", name: "wordmark", widget: "string", i18n: true }
@@ -57,16 +46,11 @@ collections:
               - { label: "Location", name: "location", widget: "string", i18n: true }
               - { label: "Practitioner name", name: "practitioner", widget: "string", i18n: true }
 
-      # ───── 02 · Navigation ─────
-      - file: "content/strings.{{locale}}.json"
-        name: nav
-        label: "02 · Navigation labels"
-        i18n: true
-        format: json
-        fields:
-          - label: "Nav"
+          # ───── 02 · Navigation labels ─────
+          - label: "02 · Navigation labels"
             name: "nav"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Home", name: "home", widget: "string", i18n: true }
@@ -80,16 +64,11 @@ collections:
               - { label: "Story (legacy)", name: "story", widget: "string", i18n: true, required: false }
               - { label: "Principles (legacy)", name: "principles", widget: "string", i18n: true, required: false }
 
-      # ───── 03 · Hero ─────
-      - file: "content/strings.{{locale}}.json"
-        name: hero
-        label: "03 · Hero (top of page)"
-        i18n: true
-        format: json
-        fields:
-          - label: "Hero"
+          # ───── 03 · Hero (top of page) ─────
+          - label: "03 · Hero (top of page)"
             name: "hero"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Eyebrow (small label above headline)", name: "eyebrow", widget: "string", i18n: true }
@@ -113,16 +92,11 @@ collections:
               - { label: "CTA label", name: "ctaLabel", widget: "string", i18n: true }
               - { label: "CTA fine-print under button", name: "ctaMicro", widget: "string", i18n: true }
 
-      # ───── 04 · Manifesto ─────
-      - file: "content/strings.{{locale}}.json"
-        name: manifesto
-        label: "04 · Manifesto"
-        i18n: true
-        format: json
-        fields:
-          - label: "Manifesto"
+          # ───── 04 · Manifesto ─────
+          - label: "04 · Manifesto"
             name: "manifesto"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
@@ -134,16 +108,11 @@ collections:
                 i18n: true
               - { label: "Emphasis line (must match one of the lines exactly)", name: "emphasis", widget: "text", i18n: true }
 
-      # ───── 05 · Marquee (scrolling keywords strip) ─────
-      - file: "content/strings.{{locale}}.json"
-        name: marquee
-        label: "05 · Marquee keywords"
-        i18n: true
-        format: json
-        fields:
-          - label: "Marquee"
+          # ───── 05 · Marquee keywords ─────
+          - label: "05 · Marquee keywords"
             name: "marquee"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - label: "Words"
@@ -152,16 +121,11 @@ collections:
                 field: { label: "Word", name: "word", widget: "string" }
                 i18n: true
 
-      # ───── 06 · Approach (Moj pristup — three pillars) ─────
-      - file: "content/strings.{{locale}}.json"
-        name: approach
-        label: "06 · Approach (Moj pristup)"
-        i18n: true
-        format: json
-        fields:
-          - label: "Approach"
+          # ───── 06 · Approach (Moj pristup) ─────
+          - label: "06 · Approach (Moj pristup)"
             name: "approach"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
@@ -177,16 +141,11 @@ collections:
                   - { label: "Body", name: "body", widget: "text" }
               - { label: "Unifier line (italic, top of right column)", name: "unifier", widget: "text", i18n: true }
 
-      # ───── 07 · Packages (Paketi) ─────
-      - file: "content/strings.{{locale}}.json"
-        name: services
-        label: "07 · Packages (Paketi)"
-        i18n: true
-        format: json
-        fields:
-          - label: "Services"
+          # ───── 07 · Packages (Paketi) ─────
+          - label: "07 · Packages (Paketi)"
             name: "services"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
@@ -226,16 +185,11 @@ collections:
                   - { label: "Open button", name: "expand", widget: "string" }
                   - { label: "Close button", name: "collapse", widget: "string" }
 
-      # ───── 08 · Story (Ti i ja intro — currently unmounted, kept) ─────
-      - file: "content/strings.{{locale}}.json"
-        name: story
-        label: "08 · Story intro (Ti i ja) [unused]"
-        i18n: true
-        format: json
-        fields:
-          - label: "Story"
+          # ───── 08 · Story intro (Ti i ja) [unused] ─────
+          - label: "08 · Story intro (Ti i ja) [unused]"
             name: "story"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
@@ -249,16 +203,11 @@ collections:
               - { label: "Portrait alt-text", name: "portraitAlt", widget: "string", i18n: true }
               - { label: "More-link label", name: "moreLabel", widget: "string", i18n: true }
 
-      # ───── 09 · About me chapters (slider/grid data) ─────
-      - file: "content/strings.{{locale}}.json"
-        name: about
-        label: "09 · About me chapters"
-        i18n: true
-        format: json
-        fields:
-          - label: "About"
+          # ───── 09 · About me chapters ─────
+          - label: "09 · About me chapters"
             name: "about"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
@@ -284,32 +233,22 @@ collections:
                   - { label: "Slide progress label", name: "progress", widget: "string" }
                   - { label: "Missing photo placeholder text", name: "missingPhoto", widget: "string" }
 
-      # ───── 10 · Testimonials ─────
-      - file: "content/strings.{{locale}}.json"
-        name: testimonials
-        label: "10 · Testimonials"
-        i18n: true
-        format: json
-        fields:
-          - label: "Testimonials"
+          # ───── 10 · Testimonials ─────
+          - label: "10 · Testimonials"
             name: "testimonials"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
               - { label: "Headline", name: "headline", widget: "string", i18n: true }
               - { label: "Body", name: "body", widget: "text", i18n: true }
 
-      # ───── 11 · Principles (currently unmounted, replaced by About) ─────
-      - file: "content/strings.{{locale}}.json"
-        name: principles
-        label: "11 · Principles [unused]"
-        i18n: true
-        format: json
-        fields:
-          - label: "Principles"
+          # ───── 11 · Principles [unused] ─────
+          - label: "11 · Principles [unused]"
             name: "principles"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
@@ -324,16 +263,11 @@ collections:
                   - { label: "Body", name: "body", widget: "text" }
                   - { label: "Tag", name: "tag", widget: "string" }
 
-      # ───── 12 · Contact ─────
-      - file: "content/strings.{{locale}}.json"
-        name: contact
-        label: "12 · Contact"
-        i18n: true
-        format: json
-        fields:
-          - label: "Contact"
+          # ───── 12 · Contact ─────
+          - label: "12 · Contact"
             name: "contact"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
@@ -382,16 +316,11 @@ collections:
                   - { label: "Href (URL or mailto:)", name: "href", widget: "string" }
                   - { label: "Note (small caption under link)", name: "note", widget: "string", required: false }
 
-      # ───── 13 · Footer ─────
-      - file: "content/strings.{{locale}}.json"
-        name: footer
-        label: "13 · Footer"
-        i18n: true
-        format: json
-        fields:
-          - label: "Footer"
+          # ───── 13 · Footer ─────
+          - label: "13 · Footer"
             name: "footer"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Tagline", name: "tagline", widget: "string", i18n: true }
@@ -400,16 +329,11 @@ collections:
               - { label: "Blog link label", name: "blogLabel", widget: "string", i18n: true }
               - { label: "Blog link href", name: "blogHref", widget: "string", i18n: true }
 
-      # ───── 14 · Blog page ─────
-      - file: "content/strings.{{locale}}.json"
-        name: blog
-        label: "14 · Blog page"
-        i18n: true
-        format: json
-        fields:
-          - label: "Blog"
+          # ───── 14 · Blog page ─────
+          - label: "14 · Blog page"
             name: "blog"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
@@ -456,16 +380,11 @@ collections:
                   - { label: "Read more", name: "readMore", widget: "string" }
                   - { label: "Published", name: "published", widget: "string" }
 
-      # ───── 15 · Blog teaser (homepage strip) ─────
-      - file: "content/strings.{{locale}}.json"
-        name: blogTeaser
-        label: "15 · Blog teaser (homepage)"
-        i18n: true
-        format: json
-        fields:
-          - label: "Blog teaser"
+          # ───── 15 · Blog teaser (homepage) ─────
+          - label: "15 · Blog teaser (homepage)"
             name: "blogTeaser"
             widget: "object"
+            collapsed: true
             i18n: true
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true }
@@ -483,3 +402,13 @@ collections:
                   - { label: "Body", name: "body", widget: "text" }
                   - { label: "CTA label", name: "cta", widget: "string" }
                   - { label: "CTA href (mailto: or URL)", name: "ctaHref", widget: "string" }
+
+      # ─────────────────────────────────────────────────────────────────
+      # Croatian copy reuses the same field schema via the YAML anchor.
+      # Two cards in the admin sidebar: "English copy" and "Croatian copy".
+      # ─────────────────────────────────────────────────────────────────
+      - file: "content/strings.hr.json"
+        name: hr
+        label: "Croatian copy"
+        format: json
+        fields: *siteFields
